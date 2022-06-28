@@ -252,7 +252,7 @@ class UpgradeQuery extends InstallQuery {
                                 "purge_history_after_months" => "6",
                                 "block_checkouts_when_fines_due" => "'Y'",
                                 "locale" => "'en'",
-                                "charset" => "'iso-8859-1'",
+                                "charset" => "'utf-8'",
                                 "html_lang_attr" => "NULL",
                               ));
 
