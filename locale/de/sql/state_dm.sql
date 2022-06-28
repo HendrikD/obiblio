@@ -1,4 +1,4 @@
-insert into %prfx%state_dm values ('BW','Baden-Württemberg','N');
+insert into %prfx%state_dm values ('BW','Baden-WÃ¼rttemberg','N');
 insert into %prfx%state_dm values ('BY','Bayern','N');
 insert into %prfx%state_dm values ('BE','Berlin','N');
 insert into %prfx%state_dm values ('BB','Brandenburg','N');
@@ -13,4 +13,4 @@ insert into %prfx%state_dm values ('SL','Saarland','N');
 insert into %prfx%state_dm values ('SN','Sachsen','Y');
 insert into %prfx%state_dm values ('ST','Sachsen-Anhalt','N');
 insert into %prfx%state_dm values ('SH','Schleswig-Holstein','N');
-insert into %prfx%state_dm values ('TH','Thüringen','N');
+insert into %prfx%state_dm values ('TH','ThÃ¼ringen','N');

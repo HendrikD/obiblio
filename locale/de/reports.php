@@ -96,18 +96,18 @@ $trans["reportCriteriaStartOnLabel"] = "\$text = 'Beginne mit Etikett:';";
 $trans["reportCriteriaOutput"]     = "\$text = 'Ausgabe Typ:';";
 $trans["reportCriteriaOutputHTML"] = "\$text = 'HTML';";
 $trans["reportCriteriaOutputCSV"]  = "\$text = 'CSV';";
-$trans["Reverse"]  		   = "\$text = 'Rückwärts';";
+$trans["Reverse"]  		   = "\$text = 'RÃ¼ckwÃ¤rts';";
 $trans["Report Criteria"]          = "\$text = 'Berichtskriterien';";
 
 #****************************************************************************
 #*  Translation text for page run_report.php
 #****************************************************************************
-$trans["runReportReturnLink1"]     = "\$text = 'Auswahlkriterium für den Bericht';";
+$trans["runReportReturnLink1"]     = "\$text = 'Auswahlkriterium fÃ¼r den Bericht';";
 $trans["runReportReturnLink2"]     = "\$text = 'Bericht';";
 $trans["runReportTotal"]           = "\$text = 'Gesamtzeilen:';";
 $trans["Result Pages: "]           = "\$text = 'Ergebnis-Seiten: ';";
-$trans["&laquo;Prev"]              = "\$text = '&laquo;Zurück';";
-$trans["Next&raquo;"]              = "\$text = 'Nächster&raquo;';";
+$trans["&laquo;Prev"]              = "\$text = '&laquo;ZurÃ¼ck';";
+$trans["Next&raquo;"]              = "\$text = 'NÃ¤chster&raquo;';";
 $trans["&laquo;First"]             = "\$text = '&laquo;Anfang';";
 $trans["Last&raquo;"]              = "\$text = 'Ende&raquo;';";
 $trans["No results found."]        = "\$text = 'Keine Ergebnisse gefunden.';";
@@ -118,7 +118,7 @@ $trans["Print list"]               = "\$text = 'Liste drucken';";
 #****************************************************************************
 #*  Translation text for page display_labels.php
 #****************************************************************************
-$trans["displayLabelsStartOnLblErr"] = "\$text = 'Das Feld muß numerisch sein.';";
+$trans["displayLabelsStartOnLblErr"] = "\$text = 'Das Feld muÃŸ numerisch sein.';";
 $trans["displayLabelsXmlErr"]      = "\$text = 'Ein Fehler ist aufgetreten beim Lesen der Reportsdefinitionsdatei. Fehler = ';";
 $trans["displayLabelsCannotRead"]  = "\$text = 'Kann die Labeldatei %fileName% nicht lesen';";
 
@@ -135,15 +135,15 @@ $trans["reportCheckouts"]          = "\$text = 'Liste der ausgeliehenen Medien';
 $trans["Over Due Letters"]         = "\$text = 'Mahnungsbriefe';";
 $trans["reportLabels"]             = "\$text = 'Etikettendruckanfrage (von den Etiketten genutzt)';";
 $trans["popularBiblios"]           = "\$text = 'Beliebteste Medien';";
-$trans["overdueList"]              = "\$text = 'Benutzer mit überfälligen Medien';";
-$trans["balanceDueList"]           = "\$text = 'Benutzer mit offenen Beträgen';";
+$trans["overdueList"]              = "\$text = 'Benutzer mit Ã¼berfÃ¤lligen Medien';";
+$trans["balanceDueList"]           = "\$text = 'Benutzer mit offenen BetrÃ¤gen';";
 $trans["Acquisition"]              = "\$text = 'Erwerbungen';";
 $trans["Duplicate Titles"]         = "\$text = 'Doppelte Titel';";
-$trans["Periodic Checkout Count"]  = "\$text = 'Periodischer Ausleihzähler';";
+$trans["Periodic Checkout Count"]  = "\$text = 'Periodischer AusleihzÃ¤hler';";
 $trans["Copy Search"]              = "\$text = 'Exemplarsuche';";
 $trans["Inventory List"]           = "\$text = 'Inventurliste';";
-$trans["Biblio List"]              = "\$text = 'Gesamtübersicht der Medien';";
-$trans["Return"]    	           = "\$text = 'Rückgaben';";
+$trans["Biblio List"]              = "\$text = 'GesamtÃ¼bersicht der Medien';";
+$trans["Return"]    	           = "\$text = 'RÃ¼ckgaben';";
 $trans["Search for Number of Players"] = "\$text = 'Suche nach Spieleranzahl';";
 $trans["Search for Age of Players"]    = "\$text = 'Suche nach Spieleralter';";
 $trans["Search for Playtime"]      = "\$text = 'Suche nach Spielzeit';";
@@ -169,7 +169,7 @@ $trans["Description"]              = "\$text = 'Beschreibung';";
 $trans["Quantity"]                 = "\$text = 'Anzahl';";
 $trans["Member"]                   = "\$text = 'Mitglied';";
 $trans["Checkout"]                 = "\$text = 'Ausleihe';";
-$trans["Due"]                      = "\$text = 'Rückgabe';";
+$trans["Due"]                      = "\$text = 'RÃ¼ckgabe';";
 $trans["Balance"]                  = "\$text = 'Betrag';";
 $trans["Member Barcode"]           = "\$text = 'Mitgliedsnummer';";
 $trans["Status Begin"]             = "\$text = 'Statusanfang';";
@@ -195,7 +195,7 @@ $trans["Time Span"]                = "\$text = 'Zeitraum';";
 $trans["Week"]                     = "\$text = 'Woche';";
 $trans["Month"]                    = "\$text = 'Monat';";
 $trans["Quarter"]                  = "\$text = 'Quartal';";
-$trans["Due before"]               = "\$text = 'Zurück vor';";
+$trans["Due before"]               = "\$text = 'ZurÃ¼ck vor';";
 $trans["Out since"]                = "\$text = 'ausgeliehen seit';";
 $trans["Barcode Starts With"]      = "\$text = 'Barcode beginnt mit';";
 $trans["List of Barcodes (spaced)"] = "\$text = 'Liste der Barcodes (mit Leerzeichen)';";
@@ -207,9 +207,9 @@ $trans["Cards"]                    = "\$text = 'Karten';";
 $trans["ID Cards, self-laminating"] = "\$text = 'Visitenkarten, selbstlaminierend';";
 $trans["Name"]                     = "\$text = 'Name';";
 $trans["Create Date"]              = "\$text = 'Erstellungsdatum';";
-$trans["Date of Return"]           = "\$text = 'Rückgabedatum';";
-$trans["Name Contains"]            = "\$text = 'Name enthält';";
-$trans["Address or Phone or Email Contains"] = "\$text = 'Adresse, Telefonnummer oder Mail enthält';";
+$trans["Date of Return"]           = "\$text = 'RÃ¼ckgabedatum';";
+$trans["Name Contains"]            = "\$text = 'Name enthÃ¤lt';";
+$trans["Address or Phone or Email Contains"] = "\$text = 'Adresse, Telefonnummer oder Mail enthÃ¤lt';";
 $trans["Newer than (Date or today)"] = "\$text = 'Neuer als (Datum oder today)';";
 $trans["Overdue Letters"]          = "\$text = 'Mahnungsbriefe';";
 $trans["As of"]                    = "\$text = 'Datum';";
@@ -222,7 +222,7 @@ $trans["# Checkouts, Author, Title"] = "\$text = '# Ausleihen pro Autor und Tite
 $trans["Most Checkouts, Author, Title"] = "\$text = 'Meisten Ausleihen pro Autor und Titel';";
 $trans["HTML (page-by-page)"]      = "\$text = 'HTML (seitenweise)';";
 $trans["Format"]                   = "\$text = 'Format';";
-$trans["HTML (one big page)"]      = "\$text = 'HTML (eine große Seite)';";
+$trans["HTML (one big page)"]      = "\$text = 'HTML (eine groÃŸe Seite)';";
 $trans["CSV"]                      = "\$text = 'CSV';";
 $trans["Sort By"]                  = "\$text = 'Sortieren nach';";
 $trans["Cataloging"]               = "\$text = 'Katalogisierung';";
@@ -240,7 +240,7 @@ $trans["labelsSimple"]             = "\$text = 'Einfache Etiketten';";
 #****************************************************************************
 $trans["biblio.bibid"]             = "\$text = 'MedienID';";
 $trans["biblio.create_dt"]         = "\$text = 'Erstellungsdatum';";
-$trans["biblio.last_change_dt"]    = "\$text = 'Letzte Änderung';";
+$trans["biblio.last_change_dt"]    = "\$text = 'Letzte Ã„nderung';";
 $trans["biblio.material_cd"]       = "\$text = 'Medienart Nummer';";
 $trans["biblio.collection_cd"]     = "\$text = 'Genre Nummer';";
 $trans["biblio.call_nmbr1"]        = "\$text = 'Standort 1';";
@@ -254,7 +254,7 @@ $trans["biblio_copy.barcode_nmbr"] = "\$text = 'Mediennummer';";
 $trans["biblio.title"]             = "\$text = 'Titel';";
 $trans["biblio.author"]            = "\$text = 'Autor';";
 $trans["biblio_copy.status_begin_dt"]   = "\$text = 'Ausleihdatum';";
-$trans["biblio_copy.due_back_dt"]       = "\$text = 'Rückgabedatum';";
+$trans["biblio_copy.due_back_dt"]       = "\$text = 'RÃ¼ckgabedatum';";
 $trans["member.mbrid"]             = "\$text = 'Benutzernummer';";
 $trans["member.barcode_nmbr"]      = "\$text = 'Benutzernummer';";
 $trans["member.last_name"]         = "\$text = 'Nachname';";
@@ -266,12 +266,12 @@ $trans["member.work_phone"]        = "\$text = 'Telefon(Arbeit)';";
 $trans["member.email"]             = "\$text = 'E-Mail';";
 $trans["biblio_status_dm.description"] = "\$text = 'Status';";
 $trans["settings.library_name"]    = "\$text = 'Bibliotheksname';";
-$trans["settings.library_hours"]   = "\$text = 'Öffnungszeiten';";
+$trans["settings.library_hours"]   = "\$text = 'Ã–ffnungszeiten';";
 $trans["settings.library_phone"]   = "\$text = 'Bibliothekstelefon';";
-$trans["days_late"]                = "\$text = 'überfällige Tage';";
+$trans["days_late"]                = "\$text = 'Ã¼berfÃ¤llige Tage';";
 $trans["title"]                    = "\$text = 'Titel';";
 $trans["author"]                   = "\$text = 'Autor';";
-$trans["due_back_dt"]              = "\$text = 'Rückgabe';";
+$trans["due_back_dt"]              = "\$text = 'RÃ¼ckgabe';";
 $trans["checkoutCount"]            = "\$text = 'Anzahl der Ausleihen';";
 
 ?>

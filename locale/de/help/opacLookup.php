@@ -1,6 +1,6 @@
 <h1>Barcode-Suche:</h1>
 <br><br>
-Der Suchen-Link bei der Ausleihe, Rückgabe und Reservierung öffnet ein zweites Popup-Fenster, welches mit dem Onlinekatalog(OPAC) fast identisch ist. Im Ergebnisfenster einer Suche hat jedes Exemplar zusätzliche Links (Ausleihe/Rückgabe/Reservierung). Wenn man diesen Link auswählt schließt sich das Fenster und gibt den Barcode zum Hauptfenster zurück, wo dieser übermittelt werden kann.
+Der Suchen-Link bei der Ausleihe, RÃ¼ckgabe und Reservierung Ã¶ffnet ein zweites Popup-Fenster, welches mit dem Onlinekatalog(OPAC) fast identisch ist. Im Ergebnisfenster einer Suche hat jedes Exemplar zusÃ¤tzliche Links (Ausleihe/RÃ¼ckgabe/Reservierung). Wenn man diesen Link auswÃ¤hlt schlieÃŸt sich das Fenster und gibt den Barcode zum Hauptfenster zurÃ¼ck, wo dieser Ã¼bermittelt werden kann.
 <br><br>
 
 Hilfe Untersektionen:
@@ -11,8 +11,8 @@ Hilfe Untersektionen:
 <br><br>
 
 <a name="exam">
-Das folgende Beispiel zeigt den link um einen Barcode auszuwählen.</a> 
-Wenn Ihr Browser die Quickinfo unterstützt, dann zeigt Infos an, wenn Sie mit der Maus über die links fahren.
+Das folgende Beispiel zeigt den link um einen Barcode auszuwÃ¤hlen.</a> 
+Wenn Ihr Browser die Quickinfo unterstÃ¼tzt, dann zeigt Infos an, wenn Sie mit der Maus Ã¼ber die links fahren.
 <br><br>
 
 <!--**************************************************************************
@@ -64,7 +64,7 @@ Wenn Ihr Browser die Quickinfo unterstützt, dann zeigt Infos an, wenn Sie mit de
         <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyBCode"); ?></b>: 000051          
             <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Chk"); ?>"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Hold"); ?>"><?php echo $loc->getText("biblioSearchHold"); ?></a>
                   </font></td>
-        <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfügbar</font></td>
+        <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfÃ¼gbar</font></td>
       </tr>
 
     
@@ -107,7 +107,7 @@ Wenn Ihr Browser die Quickinfo unterstützt, dann zeigt Infos an, wenn Sie mit de
         <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyBCode"); ?></b>: 000061          
             <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Chk"); ?>"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Hold"); ?>"><?php echo $loc->getText("biblioSearchHold"); ?></a>
                   </font></td>
-        <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfügbar</font></td>
+        <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfÃ¼gbar</font></td>
 
       </tr>
               <tr>
@@ -118,7 +118,7 @@ Wenn Ihr Browser die Quickinfo unterstützt, dann zeigt Infos an, wenn Sie mit de
                 <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Chk"); ?>"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Hold"); ?>"><?php echo $loc->getText("biblioSearchHold"); ?></a>
 
                           </font></td>
-            <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfügbar</font></td>
+            <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfÃ¼gbar</font></td>
           </tr>
                     <tr>
             <td class="primary" align="center" nowrap="true" valign="top"><font class="small">
@@ -128,7 +128,7 @@ Wenn Ihr Browser die Quickinfo unterstützt, dann zeigt Infos an, wenn Sie mit de
                 <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Chk"); ?>"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="#exam" title="<?php echo $loc->getText("biblioSearchBCode2Hold"); ?>"><?php echo $loc->getText("biblioSearchHold"); ?></a>
 
                           </font></td>
-            <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfügbar</font></td>
+            <td class="primary" nowrap="true"><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: verfÃ¼gbar</font></td>
           </tr>
             </tbody>
 </table><br>
@@ -138,7 +138,7 @@ Im Barcode-Suche-Beispiel oben, unterscheidet sich der Barcode nur in den letzte
 Dieses ist, weil diese Barcodes mit der Funktion 
 <a href="../shared/help.php?page=biblioCopyEdit#seri">Kopiere Serielle Nummern integriert in Barcodes</a> angelegt wurden, als die Exemplare erstellt wurden.
 <br>
-Dies und noch anderes wird erklärt in der Hilfe zu 
+Dies und noch anderes wird erklÃ¤rt in der Hilfe zu 
 <a href="../shared/help.php?page=biblioCopyEdit">Neues Exemplar und Exemplar bearbeiten</a>.
 <br><br>
-Beachten Sie, dass die Nummerierung in der linken Spalte, unabhängig zu Kopiere Serielle Nummern integriert in Barcodes ist.
+Beachten Sie, dass die Nummerierung in der linken Spalte, unabhÃ¤ngig zu Kopiere Serielle Nummern integriert in Barcodes ist.

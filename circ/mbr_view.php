@@ -76,7 +76,7 @@
   }
 
   #****************************************************************************
-  #*  Prüfung auf Hinweis wegen Ablauf der Mitgliedschaft vor Rückgabedatum
+  #*  PrÃ¼fung auf Hinweis wegen Ablauf der Mitgliedschaft vor RÃ¼ckgabedatum
   #*  Derzeit abgedeckt durch Missbrauch des Fehlercodes und Markierung mit !!! davor
   #****************************************************************************
   $dueMsg = "";

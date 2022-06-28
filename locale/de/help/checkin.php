@@ -1,4 +1,4 @@
-<h1>Medienrückgabe:</h1>
+<h1>MedienrÃ¼ckgabe:</h1>
 <br><br>
 Hilfe Untersektionen:
 <ul>

@@ -19,7 +19,7 @@ Die folgende Tabelle beschreibt die Felder, die im Dialog Neues Exemplar bzw. Ex
   <tr>
     <td class="primary" valign="top">Barcode</td>
     <td class="primary" valign="top">Eindeutiger Code, der ein Exemplar identifiziert,
-maximal 20 Zeichen. Dieses Feld ist eine Pflichtangabe, weil es das Exemplar bei der Ausleihe, Rückgabe und Vorbestellung identifiziert.
+maximal 20 Zeichen. Dieses Feld ist eine Pflichtangabe, weil es das Exemplar bei der Ausleihe, RÃ¼ckgabe und Vorbestellung identifiziert.
 <br>Siehe auch: 
 <a href="../shared/help.php?page=barcodes">Barcodes verstehen</a>
     </td>
@@ -30,9 +30,9 @@ maximal 20 Zeichen. Dieses Feld ist eine Pflichtangabe, weil es das Exemplar bei
   </tr>
   <tr>
     <td class="primary" valign="top">Status</td>
-    <td class="primary" valign="top"><b>Nur beim Bearbeiten änderbar</b>.
+    <td class="primary" valign="top"><b>Nur beim Bearbeiten Ã¤nderbar</b>.
 <br>Siehe auch: 
-<a href="../shared/help.php?page=status">Status-Änderungen der Medien verstehen</a>
+<a href="../shared/help.php?page=status">Status-Ã„nderungen der Medien verstehen</a>
     </td>
   </tr>
 </table>
@@ -41,31 +41,31 @@ maximal 20 Zeichen. Dieses Feld ist eine Pflichtangabe, weil es das Exemplar bei
 <a name="barc">Einen externen Barcode eingeben</a>:
 <ul>
   <li>Entweder den Barcode manuell eingeben oder einen Barcodescanner verwenden, wenn das Exemplar schon einen Barcode hat,</li>
-  <li>Übermitteln (Autom. Generierung deaktiviert).</li>
+  <li>Ãœbermitteln (Autom. Generierung deaktiviert).</li>
 </ul>
 <br>
 
 <a name="auto">
 Wenn man bei einem neues Exemplar die Funktion <input name="autobarco" type="checkbox" checked> Autom. Generierung</a> 
-auswählt, versucht Openbiblio automatisch eine neue Nummer zu erstellen, entsprechend den Reglen der internen Nummerierung
+auswÃ¤hlt, versucht Openbiblio automatisch eine neue Nummer zu erstellen, entsprechend den Reglen der internen Nummerierung
 <ul>
   <li>Der erste Teil wird dabei aus der <i>Medien-ID</i> errechnet, die das Medium in
-Openbiblio intern hat (mit führenden Nullen). Die Standardlänge ist 5 Zeichen, das kann geändert werden,
-indem man den Wert $nzeros in biblio_copy_new.php ändert.</li>
+Openbiblio intern hat (mit fÃ¼hrenden Nullen). Die StandardlÃ¤nge ist 5 Zeichen, das kann geÃ¤ndert werden,
+indem man den Wert $nzeros in biblio_copy_new.php Ã¤ndert.</li>
   <li>Der letzte Teil wird aus der <i>Exemplar-ID</i> errechnet.</li>
 </ul>
 <br><br>
 
 <a name="seri">
-Das Kopieren von Seriennummern, die in Barcodes integriert sind</a> erleichtert die Eingabe von Exemplaren aus einer einfachen Kartei, wenn keine eindeutigen Nummern vergeben wurden, sondern nur Seriennummern für mehrere Exemplare eines Titels. 
+Das Kopieren von Seriennummern, die in Barcodes integriert sind</a> erleichtert die Eingabe von Exemplaren aus einer einfachen Kartei, wenn keine eindeutigen Nummern vergeben wurden, sondern nur Seriennummern fÃ¼r mehrere Exemplare eines Titels. 
 <br>
-Auf der Barcode-Suche-Hilfe Seite gibt es außerdem Informationen wie man 
+Auf der Barcode-Suche-Hilfe Seite gibt es auÃŸerdem Informationen wie man 
 <a href="../shared/help.php?page=opacLookup#seri">Seriennummern in automatisch generierten Barcodes findet</a>.
 <br>
-Wenn man Exemplare hinzufügen möchte, die nur eine Seriennummer besitzen geht man folgendermaßen vor:
+Wenn man Exemplare hinzufÃ¼gen mÃ¶chte, die nur eine Seriennummer besitzen geht man folgendermaÃŸen vor:
 <ul>
   <li>Autom. Generierung einschalten,</li>
-  <li>solange neue Kopien anlegen, bis die letzten Stellen des generierten Code mit der Seriennummer übereinstimmen,</li>
-  <li>löschen der permanent nicht verfügbaren Exemplare und Ändern des Status bei den Anderen.</li>
+  <li>solange neue Kopien anlegen, bis die letzten Stellen des generierten Code mit der Seriennummer Ã¼bereinstimmen,</li>
+  <li>lÃ¶schen der permanent nicht verfÃ¼gbaren Exemplare und Ã„ndern des Status bei den Anderen.</li>
 </ul>
 <br><br>

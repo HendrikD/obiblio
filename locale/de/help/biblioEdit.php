@@ -1,7 +1,7 @@
 <h1>Neue Medien bzw. Bearbeite Medien Seiten:</h1>
-Die Seiten für neue Medien und für das Bearbeiten von Medien basieren auf dem <a href="javascript:popSecondaryLarge('http://www.loc.gov/marc')">MARC 21</a> Standardformat (auch als USMARK bekannt). Nur ein sehr kleiner Teil von den einigen hundert MARC-Feldern sind in den Standardeinstellungen vorhanden um es leichter zu machen Medien anzulegen. Sobald ein Medium hinzugefügt wurde kann man dann weitere MARC-Felder hinzufügen, indem man auf Bearb. MARC-Seite geht.
+Die Seiten fÃ¼r neue Medien und fÃ¼r das Bearbeiten von Medien basieren auf dem <a href="javascript:popSecondaryLarge('http://www.loc.gov/marc')">MARC 21</a> Standardformat (auch als USMARK bekannt). Nur ein sehr kleiner Teil von den einigen hundert MARC-Feldern sind in den Standardeinstellungen vorhanden um es leichter zu machen Medien anzulegen. Sobald ein Medium hinzugefÃ¼gt wurde kann man dann weitere MARC-Felder hinzufÃ¼gen, indem man auf Bearb. MARC-Seite geht.
 <br><br>
-Sobald man ein neues Medium angelegt hat, muß man desweiteren Exemplare dieses Mediums anlegen, bevor man das Medium ausleihen kann.
+Sobald man ein neues Medium angelegt hat, muÃŸ man desweiteren Exemplare dieses Mediums anlegen, bevor man das Medium ausleihen kann.
 <br><br>
 Hilfe Untersektionen:
 <ul>
@@ -10,7 +10,7 @@ Hilfe Untersektionen:
 </ul>
 <br><br>
 <a name="desc">
-Die folgende Tabelle bietet Beschreibungen für die Felder in den Standardeinstellungen.</a>
+Die folgende Tabelle bietet Beschreibungen fÃ¼r die Felder in den Standardeinstellungen.</a>
 <br><br>
 <table class="primary">
   <tr><th>Feld</th><th>Beschreibung</th></tr>
@@ -24,11 +24,11 @@ Die folgende Tabelle bietet Beschreibungen für die Felder in den Standardeinstel
   </tr>
   <tr>
     <td class="primary" valign="top">Standort</td>
-    <td class="primary" valign="top">Mehrteilige Standortnummer des Mediums, die benutzt wird um das medium in der Sammlung zu finden. Die Standortnummer wird normalerweise deutlich auf der Außenseite des Mediums vermerkt.</td>
+    <td class="primary" valign="top">Mehrteilige Standortnummer des Mediums, die benutzt wird um das medium in der Sammlung zu finden. Die Standortnummer wird normalerweise deutlich auf der AuÃŸenseite des Mediums vermerkt.</td>
   </tr>
   <tr>
     <td class="primary" valign="top">Anzeige im OPAC</td>
-    <td class="primary" valign="top">Markieren Sie dieses Feld, wenn dieses Medium im OPAC (Suchmaske für die Besucher) angezeigt werden soll!</td>
+    <td class="primary" valign="top">Markieren Sie dieses Feld, wenn dieses Medium im OPAC (Suchmaske fÃ¼r die Besucher) angezeigt werden soll!</td>
   </tr>
   <tr>
     <td class="primary" valign="top">Titel</td>

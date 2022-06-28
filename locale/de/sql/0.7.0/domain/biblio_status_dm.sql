@@ -1,7 +1,7 @@
-insert into %prfx%biblio_status_dm values ('in','verfügbar','Y');
+insert into %prfx%biblio_status_dm values ('in','verfÃ¼gbar','Y');
 insert into %prfx%biblio_status_dm values ('out','ausgeliehen','N');
-insert into %prfx%biblio_status_dm values ('mnd','beschädigt','N');
-insert into %prfx%biblio_status_dm values ('dis','in Präsentation','N');
+insert into %prfx%biblio_status_dm values ('mnd','beschÃ¤digt','N');
+insert into %prfx%biblio_status_dm values ('dis','in PrÃ¤sentation','N');
 insert into %prfx%biblio_status_dm values ('hld','vorbestellt','N');
 insert into %prfx%biblio_status_dm values ('lst','verloren','N');
 insert into %prfx%biblio_status_dm values ('ln','Leihgabe','N');

@@ -83,7 +83,7 @@ function checkin(massCheckinFlg)
         $balMsg = "<font class=\"error\">".$loc->getText("mbrViewBalMsg",array("bal"=>$balText))."</font><br><br>";
       }
       echo $balMsg;
-      /* Neu: Prüfe ob die Nutzungsgebuehr noch aktuell oder abgelaufen ist */
+      /* Neu: PrÃ¼fe ob die Nutzungsgebuehr noch aktuell oder abgelaufen ist */
       if ($mbr->getMembershipEnd()!="0000-00-00") {
 	      if (strtotime($mbr->getMembershipEnd())<strtotime("now")) {
 		      $pDate1=strtotime($mbr->getMembershipEnd());
