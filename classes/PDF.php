@@ -330,7 +330,7 @@ class PDF {
   function _loadFont($name) {
     global $PDF_font;
     $re = '/^[-_A-Za-z0-9]+$/'; # To avoid quoting distopia.
-    assert('preg_match($re, $name)');
+    assert(preg_match($re, $name));
     $fname = $this->_getfontpath().$name.'.php';
     $PDF_font = false;
     @include_once($fname);

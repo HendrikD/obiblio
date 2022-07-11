@@ -108,8 +108,8 @@ class Params {
   /* PRIVATE */
   function _print($type, $namel, $options, $list, $prefix) {
     global $loc;
-    assert('$loc');
-    assert('!empty($namel)');
+    assert($loc);
+    assert(!empty($namel));
     if ($type == 'session_id') {
       return;
     }
@@ -276,7 +276,7 @@ class Params {
         $expr = $this->getOrderExpr($val, $list, $desc);
         return [['order_by', $expr, $rawval], $noerrors];
       default:
-        assert('NULL');		# Can't happen
+        assert(NULL);		# Can't happen
     }
     return [NULL, $noerrors];
   }

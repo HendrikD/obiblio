@@ -600,10 +600,10 @@ class Lay {
   function __construct($paper='letter', $orientation='portrait') {
     if (is_array($paper)) {
       [$l, $err] = $this->lengthToPoints($paper[0], 'x');
-      assert('!$err');	# FIXME
+      assert(!$err);	# FIXME
       $paper[0] = $l;
       [$l, $err] = $this->lengthToPoints($paper[1], 'y');
-      assert('!$err');	# FIXME
+      assert(!$err);	# FIXME
       $paper[1] = $l;
     }
     $this->display = new PDF($paper, $orientation);
@@ -639,7 +639,7 @@ class Lay {
   function pushFont($name, $size) {
     # FIXME - verify that the font name is available
     [$p, $errs] = $this->handleParams([['size', 'y-length', 0]], ['size'=>$size]);
-    assert('!$errs');	# FIXME
+    assert(!$errs);	# FIXME
     array_unshift($this->fonts, [$name, $p['size']]);
   }
   function popFont() {

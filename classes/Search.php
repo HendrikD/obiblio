@@ -17,11 +17,11 @@ class Search {
   function getTerms($types, $terms) {
     $ret = [];
     foreach ($terms as $t) {
-      assert('$t[0] == "group"');
+      assert($t[0] == "group");
       $t = $t[1];
       foreach (['type', 'text', 'exact'] as $n) {
         if ($t[$n]) {
-          assert('$t[$n][0] == "string"');
+          assert($t[$n][0] == "string");
           $t[$n] = $t[$n][1];
         }
       }

@@ -62,7 +62,7 @@ class Report {
     $err = null;
     $this->name = $name;
     $re = '/^[-_A-Za-z0-9]+$/'; # To avoid quoting distopia.
-    assert('preg_match($re, $cache["type"])');
+    assert(preg_match($re, $cache["type"]));
     $fname = '../reports/defs/'.$cache['type'];
     if (is_readable($fname.'.php')) {
       $err = $this->_load_php_e($cache['type'], $fname.'.php');
@@ -114,10 +114,12 @@ class Report {
     return $this->rpt->columns();
   }
   function columnNames() {
-    return array_map(create_function('$x', 'return $x["name"];'), $this->columns());
+    return array_map(function ($x) {
+        return $x["name"];
+    }, $this->columns());
   }
   function init_el($params) {
-    assert('is_array($params)');
+    assert(is_array($params));
     $p = new Params;
     $errs = $p->load_el($this->rpt->paramDefs(), $params);
     if (!empty($errs)) {
@@ -141,7 +143,7 @@ class Report {
     return [];
   }
   function variant_el($newParams, $newName=NULL) {
-    assert('is_array($this->cache["params"])');
+    assert(is_array($this->cache["params"]));
     if ($newName === NULL) {
       $newName = $this->name;
     }

@@ -86,7 +86,7 @@ class Date {
   function getDays($since, $until) {
     $s = strtotime($since);
     $u = strtotime($until);
-    assert('$s <= $u');
+    assert($s <= $u);
 
     $since = date('Y-m-d', $s);
     $until = date('Y-m-d', $u);
