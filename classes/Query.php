@@ -169,14 +169,14 @@ class Query {
       if (strlen($fmt) < $p+2) {
         (new Fatal())->internalError('Bad mkSQL() format string.');
       }
-      if ($fmt{$p+1} == '%') {
+      if ($fmt[$p+1] == '%') {
         $SQL .= "%";
       } else {
         if ($i >= $n) {
           (new Fatal())->internalError('Not enough arguments given to mkSQL().');
         }
         $arg = func_get_arg($i++);
-        switch ($fmt{$p+1}) {
+        switch ($fmt[$p+1]) {
         case '!':
           /* very dangerous, but sometimes very useful -- be careful */
           $SQL .= $arg;
