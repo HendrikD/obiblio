@@ -10,7 +10,7 @@ class TableFuncs {
   function _link_common($col, $row, $params, $url, $rpt_colname=NULL) {
     if ($rpt_colname and isset($params['rpt']) and isset($params['rpt_colnames'])
         and in_array($rpt_colname, $params['rpt_colnames'])) {
-      assert('$row[".seqno"] !== NULL');
+      assert($row[".seqno"] !== NULL);
       $url .= '&amp;rpt='.HURL($params['rpt'])
               . '&amp;seqno='.HURL($row['.seqno']);
     }
@@ -78,8 +78,8 @@ class TableFuncs {
     return (new TableFuncs())->_link_common($col, $row, $params, $url, 'calendar');
   }
   function checkbox($col, $row, $params) {
-    assert('$col["checkbox_name"] != NULL');
-    assert('$col["checkbox_value"] != NULL ');
+    assert($col["checkbox_name"] != NULL);
+    assert($col["checkbox_value"] != NULL);
     $s = '<input type="checkbox" ';
     $s .= 'name="'.H($col['checkbox_name']).'" ';
     $s .= 'value="'.H($row[$col['checkbox_value']]).'" ';
@@ -94,10 +94,10 @@ class TableFuncs {
     return $s;
   }
   function select($col, $row, $params) {
-    assert('$col["select_name"] != NULL');
-    assert('$col["select_index"] != NULL');
-    assert('$col["select_key"] != NULL');
-    assert('$col["select_value"] != NULL ');
+    assert($col["select_name"] != NULL);
+    assert($col["select_index"] != NULL);
+    assert($col["select_key"] != NULL);
+    assert($col["select_value"] != NULL);
     $name = $col['select_name'].'['.$row[$col['select_index']].']';
     $data = [];
     foreach ($row[$col['name']] as $r) {

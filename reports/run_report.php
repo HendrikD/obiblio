@@ -94,7 +94,7 @@
   if ($_REQUEST['type'] == 'previous') {
     if (isset($_REQUEST['rpt_order_by'])) {
       [$rpt, $errs] = $rpt->variant_el(['order_by'=>$_REQUEST['rpt_order_by']]);
-      assert('empty($errs)');
+      assert(empty($errs));
     }
   } else {
     $errs = $rpt->initCgi_el();
