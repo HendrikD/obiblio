@@ -81,8 +81,8 @@
   #****************************************************************************
   $dueMsg = "";
   $pgErrors = $_SESSION['pageErrors'];
-  if (substr($pgErrors[barcodeNmbr], 0, 3) === '!!!') {
-	  $dueMsg = "<font class=\"error\">".substr($pgErrors[barcodeNmbr], 3)."</font><br><br>";
+  if (substr($pgErrors[\BARCODENMBR], 0, 3) === '!!!') {
+	  $dueMsg = "<font class=\"error\">".substr($pgErrors[\BARCODENMBR], 3)."</font><br><br>";
 	  unset($postVars);
   	  unset($pageErrors);
   } 
