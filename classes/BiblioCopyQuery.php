@@ -146,7 +146,7 @@ class BiblioCopyQuery extends Query {
     $sql = $this->mkSQL('select * from biblio_copy_fields '
       . 'where bibid=%N and copyid=%N', $bibid, $copyid);
     $rows = $this->select($sql);
-    $fields = array();
+    $fields = [];
     while ($r = $rows->next()) {
       $fields[$r['code']] = $r['data'];
     }
@@ -219,7 +219,7 @@ class BiblioCopyQuery extends Query {
     if ($this->errorOccurred()) return false;
     if ($dupBarcode) {
       $this->_errorOccurred = true;
-      $this->_error = $this->_loc->getText("biblioCopyQueryErr2",array("barcodeNmbr"=>$copy->getBarcodeNmbr()));
+      $this->_error = $this->_loc->getText("biblioCopyQueryErr2",["barcodeNmbr"=>$copy->getBarcodeNmbr()]);
       return false;
     }
     $sql = $this->mkSQL("insert into biblio_copy values (%N"
@@ -253,7 +253,7 @@ class BiblioCopyQuery extends Query {
     if ($this->errorOccurred()) return false;
     if ($dupBarcode) {
       $this->_errorOccurred = true;
-      $this->_error = $this->_loc->getText("biblioCopyQueryErr2",array("barcodeNmbr"=>$copy->getBarcodeNmbr()));
+      $this->_error = $this->_loc->getText("biblioCopyQueryErr2",["barcodeNmbr"=>$copy->getBarcodeNmbr()]);
       return false;
     }
     $sql = $this->mkSQL("update biblio_copy set "
@@ -402,7 +402,7 @@ class BiblioCopyQuery extends Query {
                         $bibid, $classification);
     $rows = $this->exec($sql);
     if (count($rows) != 1) {
-      return array('checkout_limit'=>0, 'renewal_limit'=>0);
+      return ['checkout_limit'=>0, 'renewal_limit'=>0];
     }
     return $rows[0];
   }

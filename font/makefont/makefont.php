@@ -12,7 +12,7 @@ function ReadMap($enc)
 	$a=file($file);
 	if(empty($a))
 		die('<B>Error:</B> encoding not found: '.$enc);
-	$cc2gn=array();
+	$cc2gn=[];
 	foreach($a as $l)
 	{
 		if($l{0}=='!')
@@ -37,16 +37,9 @@ function ReadAFM($file,&$map)
 	$a=file($file);
 	if(empty($a))
 		die('File not found');
-	$widths=array();
-	$fm=array();
-	$fix=array('Edot'=>'Edotaccent','edot'=>'edotaccent','Idot'=>'Idotaccent','Zdot'=>'Zdotaccent','zdot'=>'zdotaccent',
-		'Odblacute'=>'Ohungarumlaut','odblacute'=>'ohungarumlaut','Udblacute'=>'Uhungarumlaut','udblacute'=>'uhungarumlaut',
-		'Gcedilla'=>'Gcommaaccent','gcedilla'=>'gcommaaccent','Kcedilla'=>'Kcommaaccent','kcedilla'=>'kcommaaccent',
-		'Lcedilla'=>'Lcommaaccent','lcedilla'=>'lcommaaccent','Ncedilla'=>'Ncommaaccent','ncedilla'=>'ncommaaccent',
-		'Rcedilla'=>'Rcommaaccent','rcedilla'=>'rcommaaccent','Scedilla'=>'Scommaaccent','scedilla'=>'scommaaccent',
-		'Tcedilla'=>'Tcommaaccent','tcedilla'=>'tcommaaccent','Dslash'=>'Dcroat','dslash'=>'dcroat','Dmacron'=>'Dcroat','dmacron'=>'dcroat',
-		'combininggraveaccent'=>'gravecomb','combininghookabove'=>'hookabovecomb','combiningtildeaccent'=>'tildecomb',
-		'combiningacuteaccent'=>'acutecomb','combiningdotbelow'=>'dotbelowcomb','dongsign'=>'dong');
+	$widths=[];
+	$fm=[];
+	$fix=['Edot'=>'Edotaccent', 'edot'=>'edotaccent', 'Idot'=>'Idotaccent', 'Zdot'=>'Zdotaccent', 'zdot'=>'zdotaccent', 'Odblacute'=>'Ohungarumlaut', 'odblacute'=>'ohungarumlaut', 'Udblacute'=>'Uhungarumlaut', 'udblacute'=>'uhungarumlaut', 'Gcedilla'=>'Gcommaaccent', 'gcedilla'=>'gcommaaccent', 'Kcedilla'=>'Kcommaaccent', 'kcedilla'=>'kcommaaccent', 'Lcedilla'=>'Lcommaaccent', 'lcedilla'=>'lcommaaccent', 'Ncedilla'=>'Ncommaaccent', 'ncedilla'=>'ncommaaccent', 'Rcedilla'=>'Rcommaaccent', 'rcedilla'=>'rcommaaccent', 'Scedilla'=>'Scommaaccent', 'scedilla'=>'scommaaccent', 'Tcedilla'=>'Tcommaaccent', 'tcedilla'=>'tcommaaccent', 'Dslash'=>'Dcroat', 'dslash'=>'dcroat', 'Dmacron'=>'Dcroat', 'dmacron'=>'dcroat', 'combininggraveaccent'=>'gravecomb', 'combininghookabove'=>'hookabovecomb', 'combiningtildeaccent'=>'tildecomb', 'combiningacuteaccent'=>'acutecomb', 'combiningdotbelow'=>'dotbelowcomb', 'dongsign'=>'dong'];
 	foreach($a as $l)
 	{
 		$e=explode(' ',rtrim($l));
@@ -102,7 +95,7 @@ function ReadAFM($file,&$map)
 		elseif($code=='IsFixedPitch')
 			$fm['IsFixedPitch']=($param=='true');
 		elseif($code=='FontBBox')
-			$fm['FontBBox']=array($e[1],$e[2],$e[3],$e[4]);
+			$fm['FontBBox']=[$e[1], $e[2], $e[3], $e[4]];
 		elseif($code=='CapHeight')
 			$fm['CapHeight']=(int)$param;
 		elseif($code=='StdVW')
@@ -163,7 +156,7 @@ function MakeFontDescriptor($fm,$symbolic)
 	if(isset($fm['FontBBox']))
 		$fbb=$fm['FontBBox'];
 	else
-		$fbb=array(0,$des-100,1000,$asc+100);
+		$fbb=[0, $des-100, 1000, $asc+100];
 	$fd.=",'FontBBox'=>'[".$fbb[0].' '.$fbb[1].' '.$fbb[2].' '.$fbb[3]."]'";
 	//ItalicAngle
 	$ia=(isset($fm['ItalicAngle']) ? $fm['ItalicAngle'] : 0);
@@ -295,7 +288,7 @@ function CheckTTF($file)
 * $patch :    patch optionnel pour l'encodage                                  *
 * $type :     type de la police si $fontfile est vide                          *
 *******************************************************************************/
-function MakeFont($fontfile,$afmfile,$enc='cp1252',$patch=array(),$type='TrueType')
+function MakeFont($fontfile,$afmfile,$enc='cp1252',$patch=[],$type='TrueType')
 {
 	//Generate a font definition file
 	ini_set('magic_quotes_runtime', 0);
@@ -307,7 +300,7 @@ function MakeFont($fontfile,$afmfile,$enc='cp1252',$patch=array(),$type='TrueTyp
 			$map[$cc]=$gn;
 	}
 	else
-		$map=array();
+		$map=[];
 	if(!file_exists($afmfile))
 		die('<B>Error:</B> AFM file not found: '.$afmfile);
 	$fm=ReadAFM($afmfile,$map);

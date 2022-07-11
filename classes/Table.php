@@ -18,8 +18,8 @@ class Table {
   function Table($echolink=NULL, $checkbox=false) {
     $this->_echolink = $echolink;
     $this->_checkbox = $checkbox;
-    $this->_cols = array();
-    $this->_params = array();
+    $this->_cols = [];
+    $this->_params = [];
     $this->_loc = new Localize(OBIB_LOCALE,"reports");
   }
   function columns($cols) {
@@ -77,7 +77,7 @@ class Table {
     echo "</tr>\n";
   }
   function row($row) {
-    $class = array('primary', 'alt1');
+    $class = ['primary', 'alt1'];
     echo "<tr>\n";
     if ($this->_checkbox) {
       echo '<td class="'.H($class[$this->_rown%2]).'" align="center">';

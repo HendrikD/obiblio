@@ -21,14 +21,14 @@
   function run_batch($lines, $date){
     global $loc;
     $circQ = new CircQuery();
-    $errors = array();
+    $errors = [];
     while(count($lines)) {
       $command = trim(array_shift($lines));
       if($command == '')
         continue;
       if($command{0} != '%')
-        return array($loc->getText("Bad upload file: Expected a command code, but didn't get one"));
-      $args = array();
+        return [$loc->getText("Bad upload file: Expected a command code, but didn't get one")];
+      $args = [];
       while (isset($lines[0]) and $lines[0]{0} != '%')
         $args[] = trim(array_shift($lines));
       switch($command){
@@ -40,7 +40,7 @@
           $err = $circQ->checkout_as_of_e($mbcode, $bcode, $date);
           if($err !== NULL)
             $errors[] = $loc->getText("Couldn't check out %item% to %member%: %error%",
-                                      array('item'=>$bcode, 'member'=>$mbcode, 'error'=>$err->toStr()));
+                                      ['item'=>$bcode, 'member'=>$mbcode, 'error'=>$err->toStr()]);
         }
         break;
       case '%CHECKIN%':
@@ -48,11 +48,11 @@
           list($info, $err) = $circQ->shelving_cart_e($bcode, $date, true);
           if($err)
             $errors[] = $loc->getText("Couldn't check in %item%: %error%",
-                                      array('item'=>$bcode, 'error'=>$err->toStr()));
+                                      ['item'=>$bcode, 'error'=>$err->toStr()]);
         }
         break;
       default:
-        $errors[] = $loc->getText("Unrecognized command code: %cmd%", array('cmd'=>H($command)));
+        $errors[] = $loc->getText("Unrecognized command code: %cmd%", ['cmd'=>H($command)]);
         break;
       }
     }
@@ -63,17 +63,7 @@
     echo '<a href="../shared/layout.php?name=offline_commands">'.$loc->getText('Command Sheet').'</a>';
   }
 
-  $form = array(
-    'title'=>$loc->getText("Upload Offline Circulation"),
-    'name'=>'offline_circ',
-    'action'=>'../circ/offline.php',
-    'enctype'=>'multipart/form-data',
-    'submit'=>$loc->getText('Upload'),
-    'fields'=>array(
-      array('name'=>'date', 'title'=>$loc->getText('Date:'), 'type'=>'date', 'default'=>'today'),
-      array('name'=>'command_file', 'title'=>$loc->getText('Command File:'), 'type'=>'file', 'required'=>1),
-    ),
-  );
+  $form = ['title'=>$loc->getText("Upload Offline Circulation"), 'name'=>'offline_circ', 'action'=>'../circ/offline.php', 'enctype'=>'multipart/form-data', 'submit'=>$loc->getText('Upload'), 'fields'=>[['name'=>'date', 'title'=>$loc->getText('Date:'), 'type'=>'date', 'default'=>'today'], ['name'=>'command_file', 'title'=>$loc->getText('Command File:'), 'type'=>'file', 'required'=>1]]];
   list($values, $errs) = Form::getCgi_el($form['fields']);
   if(!$values['_posted'] or $errs){
     include_once("../shared/header.php");
@@ -90,7 +80,7 @@
   
   $lines = file($values['command_file']['tmp_name']);
   if($lines === false)
-    $errors = array("Couldn't read file: ".$values['command_file']['tmp_name']);
+    $errors = ["Couldn't read file: ".$values['command_file']['tmp_name']];
   else
     $errors = run_batch($lines, $values['date']);
   if($errors) {

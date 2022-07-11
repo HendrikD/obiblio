@@ -81,7 +81,7 @@ class BiblioSearchQuery extends Query {
       if ($opacFlg) $criteria = "where opac_flg = 'Y' ";
     } else {
       if ($type == OBIB_SEARCH_BARCODE) {
-	$criteria = $this->_getCriteria($type,array("biblio_copy.barcode_nmbr"),$words);
+	$criteria = $this->_getCriteria($type,["biblio_copy.barcode_nmbr"],$words);
       } elseif ($type == OBIB_SEARCH_AUTHOR) {
         $drop=1;
         for ($i = 0; $i < count($words); $i++) {
@@ -99,7 +99,7 @@ class BiblioSearchQuery extends Query {
           }
           $join .= "and not bf".$i.".subfield_cd regexp('[0-9]') ";
         }
-	$criteria = $this->_getCriteria($type,array("biblio.author","biblio.responsibility_stmt"),$words,$bField=true,$drop);
+	$criteria = $this->_getCriteria($type,["biblio.author", "biblio.responsibility_stmt"],$words,$bField=true,$drop);
       } elseif ($type == OBIB_SEARCH_SUBJECT) {
         $drop=1;
         for ($i = 0; $i < count($words); $i++) {
@@ -123,9 +123,9 @@ class BiblioSearchQuery extends Query {
           }
           $join .= "and not bf".$i.".subfield_cd regexp('[0-9]') ";
         }
-	$criteria = $this->_getCriteria($type,array("biblio.topic1","biblio.topic2","biblio.topic3","biblio.topic4","biblio.topic5"),$words,$bField=true,$drop);
+	$criteria = $this->_getCriteria($type,["biblio.topic1", "biblio.topic2", "biblio.topic3", "biblio.topic4", "biblio.topic5"],$words,$bField=true,$drop);
       } elseif ($type == OBIB_SEARCH_CALLNO) {
-	$criteria = $this->_getCriteria($type,array("biblio.call_nmbr1","biblio.call_nmbr2","biblio.call_nmbr3"),$words);
+	$criteria = $this->_getCriteria($type,["biblio.call_nmbr1", "biblio.call_nmbr2", "biblio.call_nmbr3"],$words);
       } elseif ($type == OBIB_SEARCH_KEYWORD) {
         $drop=1;
         for ($i = 0; $i < count($words); $i++) {
@@ -160,9 +160,9 @@ class BiblioSearchQuery extends Query {
           if ($opacFlg) $join .= "and not (bf".$i.".tag in ('526', '856') and bf".$i.".subfield_cd = 'x') ";
           $join .= "and not bf".$i.".subfield_cd regexp('[0-9]') ";
         }
-	$criteria = $this->_getCriteria($type,array("biblio.author","biblio.responsibility_stmt","biblio.title","biblio.title_remainder","biblio.topic1","biblio.topic2","biblio.topic3","biblio.topic4","biblio.topic5"),$words,$bField=true,$drop);
+	$criteria = $this->_getCriteria($type,["biblio.author", "biblio.responsibility_stmt", "biblio.title", "biblio.title_remainder", "biblio.topic1", "biblio.topic2", "biblio.topic3", "biblio.topic4", "biblio.topic5"],$words,$bField=true,$drop);
       } else {
-	$criteria = $this->_getCriteria($type,array("biblio.title","biblio.title_remainder"),$words);
+	$criteria = $this->_getCriteria($type,["biblio.title", "biblio.title_remainder"],$words);
       }
       if ($opacFlg) $criteria = $criteria."and opac_flg = 'Y' ";
     }

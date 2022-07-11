@@ -56,7 +56,7 @@
   if (method_exists($l, 'paramDefs')) {
     $defs = $l->paramDefs();
   } else {
-    $defs = array();
+    $defs = [];
   }
   if (empty($defs) or isset($_REQUEST['filled'])) {
     $params = new Params;

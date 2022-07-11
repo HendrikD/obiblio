@@ -200,7 +200,7 @@ function changePage(page,sort)
     *  Printing result stats and page nav
     ************************************************************************** -->
 <?php 
-  echo $loc->getText("biblioSearchResultTxt",array("items"=>$biblioQ->getRowCount()));
+  echo $loc->getText("biblioSearchResultTxt",["items"=>$biblioQ->getRowCount()]);
   if ($biblioQ->getRowCount() > 1) {
     echo $loc->getText("biblioSearch".$sortBy);
     if ($sortBy == "author") {

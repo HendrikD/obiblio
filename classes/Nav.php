@@ -3,8 +3,8 @@
  * See the file COPYRIGHT.html for more details.
  */
  
-$_Nav_menu = array();
-$_Nav_unparented = array();
+$_Nav_menu = [];
+$_Nav_unparented = [];
 class Nav {
   # The given $url is an URL do not HTML-escape it!
   function node($path, $title, $url=NULL) {
@@ -13,7 +13,7 @@ class Nav {
   }
   function _node($path, $title, $url) {
     $parent =& Nav::_getParent($path);
-    $parent[] = array('path'=>$path, 'title'=>$title, 'url'=>$url, 'children'=>array());
+    $parent[] = ['path'=>$path, 'title'=>$title, 'url'=>$url, 'children'=>[]];
   }
   function display($activePath) {
     global $_Nav_menu;
@@ -65,7 +65,7 @@ class Nav {
   function _reparent() {
     global $_Nav_unparented;
     $nodes = $_Nav_unparented;
-    $_Nav_unparented = array();
+    $_Nav_unparented = [];
     foreach ($nodes as $n) {
       Nav::_node($n['path'], $n['title'], $n['url']);
     }

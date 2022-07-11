@@ -29,36 +29,33 @@ class Layout_list {
     $unit = (7.5-$totalspacing)/$total;
       
     $lay = new Lay;
-      $lay->container('Columns', array(
-        'margin-left'=>'0.5in', 'margin-right'=>'0.5in',
-        'margin-top'=>'0.5in', 'margin-bottom'=>'0.5in',
-      ));
+      $lay->container('Columns', ['margin-left'=>'0.5in', 'margin-right'=>'0.5in', 'margin-top'=>'0.5in', 'margin-bottom'=>'0.5in']);
         if ($rpt->title()) {
           $lay->pushFont('Times-Bold', 18);
-            $lay->container('TextLine', array('x-align'=>'center'));
+            $lay->container('TextLine', ['x-align'=>'center']);
               $lay->text($rpt->title());
             $lay->close();
           $lay->popFont();
         }
         $lay->pushFont('Times-Italic', 12);
-          $lay->container('Line', array('x-spacing'=>$colspacing.'in'));
+          $lay->container('Line', ['x-spacing'=>$colspacing.'in']);
             foreach ($cols as $col) {
               if (isset($col['hidden'])) {
                 continue;
               }
-              $lay->container('TextLine', array('width'=>($unit*$col['width']).'in', 'underline'=>1));
+              $lay->container('TextLine', ['width'=>($unit*$col['width']).'in', 'underline'=>1]);
                 $lay->text($col['title']);
               $lay->close();
             }
           $lay->close();
         $lay->popFont();
         while ($row = $rpt->each()) {
-          $lay->container('Line', array('x-spacing'=>$colspacing.'in'));
+          $lay->container('Line', ['x-spacing'=>$colspacing.'in']);
             foreach ($cols as $col) {
               if (isset($col['hidden'])) {
                 continue;
               }
-              $lay->container('TextLine', array('width'=>($unit*$col['width']).'in'));
+              $lay->container('TextLine', ['width'=>($unit*$col['width']).'in']);
                 $lay->text($row[$col['name']]);
               $lay->close();
             }

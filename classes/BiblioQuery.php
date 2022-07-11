@@ -30,17 +30,7 @@ class BiblioQuery extends Query {
   function BiblioQuery() {
     $this->Query();
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
-    $this->_fieldsInBiblio = array(
-      '100a' => 'author',
-      '245a' => 'title',
-      '245b' => 'title_remainder',
-      '245c' => 'responsibility_stmt',
-      '650a' => 'topic1',
-      '650a1' => 'topic2',
-      '650a2' => 'topic3',
-      '650a3' => 'topic4',
-      '650a4' => 'topic5',
-    );
+    $this->_fieldsInBiblio = ['100a' => 'author', '245a' => 'title', '245b' => 'title_remainder', '245c' => 'responsibility_stmt', '650a' => 'topic1', '650a1' => 'topic2', '650a2' => 'topic3', '650a3' => 'topic4', '650a4' => 'topic5'];
   }
 
   function setItemsPerPage($value) {
@@ -72,7 +62,7 @@ class BiblioQuery extends Query {
     $this->_currentRowNmbr = 1;
     $this->_rowCount = 1;
     $this->_pageCount = 1;
-    $exclude = array("363x", "526x", "583x", "754x", "852x", "856x");
+    $exclude = ["363x", "526x", "583x", "754x", "852x", "856x"];
 
     /***********************************************************
      *  Reading biblio data
@@ -238,7 +228,7 @@ class BiblioQuery extends Query {
     // inserting biblio row
     $biblioFlds = $biblio->getBiblioFields();
 
-    $bibfields = array();	// fields in biblio table
+    $bibfields = [];	// fields in biblio table
     foreach ($this->_fieldsInBiblio as $key => $name) {
       if (array_key_exists($key, $biblioFlds) and $biblioFlds[$key]->getFieldid() == '') {
         $bibfields[$name] = $biblioFlds[$key]->getFieldData();

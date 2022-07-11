@@ -81,7 +81,7 @@ class RptIter extends Iter {
       if ($sql[0] != 'sql') {
         Fatal::internalError('Broken RPT code structure');
       }
-      $iter = new RptIter(array($sql[1]), $scope);
+      $iter = new RptIter([$sql[1]], $scope);
       $row[$name] = $iter->toArray();
     }
     return $row;
@@ -144,9 +144,9 @@ class RptIter extends Iter {
             if ($t != "string") {
               Fatal::internalError('$t != "string"');
             }
-            $vlist = array();
+            $vlist = [];
             foreach (Search::explodeQuoted($v) as $w) {
-              $vlist[] = array('string', $w);
+              $vlist[] = ['string', $w];
             }
           }
           foreach ($vlist as $v) {

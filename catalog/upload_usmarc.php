@@ -34,7 +34,7 @@ $records = explode($recordterminator,$usmarc_str);
 // We separated with a terminator, so the last element will always be empty.
 array_pop($records);
 
-$biblios = array();
+$biblios = [];
 foreach($records as $record) {
   $biblio = new Biblio();
   $biblio->setLastChangeUserid($_POST["userid"]);
@@ -44,7 +44,7 @@ foreach($records as $record) {
 
   $start=substr($record,12,5);
   $header=substr($record,24,$start-25);
-  $codes = array();
+  $codes = [];
   for ($l=0; $l<strlen($header); $l += 12) {
     $code=substr($header,$l,12);
     $codes[]=substr($code,0,3);

@@ -16,8 +16,8 @@ class Form {
   }
   function getCgi_el($fields) {
     $fields = Form::_cleanFields($fields);
-    $errors = array();
-    $values = array();
+    $errors = [];
+    $values = [];
     if (isset($_REQUEST['_posted']))
       $values['_posted'] = $_REQUEST['_posted'];
     else
@@ -55,21 +55,10 @@ class Form {
           $values[$f['name']] = $val;
       }
     }
-    return array($values, $errors);
+    return [$values, $errors];
   }
   function display($params) {
-    $defaults = array(
-      'title'=>'',
-      'name'=>NULL,
-      'method'=>'post',
-      'enctype'=>NULL,
-      'action'=>NULL,
-      'submit'=>Form::T('Submit'),
-      'cancel'=>NULL,
-      'fields'=>array(),
-      'values'=>array(),
-      'errors'=>array(),
-    );
+    $defaults = ['title'=>'', 'name'=>NULL, 'method'=>'post', 'enctype'=>NULL, 'action'=>NULL, 'submit'=>Form::T('Submit'), 'cancel'=>NULL, 'fields'=>[], 'values'=>[], 'errors'=>[]];
     $params = array_merge($defaults, $params);
     if (!$params['action']) {
       Fatal::internalError(Form::T("No form action"));
@@ -85,7 +74,7 @@ class Form {
     echo ">\n";
     echo '<input type="hidden" name="_posted" value="1" />'."\n";
     list($msg, $errors) = FieldError::listExtract($params['errors']);
-    $rows = array();
+    $rows = [];
     foreach ($fields as $f) {
       if (!isset($params['values'][$f['name']])) {
         $f['value'] = $f['default'];
@@ -99,11 +88,11 @@ class Form {
         $error = NULL;
       if ($f['type'] == 'hidden') {
         if ($error) {
-          Fatal::internalError(Form::T("Unexpected hidden field error: %error%", array('error'=>$error)));
+          Fatal::internalError(Form::T("Unexpected hidden field error: %error%", ['error'=>$error]));
         }
         echo $html;
       } else {
-        $rows[] = array('title'=>$f['title'], 'html'=>$html, 'error'=>$error);
+        $rows[] = ['title'=>$f['title'], 'html'=>$html, 'error'=>$error];
       }
     }
     echo '<table class="form">';
@@ -189,16 +178,7 @@ class Form {
     return $s;
   }
   function _cleanFields($fields) {
-    $defaults = array(
-      'name'=>NULL,
-      'title'=>NULL,
-      'type'=>'text',
-      'default'=>'',
-      'attrs'=>array(),
-      'options'=>array(),
-      'label'=>'',
-      'required'=>false,
-    );
+    $defaults = ['name'=>NULL, 'title'=>NULL, 'type'=>'text', 'default'=>'', 'attrs'=>[], 'options'=>[], 'label'=>'', 'required'=>false];
     for ($i=0; $i<count($fields); $i++) {
       $fields[$i] = array_merge($defaults, $fields[$i]);
       if (!isset($fields[$i]['name'])) {

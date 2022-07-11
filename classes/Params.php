@@ -7,12 +7,12 @@ require_once("../functions/inputFuncs.php");
 require_once("../classes/Date.php");
  
 class Params {
-  public $dict = array();
+  public $dict = [];
   function load_el($paramdefs, $params) {
     return $this->_load_el($this->dict, $paramdefs, $params);
   }
   function loadCgi_el($paramdefs, $prefix='rpt_') {
-    $params = array();
+    $params = [];
     $preflen = strlen($prefix);
     foreach ($_REQUEST as $k => $v) {
       if (substr($k, 0, $preflen) == $prefix) {
@@ -20,7 +20,7 @@ class Params {
       }
     }
     $el = $this->_load_el($this->dict, $paramdefs, $params);
-    $errs = array();
+    $errs = [];
     foreach ($el as $k => $e) {
       $errs[$prefix.$k] = $e;
     }
@@ -42,15 +42,15 @@ class Params {
     }
   }
   function getList($name) {
-    $values = array(array('group', $this->dict));
+    $values = [['group', $this->dict]];
     foreach ($this->_splitName($name) as $n) {
-     $dicts = array();
+     $dicts = [];
       foreach($values as $v) {
         if ($v[0] == 'group') {
           $dicts[] = $v[1];
         }
       }
-      $values = array();
+      $values = [];
       foreach ($dicts as $d) {
         if (isset($d[$n]) and $d[$n]) {
           $v = $d[$n];
@@ -76,12 +76,12 @@ class Params {
         $v =& $v[1][0];
       }
       if ($v[0] != 'group') {
-        $dict[$p] = array('group', array());
+        $dict[$p] = ['group', []];
         $v =& $dict[$p];
       }
       $dict =& $v[1];
     }
-    $dict[$n] = array($type, $value);
+    $dict[$n] = [$type, $value];
   }
   function copy() {
     $p = new Params;
@@ -89,15 +89,15 @@ class Params {
     return $p;
   }
   /* STATIC */
-  function printForm($defs, $prefix='rpt_', $namel=array()) {
+  function printForm($defs, $prefix='rpt_', $namel=[]) {
     echo '<table class="'.$prefix.'params">';
     foreach ($defs as $def) {
       $def = array_pad($def, 4, NULL);		# Sigh.
       list($type, $name, $options, $list) = $def;
-      $l = array_merge($namel, array($name));
+      $l = array_merge($namel, [$name]);
       if (isset($options['repeatable']) && $options['repeatable']) {
         for ($i=0; $i<4; $i++) {
-          Params::_print($type, array_merge($l, array($i)), $options, $list, $prefix);
+          Params::_print($type, array_merge($l, [$i]), $options, $list, $prefix);
         }
       } else {
         Params::_print($type, $l, $options, $list, $prefix);
@@ -148,7 +148,7 @@ class Params {
       echo inputField('text', $name, $default);
       break;
     case 'select':
-      $l = array();
+      $l = [];
       foreach ($list as $v) {
         list($n, $o) = $v;
         if (isset($o['title']) && $o['title']) {
@@ -160,7 +160,7 @@ class Params {
       echo inputField('select', $name, $default, NULL, $l);
       break;
     case 'order_by':
-      $l = array();
+      $l = [];
       foreach ($list as $v) {
         list($n, $o) = $v;
         if (isset($o['title']) and $o['title']) {
@@ -181,7 +181,7 @@ class Params {
     return explode('.', $name);
   }
   function _load_el(&$parameters, $paramdefs, $params, $errprefix=NULL) {
-    $errs = array();
+    $errs = [];
     foreach ($paramdefs as $p) {
       $p = array_pad($p, 4, NULL);		# Sigh.
       list($type, $name, $options, $list) = $p;
@@ -200,7 +200,7 @@ class Params {
       }
       if (isset($options['repeatable']) and $options['repeatable']
           and is_array($params[$name])) {
-        $l = array();
+        $l = [];
         foreach ($params[$name] as $idx => $it) {
           list($v, $el) = $this->_mkParam_el($it, $type, $options, $list, $errnm.'['.$idx.']');
           $errs = array_merge($errs, $el);
@@ -209,7 +209,7 @@ class Params {
           }
         }
         if (!empty($l)) {
-          $parameters[$name] = array('list', $l);
+          $parameters[$name] = ['list', $l];
         } else {
           # A false, but "set" value so that it won't be reset to the default later.
           $parameters[$name] = '';
@@ -228,12 +228,12 @@ class Params {
     return $errs;
   }
   function _mkParam_el($val, $type, $options, $list, $errprefix) {
-    $noerrors = array();
+    $noerrors = [];
     switch ($type) {
       case 'string':
         $val = trim($val);
         if (strlen($val) != 0) {
-          return array(array('string', $val), $noerrors);
+          return [['string', $val], $noerrors];
         }
         break;
       case 'date':
@@ -241,31 +241,31 @@ class Params {
         if (!empty($val)) {
           list($val, $error) = Date::read_e($val);
           if ($error) {
-            return array(NULL, array($errprefix=>$error));
+            return [NULL, [$errprefix=>$error]];
           }
-          return array(array('string', $val), $noerrors);
+          return [['string', $val], $noerrors];
         }
         break;
       case 'select':
         foreach ($list as $v) {
           if ($val == $v[0]) {
-            return array(array('string', $v[0]), $noerrors);
+            return [['string', $v[0]], $noerrors];
           }
         }
         break;
       case 'group':
-        $dict = array();
+        $dict = [];
         $el = $this->_load_el($dict, $list, $val, $errprefix);
         if (!empty($el)) {
-          return array(NULL, $el);
+          return [NULL, $el];
         }
         if (isset($dict[$options['must_have']])
             or !$options['must_have'] and !empty($dict)) {
-          return array(array('group', $dict), $noerrors);
+          return [['group', $dict], $noerrors];
         }
         break;
       case 'session_id':
-        return array(array('string', session_id()), $noerrors);
+        return [['string', session_id()], $noerrors];
       case 'order_by':
         $rawval = $val;
         $desc = ' ';
@@ -274,11 +274,11 @@ class Params {
           $val = substr($val, 0, -2);
         }
         $expr = $this->getOrderExpr($val, $list, $desc);
-        return array(array('order_by', $expr, $rawval), $noerrors);
+        return [['order_by', $expr, $rawval], $noerrors];
       default:
         assert('NULL');		# Can't happen
     }
-    return array(NULL, $noerrors);
+    return [NULL, $noerrors];
   }
   function getOrderExpr($name, $list, $desc) {
     $expr = false;

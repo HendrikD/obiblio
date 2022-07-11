@@ -29,7 +29,7 @@ class BiblioCopy {
   public $_mbrid = "";
   public $_loc;
   public $_renewalCount = "";
-  public $_custom = array();
+  public $_custom = [];
 
   function BiblioCopy () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");

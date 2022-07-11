@@ -11,10 +11,10 @@ class Rpt {
   function load_e($filename) {
     $this->_title = $filename;
     $this->_category = 'Misc.';
-    $this->_layouts = array();
-    $this->_columns = array();
-    $this->_paramdefs = array();
-    $this->_code = array();
+    $this->_layouts = [];
+    $this->_columns = [];
+    $this->_paramdefs = [];
+    $this->_code = [];
     $this->_interp = NULL;
 
     $parser = new RptParser;
