@@ -97,10 +97,10 @@ class Params {
       $l = array_merge($namel, [$name]);
       if (isset($options['repeatable']) && $options['repeatable']) {
         for ($i=0; $i<4; $i++) {
-          Params::_print($type, array_merge($l, [$i]), $options, $list, $prefix);
+          (new Params())->_print($type, array_merge($l, [$i]), $options, $list, $prefix);
         }
       } else {
-        Params::_print($type, $l, $options, $list, $prefix);
+        (new Params())->_print($type, $l, $options, $list, $prefix);
       }
     }
     echo '</table>';
@@ -118,7 +118,7 @@ class Params {
     }
     if ($type == 'group') {
       echo '<tr><td class="'.$prefix.'group" colspan="2">';
-      Params::printForm($list, $prefix, $namel);
+      (new Params())->printForm($list, $prefix, $namel);
       echo '</td></tr>';
       return;
     }
@@ -239,7 +239,7 @@ class Params {
       case 'date':
         $val = trim($val);
         if (!empty($val)) {
-          list($val, $error) = Date::read_e($val);
+          list($val, $error) = (new Date())->read_e($val);
           if ($error) {
             return [NULL, [$errprefix=>$error]];
           }
@@ -297,7 +297,7 @@ class Params {
       switch ($v[1]['type']) {
       case 'MARC':
         if (!isset($v[1]['skip_indicator'])) {
-          Fatal::internalError("MARC sort without skip indicator");
+          (new Fatal())->internalError("MARC sort without skip indicator");
         }
         $skip = $v[1]['skip_indicator'];
         $expr = "ifnull(substring($expr, $skip+1), $expr)";

@@ -24,12 +24,12 @@ class TableFuncs {
   function item_cart_add($col, $row, $params) {
     global $tab;	# FIXME - get rid of $tab
     $url = '../shared/cart_add.php?name=bibid&amp;id[]='.HURL($row['bibid']).'&amp;tab='.HURL($tab);
-    return TableFuncs::_link_common($col, $row, $params, $url);
+    return (new TableFuncs())->_link_common($col, $row, $params, $url);
   }
   function item_cart_del($col, $row, $params) {
     global $tab;	# FIXME - get rid of $tab
     $url = '../shared/cart_del.php?name=bibid&amp;id[]='.HURL($row['bibid']).'&amp;tab='.HURL($tab);
-    return TableFuncs::_link_common($col, $row, $params, $url);
+    return (new TableFuncs())->_link_common($col, $row, $params, $url);
   }
   function biblio_link($col, $row, $params) {
     global $tab;	# FIXME - get rid of $tab
@@ -39,7 +39,7 @@ class TableFuncs {
     } else {
       $url .= '&amp;tab=opac';
     }
-    return TableFuncs::_link_common($col, $row, $params, $url, 'bibid');
+    return (new TableFuncs())->_link_common($col, $row, $params, $url, 'bibid');
   }
   function subject_link($col, $row, $params) {
     global $tab;	# FIXME - get rid of $tab
@@ -49,7 +49,7 @@ class TableFuncs {
     } else {
       $url .= '&amp;tab=opac';
     }
-    return TableFuncs::_link_common($col, $row, $params, $url);
+    return (new TableFuncs())->_link_common($col, $row, $params, $url);
   }
   function series_link($col, $row, $params) {
     global $tab;	# FIXME - get rid of $tab
@@ -59,23 +59,23 @@ class TableFuncs {
     } else {
       $url .= '&amp;tab=opac';
     }
-    return TableFuncs::_link_common($col, $row, $params, $url);
+    return (new TableFuncs())->_link_common($col, $row, $params, $url);
   }
   function booking_link($col, $row, $params) {
     $url = '../circ/booking_view.php?bookingid='.HURL($row['bookingid']);
-    return TableFuncs::_link_common($col, $row, $params, $url, 'bookingid');
+    return (new TableFuncs())->_link_common($col, $row, $params, $url, 'bookingid');
   }
   function member_link($col, $row, $params) {
     $url = '../circ/mbr_view.php?mbrid='.HURL($row['mbrid']);
-    return TableFuncs::_link_common($col, $row, $params, $url, 'mbrid');
+    return (new TableFuncs())->_link_common($col, $row, $params, $url, 'mbrid');
   }
   function site_link($col, $row, $params) {
     $url = '../admin/sites_edit_form.php?siteid='.HURL($row['siteid']);
-    return TableFuncs::_link_common($col, $row, $params, $url, 'siteid');
+    return (new TableFuncs())->_link_common($col, $row, $params, $url, 'siteid');
   }
   function calendar_link($col, $row, $params) {
     $url = '../admin/calendar_edit_form.php?calendar='.HURL($row['calendar']);
-    return TableFuncs::_link_common($col, $row, $params, $url, 'calendar');
+    return (new TableFuncs())->_link_common($col, $row, $params, $url, 'calendar');
   }
   function checkbox($col, $row, $params) {
     assert('$col["checkbox_name"] != NULL');

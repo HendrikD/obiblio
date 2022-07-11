@@ -43,7 +43,7 @@
   assert('class_exists($classname)');
   
   if (isset($_REQUEST['rpt'])) {
-    $rpt = Report::load($_REQUEST['rpt']);
+    $rpt = (new Report())->load($_REQUEST['rpt']);
   } else {
     $rpt = new Iter;  # Some layouts don't need a report.
   }
@@ -100,7 +100,7 @@
 <input type="hidden" name="filled" value="<?php echo H('1') ?>" />
 
 <?php
-  Params::printForm($defs, 'lay_');
+  (new Params())->printForm($defs, 'lay_');
 ?>
 
 <input type="submit" value="Submit" class="button" />

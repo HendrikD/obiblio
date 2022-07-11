@@ -75,7 +75,7 @@ class MemberQuery extends Query {
     # Running row count sql statement
     $rows = $this->exec($sqlcount);
     if (count($rows) != 1) {
-      Fatal::internalError("Wrong number of count rows");
+      (new Fatal())->internalError("Wrong number of count rows");
     }
     # Calculate stats based on row count
     $this->_rowCount = $rows[0]["rowcount"];
@@ -98,7 +98,7 @@ class MemberQuery extends Query {
                         . "where mbrid=%N ", $mbrid);
     $rows = $this->exec($sql);
     if (count($rows) != 1) {
-      Fatal::internalError("Bad mbrid");
+      (new Fatal())->internalError("Bad mbrid");
     }
     return $this->_mkObj($rows[0]);
   }
@@ -189,7 +189,7 @@ class MemberQuery extends Query {
                         $barcode, $mbrid);
     $rows = $this->exec($sql);
     if (count($rows) != 1) {
-      Fatal::internalError('Bad number of rows');
+      (new Fatal())->internalError('Bad number of rows');
     }
     if ($rows[0]['num'] > 0) {
       return true;

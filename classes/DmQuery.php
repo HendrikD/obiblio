@@ -32,7 +32,7 @@ class DmQuery extends Query {
   function get1($table, $code) {
     $rows = $this->_get($table, $code);
     if (count($rows) != 1) {
-     Fatal::internalError("Invalid domain table code");
+     (new Fatal())->internalError("Invalid domain table code");
     }
     return $this->_mkObj($rows[0]);
   }
@@ -53,14 +53,14 @@ class DmQuery extends Query {
       $sql .= "from mbr_classify_dm left join member on mbr_classify_dm.code = member.classification ";
       $sql .= "group by 1, 2, 3, 4 ";
     } else {
-      Fatal::internalError("Cannot retrieve stats for that dm table");
+      (new Fatal())->internalError("Cannot retrieve stats for that dm table");
     }
     $sql .= "order by description ";
     return array_map([$this, '_mkObj'], $this->exec($sql));
   }
 
   function getCheckoutStats($mbrid) {
-    $link = QueryAny::db();
+    $link = (new QueryAny())->db();
     $MySQLn = explode('.', implode('', explode('-', $link->get_server_info())));
     if ($MySQLn[0] < '5') {
         $cmd = 'type=heap';

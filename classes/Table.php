@@ -15,7 +15,7 @@ class Table {
   public $_idcol;
   public $_loc;
   public $_checked=false;
-  function Table($echolink=NULL, $checkbox=false) {
+  function __construct($echolink=NULL, $checkbox=false) {
     $this->_echolink = $echolink;
     $this->_checkbox = $checkbox;
     $this->_cols = [];

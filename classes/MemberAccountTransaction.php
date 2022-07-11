@@ -26,7 +26,7 @@ class MemberAccountTransaction {
   public $_descriptionError = "";
   public $_loc;
 
-  function MemberAccountTransaction () {
+  function __construct () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
   }
 

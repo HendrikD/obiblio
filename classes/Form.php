@@ -15,7 +15,7 @@ class Form {
     return $loc->getText($msg, $vars);
   }
   function getCgi_el($fields) {
-    $fields = Form::_cleanFields($fields);
+    $fields = (new Form())->_cleanFields($fields);
     $errors = [];
     $values = [];
     if (isset($_REQUEST['_posted']))
@@ -40,15 +40,15 @@ class Form {
       else
         $values[$f['name']] = $f['default'];
       if ($f['required'] and $values[$f['name']] == '') {
-        $errors[] = new FieldError($f['name'], Form::T("This field must be filled in."));
+        $errors[] = new FieldError($f['name'], (new Form())->T("This field must be filled in."));
         continue;
       }
       if ($f['type'] == 'select') {
         if (!isset($f['options'][$values[$f['name']]])) {
-          $errors[] = new FieldError($f['name'], Form::T("Choose a valid value from the list."));
+          $errors[] = new FieldError($f['name'], (new Form())->T("Choose a valid value from the list."));
         }
       } else if ($f['type'] == 'date') {
-        list($val, $err) = Date::read_e($values[$f['name']]);
+        list($val, $err) = (new Date())->read_e($values[$f['name']]);
         if ($err)
           $errors[] = new FieldError($f['name'], $err->toStr());
         else
@@ -58,12 +58,12 @@ class Form {
     return [$values, $errors];
   }
   function display($params) {
-    $defaults = ['title'=>'', 'name'=>NULL, 'method'=>'post', 'enctype'=>NULL, 'action'=>NULL, 'submit'=>Form::T('Submit'), 'cancel'=>NULL, 'fields'=>[], 'values'=>[], 'errors'=>[]];
+    $defaults = ['title'=>'', 'name'=>NULL, 'method'=>'post', 'enctype'=>NULL, 'action'=>NULL, 'submit'=>(new Form())->T('Submit'), 'cancel'=>NULL, 'fields'=>[], 'values'=>[], 'errors'=>[]];
     $params = array_merge($defaults, $params);
     if (!$params['action']) {
-      Fatal::internalError(Form::T("No form action"));
+      (new Fatal())->internalError((new Form())->T("No form action"));
     }
-    $fields = Form::_cleanFields($params['fields']);
+    $fields = (new Form())->_cleanFields($params['fields']);
     echo "<form method='".H($params['method'])."' action='".H($params['action'])."'";
     if ($params['name']) {
       echo ' name="'.H($params['name']).'" id="'.H($params['name']).'"';
@@ -81,14 +81,14 @@ class Form {
       } else {
         $f['value'] = $params['values'][$f['name']];
       }
-      $html = Form::_inputField($f);
+      $html = (new Form())->_inputField($f);
       if (isset($errors[$f['name']]))
         $error = $errors[$f['name']];
       else
         $error = NULL;
       if ($f['type'] == 'hidden') {
         if ($error) {
-          Fatal::internalError(Form::T("Unexpected hidden field error: %error%", ['error'=>$error]));
+          (new Fatal())->internalError((new Form())->T("Unexpected hidden field error: %error%", ['error'=>$error]));
         }
         echo $html;
       } else {
@@ -113,7 +113,7 @@ class Form {
     echo "<tr><td></td><td class='buttons'>";
     echo "<input class='button' type='submit' value='".H($params['submit'])."' />\n";
     if ($params['cancel']) {
-      echo '<a class="small_button" href="'.H($params['cancel']).'">'.Form::T("Cancel").'</a> ';
+      echo '<a class="small_button" href="'.H($params['cancel']).'">'.(new Form())->T("Cancel").'</a> ';
     }
     echo '</td></tr></table>';
     echo "</form>\n";
@@ -182,7 +182,7 @@ class Form {
     for ($i=0; $i<count($fields); $i++) {
       $fields[$i] = array_merge($defaults, $fields[$i]);
       if (!isset($fields[$i]['name'])) {
-        Fatal::internalError(Form::T("No name set for form field."));
+        (new Fatal())->internalError((new Form())->T("No name set for form field."));
       }
       if (!$fields[$i]['title']) {
         $fields[$i]['title'] = $fields[$i]['name'];

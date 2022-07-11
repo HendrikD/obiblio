@@ -37,7 +37,7 @@
     $retPage = $_GET["retpage"];
     # Sanity check
     if (substr($retPage, 0, 3) != '../') {
-      Fatal::internalError('unexpected retPage value');
+      (new Fatal())->internalError('unexpected retPage value');
     }
   } else {
     $retPage = "";

@@ -202,10 +202,10 @@ function MakeFontDescriptor($fm,$symbolic)
 {
 	$des = null;
  //Ascent
-	$asc=(isset($fm['Ascender']) ? $fm['Ascender'] : 1000);
+	$asc=($fm['Ascender'] ?? 1000);
 	$fd="array('Ascent'=>".$asc;
 	//Descent
-	$desc=(isset($fm['Descender']) ? $fm['Descender'] : -200);
+	$desc=($fm['Descender'] ?? -200);
 	$fd.=",'Descent'=>".$desc;
 	//CapHeight
 	if(isset($fm['CapHeight']))
@@ -233,7 +233,7 @@ function MakeFontDescriptor($fm,$symbolic)
 		$fbb=[0, $des-100, 1000, $asc+100];
 	$fd.=",'FontBBox'=>'[".$fbb[0].' '.$fbb[1].' '.$fbb[2].' '.$fbb[3]."]'";
 	//ItalicAngle
-	$ia=(isset($fm['ItalicAngle']) ? $fm['ItalicAngle'] : 0);
+	$ia=($fm['ItalicAngle'] ?? 0);
 	$fd.=",'ItalicAngle'=>".$ia;
 	//StemV
 	if(isset($fm['StdVW']))

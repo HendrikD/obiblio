@@ -169,11 +169,11 @@ class Lay_Transformer extends Lay_Container {
   function init(&$parent, $params) {
     parent::init($parent, $params);
     if ($params['scaling'] != 1)
-      Fatal::internalError('Transformer: scaling not implemented');
+      (new Fatal())->internalError('Transformer: scaling not implemented');
     if ($params['x-skew'] != 0 or $params['y-skew'] != 0)
-      Fatal::internalError('Transformer: skew not implemented');
+      (new Fatal())->internalError('Transformer: skew not implemented');
     if (abs(fmod($params['rotation'] * 2 / M_PI, 1)) > 0.01)
-      Fatal::internalError('Transformer: rotation is only supported in pi/2 increments');
+      (new Fatal())->internalError('Transformer: rotation is only supported in pi/2 increments');
     $this->setDims();
   }
   function setDims() {
@@ -512,7 +512,7 @@ class Lay_Paragraph extends Lay_Columns {
 
 /* Not an element, used for underlining by Lay_TextLines and Lay_TextLine */
 class Lay_Underline {
-  function Lay_Underline(&$display, $length, $width) {
+  function __construct(&$display, $length, $width) {
     $this->display =& $display;
     $this->length = $length;
     $this->width = $width;
@@ -578,7 +578,7 @@ class Lay_TextLine extends Lay_Line {
 class Lay_Top_Container {
   public $parent = NULL;
   public $display;
-  function Lay_Top_Container(&$display) {
+  function __construct(&$display) {
     $this->display =& $display;
     $this->child_max_dim = $this->display->dimensions();
   }
@@ -597,7 +597,7 @@ class Lay_Top_Container {
 class Lay {
   public $display;
   public $current;
-  function Lay($paper='letter', $orientation='portrait') {
+  function __construct($paper='letter', $orientation='portrait') {
     if (is_array($paper)) {
       list($l, $err) = $this->lengthToPoints($paper[0], 'x');
       assert('!$err');	# FIXME

@@ -50,7 +50,7 @@ class Date {
       }
     }
     if ($ref !== NULL) {
-      list($ref, $err) = Date::read_e($ref);
+      list($ref, $err) = (new Date())->read_e($ref);
       if ($err) {
         return [NULL, $err];
       }
@@ -60,9 +60,9 @@ class Date {
     if ($datestr == 'today' or $datestr == 'now') {
       return [$ref, NULL];
     } elseif ($datestr == 'yesterday') {
-      return [Date::addDays($ref, -1), NULL];
+      return [(new Date())->addDays($ref, -1), NULL];
     } elseif ($datestr == 'tomorrow') {
-      return [Date::addDays($ref, 1), NULL];
+      return [(new Date())->addDays($ref, 1), NULL];
     } else {
       return [NULL, new ObibError('Invalid date format')];
     }
@@ -91,7 +91,7 @@ class Date {
     $since = date('Y-m-d', $s);
     $until = date('Y-m-d', $u);
     $days = [];
-    for (; $since!=$until; $since=Date::addDays($since, 1)) {
+    for (; $since!=$until; $since=(new Date())->addDays($since, 1)) {
       array_push($days, $since);
     }
     array_push($days, $until);

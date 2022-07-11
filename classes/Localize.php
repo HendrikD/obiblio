@@ -19,7 +19,7 @@ class Localize {
    * @access public
    ****************************************************************************
    */
-  function Localize ($locale, $section) {
+  function __construct ($locale, $section) {
     $localePath = "../locale/".$locale."/".$section.".php";
     include($localePath);
     $this->_trans = $trans;

@@ -10,7 +10,7 @@ class Layout_overdue {
   function render($rpt) {
     list($rpt, $errs) = $rpt->variant_el(['order_by'=>'member']);
     if (!empty($errs)) {
-      Fatal::internalError('Unexpected report error');
+      (new Fatal())->internalError('Unexpected report error');
     }
     
     $mbrQ = new MemberQuery;

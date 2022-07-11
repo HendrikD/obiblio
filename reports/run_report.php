@@ -79,9 +79,9 @@
     exit(0);
   }
   if ($_REQUEST['type'] == 'previous') {
-    $rpt = Report::load('Report');
+    $rpt = (new Report())->load('Report');
   } else {
-    list($rpt, $err) = Report::create_e($_REQUEST['type'], 'Report');
+    list($rpt, $err) = (new Report())->create_e($_REQUEST['type'], 'Report');
     if ($err) {
       $rpt = NULL;
     }
@@ -120,13 +120,10 @@
     } else {
       $title = $l['name'];
     }
-    Nav::node('results/'.$l['name'], $loc->getText($title),
-      '../shared/layout.php?rpt=Report&name='.U($l['name']));
+    (new Nav())->node('results/'.$l['name'], $loc->getText($title), '../shared/layout.php?rpt=Report&name='.U($l['name']));
   }
-  Nav::node('results/list', $loc->getText("Print list"),
-    '../shared/layout.php?rpt=Report&name=list');
-  Nav::node('reportcriteria', $loc->getText("Report Criteria"),
-    '../reports/report_criteria.php?type='.U($rpt->type()));
+  (new Nav())->node('results/list', $loc->getText("Print list"), '../shared/layout.php?rpt=Report&name=list');
+  (new Nav())->node('reportcriteria', $loc->getText("Report Criteria"), '../reports/report_criteria.php?type='.U($rpt->type()));
 
   if ($format == 'csv') {
     include_once('../classes/CsvTable.php');
