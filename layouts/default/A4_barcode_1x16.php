@@ -8,7 +8,7 @@
 require_once('../classes/Lay.php');
 
 class Layout_A4_barcode_1x16 {
-  var $p;
+  public $p;
   function paramDefs() {
     return array(
       array('string', 'skip', array('title'=>'Skip Labels', 'default'=>'0')),

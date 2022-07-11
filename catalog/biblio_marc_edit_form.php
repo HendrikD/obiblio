@@ -2,7 +2,7 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
- 
+
   require_once("../shared/common.php");
   session_cache_limiter(null);
 
@@ -92,13 +92,13 @@
   #*  Start of body
   #****************************************************************************
   ?>
-  
+
 <form name="editmarcform" method="POST" action="../catalog/biblio_marc_edit.php">
 <?php include("../catalog/biblio_marc_fields.php"); ?>
 <input type="hidden" name="bibid" value="<?php echo H($bibid);?>">
 <input type="hidden" name="fieldid" value="<?php echo H($fieldid);?>">
 </form>
-  
+
 
 
 <?php include("../shared/footer.php"); ?>

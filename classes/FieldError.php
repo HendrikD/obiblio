@@ -6,7 +6,7 @@
 /* For when an error applies to a particular form or DB field */
 class FieldError extends ObibError {
   /* public */
-  var $field;
+  public $field;
   function FieldError($field, $msg) {
     parent::ObibError($msg);
     $this->field = $field;

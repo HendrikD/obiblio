@@ -7,7 +7,7 @@ require_once("../functions/inputFuncs.php");
 require_once("../classes/Date.php");
  
 class Params {
-  var $dict = array();
+  public $dict = array();
   function load_el($paramdefs, $params) {
     return $this->_load_el($this->dict, $paramdefs, $params);
   }

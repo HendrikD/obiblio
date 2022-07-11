@@ -12,7 +12,7 @@
  ******************************************************************************
  */
 class Localize {
-  var $_trans = NULL;
+  public $_trans = NULL;
 
   /****************************************************************************
    * @return boolean true if data is valid, otherwise false.

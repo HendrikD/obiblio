@@ -18,13 +18,13 @@ require_once("../classes/Localize.php");
  ******************************************************************************
  */
 class BiblioSearchQuery extends Query {
-  var $_itemsPerPage = 1;
-  var $_rowNmbr = 0;
-  var $_currentRowNmbr = 0;
-  var $_currentPageNmbr = 0;
-  var $_rowCount = 0;
-  var $_pageCount = 0;
-  var $_loc;
+  public $_itemsPerPage = 1;
+  public $_rowNmbr = 0;
+  public $_currentRowNmbr = 0;
+  public $_currentPageNmbr = 0;
+  public $_rowCount = 0;
+  public $_pageCount = 0;
+  public $_loc;
 
   function BiblioSearchQuery() {
     $this->Query();

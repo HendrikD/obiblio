@@ -134,7 +134,7 @@ class UpgradeQuery extends InstallQuery {
     foreach ($fields as $fname => $marc) {
       $this->insertBiblioFields($marc[0], $marc[1], $prfx, $tmpPrfx, $fname);
     }
-    
+
     # biblio table conversion
     $this->copyDataToNewTable("biblio", $prfx, $tmpPrfx,
                               array(
@@ -159,7 +159,7 @@ class UpgradeQuery extends InstallQuery {
                                 "topic5" => "NULL",
                                 "opac_flg" => "'Y'",
                               ));
-   
+
     # biblio_status -> biblio_copy conversion
     $sql = "insert into ".$tmpPrfx."biblio_copy "
 ."(bibid,  copyid,copy_desc,barcode_nmbr,  status_cd,                status_begin_dt,                       due_back_dt,   mbrid) select"
@@ -167,10 +167,10 @@ class UpgradeQuery extends InstallQuery {
           .$prfx."biblio as b "
           ."left join ".$prfx."biblio_status as bs on b.bibid=bs.bibid";
     $this->exec($sql);
-    
+
     $sql = "update ".$tmpPrfx."biblio_copy set status_cd = 'hld' where status_cd = 'cll'";
     $this->exec($sql);
-    
+
     $this->dropTable($prfx.'biblio');
     $this->dropTable($prfx.'biblio_copy');
 
@@ -183,7 +183,7 @@ class UpgradeQuery extends InstallQuery {
                                 "days_due_back" => "days_due_back",
                                 "daily_late_fee" => "0.00",
                               ));
-    
+
     $this->dropTable($prfx.'collection_dm');
 
     #member table conversion
@@ -231,7 +231,7 @@ class UpgradeQuery extends InstallQuery {
                                 "catalog_flg" => "catalog_flg",
                                 "reports_flg" => "admin_flg",
                               ));
-    
+
     $this->dropTable($prfx.'staff');
 
     #settings data conversion
@@ -257,7 +257,7 @@ class UpgradeQuery extends InstallQuery {
                               ));
 
     $this->dropTable($prfx.'settings');
-    
+
     # moving tables that haven't changed in structure,
     # yet may have been modified by the user
     $this->renamePrfxedTable("material_type_dm", $prfx, $tmpPrfx);

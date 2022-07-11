@@ -7,14 +7,14 @@ require_once("../classes/TableFuncs.php");
 require_once("../functions/inputFuncs.php");
 
 class Table {
-  var $_cols;
-  var $_params;
-  var $_rown;
-  var $_echolink;
-  var $_checkbox;
-  var $_idcol;
-  var $_loc;
-  var $_checked=false;
+  public $_cols;
+  public $_params;
+  public $_rown;
+  public $_echolink;
+  public $_checkbox;
+  public $_idcol;
+  public $_loc;
+  public $_checked=false;
   function Table($echolink=NULL, $checkbox=false) {
     $this->_echolink = $echolink;
     $this->_checkbox = $checkbox;

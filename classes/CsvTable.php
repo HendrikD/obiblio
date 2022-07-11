@@ -6,7 +6,7 @@
 require_once("../functions/inputFuncs.php");
 
 class CsvTable {
-  var $_cols = array();
+  public $_cols = array();
   function escape($str) {
     if (strcspn($str, ";\"\r\n") != strlen($str)) {
       $str = '"'.str_replace('"', '""', $str).'"';

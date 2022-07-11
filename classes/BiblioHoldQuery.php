@@ -16,8 +16,8 @@ require_once("../classes/BiblioHold.php");
  ******************************************************************************
  */
 class BiblioHoldQuery extends Query {
-  var $_rowCount = 0;
-  var $_loc;
+  public $_rowCount = 0;
+  public $_loc;
 
   function BiblioHoldQuery() {
     $this->Query();

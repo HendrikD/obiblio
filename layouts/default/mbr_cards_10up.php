@@ -8,7 +8,7 @@
 require_once('../classes/Lay.php');
 
 class Layout_mbr_cards_10up {
-  var $p;
+  public $p;
   function paramDefs() {
     return array(
       array('string', 'skip', array('title'=>'Skip Cards', 'default'=>'0')),

@@ -16,8 +16,8 @@ require_once("../classes/BiblioCopy.php");
  ******************************************************************************
  */
 class BiblioCopyQuery extends Query {
-  var $_rowCount = 0;
-  var $_loc;
+  public $_rowCount = 0;
+  public $_loc;
 
   function BiblioCopyQuery() {
     $this->Query();
