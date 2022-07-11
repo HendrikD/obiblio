@@ -45,7 +45,7 @@ class RptIter extends Iter {
   #	array('order_by_expr')
   #		An appropriate SQL ORDER BY clause is appended to
   #		the query at this point.
-  function RptIter($sqls, $params) {
+  function __construct($sqls, $params) {
     $this->params = $params;
     $this->q = new Query();
     foreach ($sqls as $s) {
@@ -79,7 +79,7 @@ class RptIter extends Iter {
     }
     foreach ($this->subselects as $name => $sql) {
       if ($sql[0] != 'sql') {
-        Fatal::internalError('Broken RPT code structure');
+        (new Fatal())->internalError('Broken RPT code structure');
       }
       $iter = new RptIter([$sql[1]], $scope);
       $row[$name] = $iter->toArray();
@@ -142,10 +142,10 @@ class RptIter extends Iter {
             include_once("../classes/Search.php");
             list($t, $v) = $scope->getFirst($name);
             if ($t != "string") {
-              Fatal::internalError('$t != "string"');
+              (new Fatal())->internalError('$t != "string"');
             }
             $vlist = [];
-            foreach (Search::explodeQuoted($v) as $w) {
+            foreach ((new Search())->explodeQuoted($v) as $w) {
               $vlist[] = ['string', $w];
             }
           }
@@ -160,13 +160,13 @@ class RptIter extends Iter {
           if ($v = $scope->getFirst('order_by')) {
             list($type, $value, $raw) = $v;
             if ($type != "order_by") {
-              Fatal::internalError('$type != "order_by"');
+              (new Fatal())->internalError('$type != "order_by"');
             }
             $query .= 'order by '.$value.' ';
           }
           break;
         default:
-          Fatal::internalError("Can't happen");
+          (new Fatal())->internalError("Can't happen");
           break;
       }
     }

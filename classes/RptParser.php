@@ -172,7 +172,7 @@ class RptParser {
   }
   function getQuoted($str) {
     if (empty($str)) {
-      Fatal::internalError('getQuoted() called with empty $str');
+      (new Fatal())->internalError('getQuoted() called with empty $str');
     }
     $q = $str{0};
     $w = '';
@@ -359,7 +359,7 @@ class RptParser {
         }
         return ['select', $name, $params, $list];
       default:
-        Fatal::internalError("Can't happen");
+        (new Fatal())->internalError("Can't happen");
     }
   }
   function p_items() {

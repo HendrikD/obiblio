@@ -35,7 +35,7 @@
     $materialCd = $postVars['materialCd'];
   }
   if (!isset($materialCd) || $materialCd == "") {
-    Fatal::internalError('no material code set');
+    (new Fatal())->internalError('no material code set');
   }
   if (isset($_GET["tag"])) {
     $postVars["tag"] = $_GET["tag"];

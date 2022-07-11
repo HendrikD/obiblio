@@ -25,7 +25,7 @@
     $xref_id =$_GET["xref_id"];
     $postVars["xref_id"] = $xref_id;
     if (!isset($_GET["materialCd"])) {
-      Fatal::internalError('no material code set');
+      (new Fatal())->internalError('no material code set');
     }
     $materialCd = $_GET["materialCd"];
     $postVars["materialCd"] = $materialCd;
@@ -34,7 +34,7 @@
     $row = $matQ->get1($xref_id);
     $matQ->close();
     if ($row === NULL) {
-      Fatal::internalError('bad xref ID');
+      (new Fatal())->internalError('bad xref ID');
     }
     $postVars["tag"] = $row["tag"];
     $postVars["subfieldCd"]  = $row["subfieldCd"];

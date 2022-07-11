@@ -7,8 +7,8 @@
 class FieldError extends ObibError {
   /* public */
   public $field;
-  function FieldError($field, $msg) {
-    parent::ObibError($msg);
+  function __construct($field, $msg) {
+    parent::__construct($msg);
     $this->field = $field;
   }
   function listExtract($errors) {

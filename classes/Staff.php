@@ -35,7 +35,7 @@ class Staff {
   public $_suspended = false;
   public $_loc;
 
-  function Staff () {
+  function __construct () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
   }
 

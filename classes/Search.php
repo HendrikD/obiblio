@@ -30,7 +30,7 @@ class Search {
         continue;
       }
       if ($types[$t['type']]['method'] == 'words' and !$t['exact']) {
-       $words = Search::explodeQuoted($t['text']);
+       $words = (new Search())->explodeQuoted($t['text']);
         // Optimize the query a bit by eliminating duplicates and looking for longer
         // words first.  This should help cut down the number of records that have
         // to be scanned for subsequent words.

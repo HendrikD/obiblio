@@ -9,7 +9,7 @@ class DbError extends ObibError {
   public $sql;
   public $msg;
   public $dberror;
-  function DbError($sql, $msg, $dberror) {
+  function __construct($sql, $msg, $dberror) {
     $this->sql = $sql;
     $this->msg = $msg;
     $this->dberror = $dberror;

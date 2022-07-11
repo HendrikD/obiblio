@@ -18,7 +18,7 @@ require_once("../classes/Date.php");
 require_once("../classes/Localize.php");
 
 class CircQuery extends Query {
-	function CircQuery() {
+	function __construct() {
 		$this->Query();
 		$this->_loc = new Localize(OBIB_LOCALE, 'classes');
 	}
@@ -29,9 +29,9 @@ class CircQuery extends Query {
 		return $ret;
 	}
 	function _checkout_e($mbcode, $bcode, $due, $date, $force) {
-		list($date, $err) = Date::read_e('today');
+		list($date, $err) = (new Date())->read_e('today');
 		if ($err)
-			Fatal::internalError("Unexpected date error: ".$err);
+			(new Fatal())->internalError("Unexpected date error: ".$err);
 		$earliest = $latest = time();
 		$mbrQ = new MemberQuery();
 		$mbr = $mbrQ->maybeGetByBarcode($mbcode);
@@ -75,7 +75,7 @@ class CircQuery extends Query {
 					return $err;
 				$copy = $copyQ->maybeGetByBarcode($bcode);
 				if (!$copy)
-					Fatal::internalError("Copy disappeared mysteriously.");
+					(new Fatal())->internalError("Copy disappeared mysteriously.");
 			} else
 				return new ObibError($this->_loc->getText("Item %bcode% is already checked out to another member.",
 					['bcode'=>$bcode]));
@@ -99,11 +99,11 @@ class CircQuery extends Query {
 		$copy->setMbrid($mbrid);
 		$copy->setStatusBeginDt($time);
 		if($due === NULL)
-			$copy->setDueBackDt(Date::addDays($date, $days));
+			$copy->setDueBackDt((new Date())->addDays($date, $days));
 		else
 			$copy->setDueBackDt($due);
 		if (!$copyQ->updateStatus($copy))
-			Fatal::InternalError("Impossible copyQ update error.");
+			(new Fatal())->InternalError("Impossible copyQ update error.");
 		
 		$hist = new BiblioStatusHist();
 		$hist->setBibid($copy->getBibid());
@@ -117,7 +117,7 @@ class CircQuery extends Query {
 		$histQ->insert($hist);
 		if ($mbr->getMembershipEnd()!="0000-00-00") {
 			if($due === NULL)
-				$back=Date::addDays($date, $days);
+				$back=(new Date())->addDays($date, $days);
 			else
 				$back=$due;
 			if (strtotime($mbr->getMembershipEnd())<strtotime($back)) {

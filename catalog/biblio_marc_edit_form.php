@@ -24,7 +24,7 @@
   if (isset($_GET["bibid"])) {
     $bibid = $_GET["bibid"];
     if (!isset($_GET['fieldid'])) {
-      Fatal::internalError('no fieldid set');
+      (new Fatal())->internalError('no fieldid set');
     }
     $fieldid = $_GET["fieldid"];
 
@@ -64,10 +64,10 @@
     $selectedSubfld = $postVars["subfieldCd"];
   }
   if (!isset($bibid) || $bibid == "") {
-    Fatal::internalError('no bibid set');
+    (new Fatal())->internalError('no bibid set');
   }
   if (!isset($fieldid) || $fieldid == "") {
-    Fatal::internalError('no fieldid set');
+    (new Fatal())->internalError('no fieldid set');
   }
   if (isset($_GET["tag"])) {
     $selectedTag = $_GET["tag"];

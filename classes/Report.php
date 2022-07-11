@@ -54,7 +54,7 @@ class Report {
     $err = $rpt->_load_e($name, $_SESSION['rpt_'.$name]);
     if ($err) {
       unset($_SESSION['rpt_'.$name]);
-      Fatal::internalError("Couldn't load cached report: $name");
+      (new Fatal())->internalError("Couldn't load cached report: $name");
     }
     return $rpt;
   }
@@ -145,9 +145,9 @@ class Report {
     if ($newName === NULL) {
       $newName = $this->name;
     }
-    list($rpt, $err) = Report::create_e($this->cache['type'], $newName);
+    list($rpt, $err) = (new Report())->create_e($this->cache['type'], $newName);
     if ($err) {
-      Fatal::internalError("Unexpected report creation error: ".$err->toStr());
+      (new Fatal())->internalError("Unexpected report creation error: ".$err->toStr());
     }
     $params = new Params;
     $params->loadDict($this->cache['params']);

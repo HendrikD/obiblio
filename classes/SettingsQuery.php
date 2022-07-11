@@ -115,7 +115,7 @@ class SettingsQuery extends Query {
     $sql = "select purge_history_after_months from settings";
     $rows = $query->exec($sql);
     if (count($rows) != 1) {
-      Fatal::internalError("Wrong number of settings rows");
+      (new Fatal())->internalError("Wrong number of settings rows");
     }
     return $rows[0]["purge_history_after_months"];
   }

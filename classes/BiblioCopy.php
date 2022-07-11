@@ -31,7 +31,7 @@ class BiblioCopy {
   public $_renewalCount = "";
   public $_custom = [];
 
-  function BiblioCopy () {
+  function __construct () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
   }
 

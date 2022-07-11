@@ -64,7 +64,7 @@
   }
 
   $form = ['title'=>$loc->getText("Upload Offline Circulation"), 'name'=>'offline_circ', 'action'=>'../circ/offline.php', 'enctype'=>'multipart/form-data', 'submit'=>$loc->getText('Upload'), 'fields'=>[['name'=>'date', 'title'=>$loc->getText('Date:'), 'type'=>'date', 'default'=>'today'], ['name'=>'command_file', 'title'=>$loc->getText('Command File:'), 'type'=>'file', 'required'=>1]]];
-  list($values, $errs) = Form::getCgi_el($form['fields']);
+  list($values, $errs) = (new Form())->getCgi_el($form['fields']);
   if(!$values['_posted'] or $errs){
     include_once("../shared/header.php");
     if (isset($_REQUEST['msg'])) {
@@ -72,7 +72,7 @@
     }
     $form['values'] = $values;
     $form['errors'] = $errs;
-    Form::display($form);
+    (new Form())->display($form);
     layout_links();
     include_once("../shared/footer.php");
     exit();
@@ -93,7 +93,7 @@
       echo '<li>'.H($e).'</li>';
     }
     echo '</ul></div>';
-    Form::display($form);
+    (new Form())->display($form);
     layout_links();
     include_once("../shared/footer.php");
     exit();

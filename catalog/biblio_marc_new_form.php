@@ -39,7 +39,7 @@
     $selectedSubfld = $postVars["subfieldCd"];
   }
   if (!isset($bibid) || $bibid == "") {
-    Fatal::internalError('no bibid set');
+    (new Fatal())->internalError('no bibid set');
   }
   if (isset($_GET["tag"])) {
     $selectedTag = $_GET["tag"];

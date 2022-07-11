@@ -54,7 +54,7 @@ class PDF {
   *                               Public methods                                 *
   *                                                                              *
   *******************************************************************************/
-  function PDF($format, $orientation) {
+  function __construct($format, $orientation) {
     $unit = 'pt';
     //Some checks
     $this->_dochecks();
@@ -863,7 +863,7 @@ class PDF {
       $colspace='DeviceCMYK';
     else
       $colspace='DeviceGray';
-    $bpc=isset($a['bits']) ? $a['bits'] : 8;
+    $bpc=$a['bits'] ?? 8;
     //Read whole file
     $f=fopen($file,'rb');
     $data='';

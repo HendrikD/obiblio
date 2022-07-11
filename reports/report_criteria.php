@@ -22,13 +22,13 @@
     exit(0);
   }
   
-  list($rpt, $err) = Report::create_e($type);
+  list($rpt, $err) = (new Report())->create_e($type);
   if ($err) {
     header('Location: ../reports/index.php');
     exit(0);
   }
 
-  Nav::node('reportcriteria', $loc->getText("Report Criteria"));
+  (new Nav())->node('reportcriteria', $loc->getText("Report Criteria"));
   include("../shared/header.php");
 
   #****************************************************************************
@@ -49,7 +49,7 @@
 <?php
   $format = [['select', '__format', ['title'=>'Format'], [['paged', ['title'=>'HTML (page-by-page)']], ['html', ['title'=>'HTML (one big page)']], ['csv', ['title'=>'CSV']]]]];
   $params = array_merge($rpt->paramDefs(), $format);
-  Params::printForm($params);
+  (new Params())->printForm($params);
 ?>
 
 <input type="submit" value="Submit" class="button" />

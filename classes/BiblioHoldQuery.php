@@ -19,7 +19,7 @@ class BiblioHoldQuery extends Query {
   public $_rowCount = 0;
   public $_loc;
 
-  function BiblioHoldQuery() {
+  function __construct() {
     $this->Query();
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
   }

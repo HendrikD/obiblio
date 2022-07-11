@@ -44,7 +44,7 @@ class Rpt {
           array_push($this->_code, $value);
           break;
         default:
-          Fatal::internalError("Can't happen");
+          (new Fatal())->internalError("Can't happen");
       }
     }
     return NULL;
