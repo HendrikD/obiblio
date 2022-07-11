@@ -875,6 +875,7 @@ class PDF {
 
   function _parsepng($file)
   {
+    $colspace = null;
     //Extract info from a PNG file
     $f=fopen($file,'rb');
     if(!$f)

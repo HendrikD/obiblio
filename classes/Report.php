@@ -59,6 +59,7 @@ class Report {
     return $rpt;
   }
   function _load_e($name, $cache) {
+    $err = null;
     $this->name = $name;
     $re = '/^[-_A-Za-z0-9]+$/'; # To avoid quoting distopia.
     assert('preg_match($re, $cache["type"])');

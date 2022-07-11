@@ -182,7 +182,8 @@ class CircQuery extends Query {
 		return $ret;
 	}
 	function _shelving_cart_e($bcode, $date, $force) {
-		$info = ['mbrid'=>NULL, 'bibid'=>NULL, 'hold'=>NULL];
+		$late = null;
+  $info = ['mbrid'=>NULL, 'bibid'=>NULL, 'hold'=>NULL];
 		if ($date === NULL) {
 			list($date, $err) = Date::read_e('today');
 			if ($err)

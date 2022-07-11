@@ -39,6 +39,7 @@ class Settings {
   ****************************************************************************
   */
   function getLocales () {
+    $lang_metadata = [];
     $dir_handle = opendir(OBIB_LOCALE_ROOT);
     $arr_locale = [];
     

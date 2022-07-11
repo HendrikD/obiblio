@@ -11,6 +11,7 @@
  *********************************************************************************
  */
 function explodeQuoted($str) {
+  $elements = [];
   if ($str == ""){
     $elements[]="";
     return $elements; 

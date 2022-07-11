@@ -99,6 +99,7 @@ class UsmarcTagDmQuery extends Query {
    ****************************************************************************
    */
   function fetchRows() {
+    $assoc = [];
     $tagsFound = false;
     while ($result = $this->_conn->fetchRow()) {
       $tagsFound = true;

@@ -46,6 +46,7 @@ class MemberQuery extends Query {
    ****************************************************************************
    */
   function execSearch($type, $word, $page) {
+    $col = null;
     # reset stats
     $this->_rowNmbr = 0;
     $this->_currentRowNmbr = 0;
