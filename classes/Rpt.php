@@ -18,12 +18,12 @@ class Rpt {
     $this->_interp = NULL;
 
     $parser = new RptParser;
-    list($decls, $err) = $parser->load_e($filename);
+    [$decls, $err] = $parser->load_e($filename);
     if ($err) {
       return $err;
     }
     foreach ($decls as $decl) {
-      list($name, $value) = $decl;
+      [$name, $value] = $decl;
       switch ($name) {
         case 'title':
           $this->_title = $value;

@@ -72,7 +72,7 @@ class Lay_Compound_Element {
     $max_clip['y'] -= $this->dimensions['y'];
     $this->display->startClip($point, $max_clip);
     foreach ($this->elems as $l) {
-      list($pos, $elem) = $l;
+      [$pos, $elem] = $l;
       $pos['x'] = $point['x'] + $pos['x'];
       $pos['y'] = $point['y'] - $pos['y'];
       $elem->paint($pos);
@@ -232,7 +232,7 @@ class Lay_Lines extends Lay_Container {
     }
     $elem->init($this->display, $params);
     foreach ($this->layout($final) as $l) {
-      list($pos, $child) = $l;
+      [$pos, $child] = $l;
       $elem->addChild($pos, $child);
     }
     $elem->setDimensions($this->dimensions());
@@ -599,10 +599,10 @@ class Lay {
   public $current;
   function __construct($paper='letter', $orientation='portrait') {
     if (is_array($paper)) {
-      list($l, $err) = $this->lengthToPoints($paper[0], 'x');
+      [$l, $err] = $this->lengthToPoints($paper[0], 'x');
       assert('!$err');	# FIXME
       $paper[0] = $l;
-      list($l, $err) = $this->lengthToPoints($paper[1], 'y');
+      [$l, $err] = $this->lengthToPoints($paper[1], 'y');
       assert('!$err');	# FIXME
       $paper[1] = $l;
     }
@@ -614,7 +614,7 @@ class Lay {
     # FIXME should assert that $name names a container class
     $name = 'Lay_'.$name;
     $c = new $name;
-    list($p, $errs) = $this->handleParams($c->paramTypes(), $params);
+    [$p, $errs] = $this->handleParams($c->paramTypes(), $params);
     #assert('!$errs');	# FIXME
     $c->init($this->current, $p);
     $this->current =& $c;
@@ -631,14 +631,14 @@ class Lay {
     # FIXME should assert that $name names an element class
     $name = 'Lay_'.$name;
     $e = new $name;
-    list($p, $errs) = $this->handleParams($e->paramTypes(), $params);
+    [$p, $errs] = $this->handleParams($e->paramTypes(), $params);
     #assert('!$errs');	# FIXME
     $e->init($this->display, $p);
     $this->current->child($e);
   }
   function pushFont($name, $size) {
     # FIXME - verify that the font name is available
-    list($p, $errs) = $this->handleParams([['size', 'y-length', 0]], ['size'=>$size]);
+    [$p, $errs] = $this->handleParams([['size', 'y-length', 0]], ['size'=>$size]);
     assert('!$errs');	# FIXME
     array_unshift($this->fonts, [$name, $p['size']]);
   }
@@ -669,7 +669,7 @@ class Lay {
     $errs = [];
     foreach ($ptypes as $t) {
       #assert('is_array($t)');
-      list($name, $type, $default) = $t;
+      [$name, $type, $default] = $t;
       if (isset($params[$name])) {
         $p[$name] = $params[$name];
       } else {
@@ -679,7 +679,7 @@ class Lay {
       switch ($type) {
       case 'x-length':
       case 'y-length':
-        list($len, $err) = $this->lengthToPoints($p[$name], $type{0});
+        [$len, $err] = $this->lengthToPoints($p[$name], $type{0});
         $p[$name] = $len;
         break;
       case 'x-align':

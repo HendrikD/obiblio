@@ -17,7 +17,7 @@ class Layout_barcode_98up {
     $lay = new Lay;
       $lay->container('Lines', ['margin-top'=>'0.25in', 'margin-bottom'=>'0.25in', 'margin-left'=>'0.40625in', 'margin-right'=>'0.46875in', 'x-spacing'=>'0.09375in']);
         $lay->container('Columns');
-          list(, $skip) = $this->p->getFirst('skip');
+          [, $skip] = $this->p->getFirst('skip');
           for ($i = 0; $i < $skip; $i++) {
             $lay->container('Column', ['height'=>'0.75in', 'width'=>'1in']);
             $lay->close();

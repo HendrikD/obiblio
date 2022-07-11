@@ -337,11 +337,11 @@ class PDF {
     if (!is_array($PDF_font)) {
       $this->Error('Invalid font: '.$name);
     }
-    $PDF_font['i']=count($this->fonts)+1;
+    $PDF_font['i']=(is_countable($this->fonts) ? count($this->fonts) : 0)+1;
     #$this->fonts[$fontkey]=array('i'=>$i,'type'=>$type,'name'=>$name,'desc'=>$desc,'up'=>$up,'ut'=>$ut,'cw'=>$cw,'enc'=>$enc,'file'=>$file);
     if (isset($PDF_font['diff'])) {
       $d = 0;
-      $nb = count($this->diffs);
+      $nb = is_countable($this->diffs) ? count($this->diffs) : 0;
       for ($i=1; $i<=$nb; $i++) {
         if ($this->diffs[$i] == $PDF_font['diff']) {
           $d = $i;
@@ -393,7 +393,7 @@ class PDF {
         $info=$this->$mtd($file);
       }
       ini_set('magic_quotes_runtime', $mqr);
-      $info['i']=count($this->images)+1;
+      $info['i']=(is_countable($this->images) ? count($this->images) : 0)+1;
       $this->images[$file]=$info;
     }
     else
@@ -670,7 +670,7 @@ class PDF {
   {
     $filter=($this->compress) ? '/Filter /FlateDecode ' : '';
     reset($this->images);
-    while(list($file,$info)=each($this->images))
+    while([$file, $info]=each($this->images))
     {
       $this->_newobj();
       $this->images[$file]['n']=$this->n;

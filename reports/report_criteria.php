@@ -22,7 +22,7 @@
     exit(0);
   }
   
-  list($rpt, $err) = (new Report())->create_e($type);
+  [$rpt, $err] = (new Report())->create_e($type);
   if ($err) {
     header('Location: ../reports/index.php');
     exit(0);

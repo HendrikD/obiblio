@@ -42,19 +42,19 @@ class CircQuery extends Query {
 	}
 	function _checkout_e($mbcode, $bcode, $due, $date, $force) {
 		if ($date === NULL) {
-			list($date, $err) = (new Date())->read_e('today');
+			[$date, $err] = (new Date())->read_e('today');
 			if ($err)
 				(new Fatal())->internalError("Unexpected date error: ".$err);
 			$earliest = $latest = time();
 		} else {
-			list($date, $err) = (new Date())->read_e($date);
+			[$date, $err] = (new Date())->read_e($date);
 			if ($err)
 			$earliest = strtotime($date." 00:00:00");
 				return new ObibError($this->_loc->getText("Can't understand date: %err%", ['err'=>$err->toStr()]));
 			$latest = strtotime($date." 23:59:59");
 		}
 		if($due !== NULL) {
-			list($due, $err) = (new Date())->read_e($due);
+			[$due, $err] = (new Date())->read_e($due);
 			if ($err)
 				return new ObibError($this->_loc->getText("Can't understand date: %err%", ['err'=>$err->toStr()]));
 		}
@@ -97,7 +97,7 @@ class CircQuery extends Query {
                                         $copy->setRenewalCount($copy->getRenewalCount() + 1);
                                         }
 			} else if ($force) {
-				list($dummy, $err) = $this->shelving_cart_e($bcode, $date, $force);
+				[$dummy, $err] = $this->shelving_cart_e($bcode, $date, $force);
 				if ($err)
 					return $err;
 				$copy = $copyQ->maybeGetByBarcode($bcode);
@@ -185,12 +185,12 @@ class CircQuery extends Query {
 		$late = null;
   $info = ['mbrid'=>NULL, 'bibid'=>NULL, 'hold'=>NULL];
 		if ($date === NULL) {
-			list($date, $err) = (new Date())->read_e('today');
+			[$date, $err] = (new Date())->read_e('today');
 			if ($err)
 				(new Fatal())->internalError("Unexpected date error: ".$err);
 			$earliest = $latest = time();
 		} else {
-			list($date, $err) = (new Date())->read_e($date);
+			[$date, $err] = (new Date())->read_e($date);
 			if ($err)
 				return [$info, new ObibError($this->_loc->getText("Can't understand date: %err%",
 					['err'=>$err->toStr()]))];

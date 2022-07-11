@@ -25,7 +25,7 @@ class Search {
           $t[$n] = $t[$n][1];
         }
       }
-      list($type, $text, $exact) = $t;
+      [$type, $text, $exact] = $t;
       if (!array_key_exists($t['type'], $types)) {
         continue;
       }
@@ -49,8 +49,8 @@ class Search {
   }
   // for sorting strings longest to shortest
   function lencmp($a, $b) {
-    $ac = count($a);
-    $bc = count($b);
+    $ac = is_countable($a) ? count($a) : 0;
+    $bc = is_countable($b) ? count($b) : 0;
     if ($ac == $bc) {
       return 0;
     }

@@ -28,7 +28,7 @@ class FieldError extends ObibError {
     return [$msg, $l];
   }
   function backToForm($url, $errors) {
-    list($msg, $fielderrs) = FieldError::listExtract($errors);
+    [$msg, $fielderrs] = FieldError::listExtract($errors);
     $_SESSION["postVars"] = mkPostVars();
     $_SESSION["pageErrors"] = $fielderrs;
     if(strchr($url, '?')) {

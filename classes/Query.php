@@ -22,7 +22,7 @@ class Query {
     }
   }
   function connect_e() {
-    list($this->_link, $e) = (new Query())->_connect_e();
+    [$this->_link, $e] = (new Query())->_connect_e();
     return $e;
   }
   /* This static method shares the actual DBMS connection

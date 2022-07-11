@@ -48,7 +48,7 @@ class Form {
           $errors[] = new FieldError($f['name'], (new Form())->T("Choose a valid value from the list."));
         }
       } else if ($f['type'] == 'date') {
-        list($val, $err) = (new Date())->read_e($values[$f['name']]);
+        [$val, $err] = (new Date())->read_e($values[$f['name']]);
         if ($err)
           $errors[] = new FieldError($f['name'], $err->toStr());
         else
@@ -73,7 +73,7 @@ class Form {
     }
     echo ">\n";
     echo '<input type="hidden" name="_posted" value="1" />'."\n";
-    list($msg, $errors) = FieldError::listExtract($params['errors']);
+    [$msg, $errors] = FieldError::listExtract($params['errors']);
     $rows = [];
     foreach ($fields as $f) {
       if (!isset($params['values'][$f['name']])) {
@@ -179,7 +179,7 @@ class Form {
   }
   function _cleanFields($fields) {
     $defaults = ['name'=>NULL, 'title'=>NULL, 'type'=>'text', 'default'=>'', 'attrs'=>[], 'options'=>[], 'label'=>'', 'required'=>false];
-    for ($i=0; $i<count($fields); $i++) {
+    for ($i=0; $i<(is_countable($fields) ? count($fields) : 0); $i++) {
       $fields[$i] = array_merge($defaults, $fields[$i]);
       if (!isset($fields[$i]['name'])) {
         (new Fatal())->internalError((new Form())->T("No name set for form field."));

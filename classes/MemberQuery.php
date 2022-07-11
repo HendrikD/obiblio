@@ -74,7 +74,7 @@ class MemberQuery extends Query {
 
     # Running row count sql statement
     $rows = $this->exec($sqlcount);
-    if (count($rows) != 1) {
+    if ((is_countable($rows) ? count($rows) : 0) != 1) {
       (new Fatal())->internalError("Wrong number of count rows");
     }
     # Calculate stats based on row count
@@ -97,7 +97,7 @@ class MemberQuery extends Query {
                         . "left join staff on member.last_change_userid = staff.userid "
                         . "where mbrid=%N ", $mbrid);
     $rows = $this->exec($sql);
-    if (count($rows) != 1) {
+    if ((is_countable($rows) ? count($rows) : 0) != 1) {
       (new Fatal())->internalError("Bad mbrid");
     }
     return $this->_mkObj($rows[0]);
@@ -188,7 +188,7 @@ class MemberQuery extends Query {
                         . "where barcode_nmbr = %Q and mbrid <> %N",
                         $barcode, $mbrid);
     $rows = $this->exec($sql);
-    if (count($rows) != 1) {
+    if ((is_countable($rows) ? count($rows) : 0) != 1) {
       (new Fatal())->internalError('Bad number of rows');
     }
     if ($rows[0]['num'] > 0) {

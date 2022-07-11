@@ -158,7 +158,7 @@ class RptParser {
         }
         array_push($list, ['WORD', $w]);
       } else if ($str{0} == '"' or $str{0} == '\'') {
-        list($w, $str) = $this->getQuoted($str);
+        [$w, $str] = $this->getQuoted($str);
         array_push($list, ['WORD', $w]);
       } else {
         array_push($list, [$str{0}]);
@@ -435,7 +435,7 @@ class RptParser {
         $this->lex();
         return ['sqlcode', $code];
       case 'PARAMREF':
-        list($name, $conv) = $this->lat[1];
+        [$name, $conv] = $this->lat[1];
         $this->lex();
         return ['value', $name, $conv];
       case 'if_set':

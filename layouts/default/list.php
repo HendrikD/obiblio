@@ -11,7 +11,7 @@ class Layout_list {
     $colspacing = 0.125;
     $total = 0;
     $totalspacing = 0;
-    for ($i=0; $i<count($cols); $i++) {
+    for ($i=0; $i<(is_countable($cols) ? count($cols) : 0); $i++) {
       if (isset($cols[$i]['hidden'])) {
         continue;
       }

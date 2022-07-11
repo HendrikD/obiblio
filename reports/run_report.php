@@ -81,7 +81,7 @@
   if ($_REQUEST['type'] == 'previous') {
     $rpt = (new Report())->load('Report');
   } else {
-    list($rpt, $err) = (new Report())->create_e($_REQUEST['type'], 'Report');
+    [$rpt, $err] = (new Report())->create_e($_REQUEST['type'], 'Report');
     if ($err) {
       $rpt = NULL;
     }
@@ -93,7 +93,7 @@
 
   if ($_REQUEST['type'] == 'previous') {
     if (isset($_REQUEST['rpt_order_by'])) {
-      list($rpt, $errs) = $rpt->variant_el(['order_by'=>$_REQUEST['rpt_order_by']]);
+      [$rpt, $errs] = $rpt->variant_el(['order_by'=>$_REQUEST['rpt_order_by']]);
       assert('empty($errs)');
     }
   } else {

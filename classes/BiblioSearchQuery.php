@@ -222,7 +222,7 @@ class BiblioSearchQuery extends Query {
     # setting selection criteria sql
     $prefix = "where ";
     $criteria = "";
-    for ($i = 0; $i < count($words); $i++) {
+    for ($i = 0; $i < (is_countable($words) ? count($words) : 0); $i++) {
       # Drop very short words when querying biblio_field
       if ($bField and strlen($words[$i]) > $drop) array_push($cols, "bf".$i.".field_data");
       $criteria .= $prefix.$this->_getLike($type,$cols,$words[$i]);
@@ -235,12 +235,12 @@ class BiblioSearchQuery extends Query {
   function _getLike($type,&$cols,$word) {
     $prefix = "";
     $suffix = "";
-    if (count($cols) > 1) {
+    if ((is_countable($cols) ? count($cols) : 0) > 1) {
       $prefix = "(";
       $suffix = ")";
     }
     $like = "";
-    for ($i = 0; $i < count($cols); $i++) {
+    for ($i = 0; $i < (is_countable($cols) ? count($cols) : 0); $i++) {
       $like .= $prefix;
       if ($type == OBIB_SEARCH_CALLNO) $like .= $this->mkSQL("%C like %Q ", $cols[$i], $word."%");
       else $like .= $this->mkSQL("%C like %Q ", $cols[$i], "%".$word."%");
