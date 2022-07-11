@@ -6,7 +6,7 @@
  
 class QueryMysqli extends QueryBase
   {
-  protected $type = 'mysqli';
+  protected $type = \mysqli::class;
   /* Return the database connection type. */
   function connection()
     {

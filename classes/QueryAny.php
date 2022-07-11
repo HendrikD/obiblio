@@ -27,7 +27,7 @@ class QueryAny
         require_once("../classes/QueryMysql.php");
         $db_code = new QueryMysql();
         }
-      elseif (function_exists('PDO'))
+      elseif (function_exists(\PDO::class))
         {
         require_once("../classes/QueryPDO.php");
         $db_code = new QueryPDO();
