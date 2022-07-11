@@ -52,13 +52,13 @@ foreach($records as $record) {
   
   $j=0;
   foreach(explode($fieldterminator,substr($record,$start)) as $field) {
-    if ($codes[$j]{0} == '0' and $codes[$j]{1} == '0') {
+    if ($codes[$j][0] == '0' and $codes[$j][1] == '0') {
       $j++;
       continue;  // We don't support control fields yet
     }
     // Skip three characters to drop indicators and the first delimiter.
     foreach(explode($delimiter,substr($field, 3)) as $subfield) {
-      $ident = $subfield{0};
+      $ident = $subfield[0];
       $data=substr($subfield,1);
 
       if (in_array($codes[$j].$ident, $exclude)) {

@@ -26,10 +26,10 @@
       $command = trim(array_shift($lines));
       if($command == '')
         continue;
-      if($command{0} != '%')
+      if($command[0] != '%')
         return [$loc->getText("Bad upload file: Expected a command code, but didn't get one")];
       $args = [];
-      while (isset($lines[0]) and $lines[0]{0} != '%')
+      while (isset($lines[0]) and $lines[0][0] != '%')
         $args[] = trim(array_shift($lines));
       switch($command){
       case '%CHECKOUT%':

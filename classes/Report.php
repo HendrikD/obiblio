@@ -114,9 +114,7 @@ class Report {
     return $this->rpt->columns();
   }
   function columnNames() {
-    return array_map(function ($x) {
-        return $x["name"];
-    }, $this->columns());
+    return array_map(fn($x) => $x["name"], $this->columns());
   }
   function init_el($params) {
     assert(is_array($params));
