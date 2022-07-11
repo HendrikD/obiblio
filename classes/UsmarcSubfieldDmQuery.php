@@ -99,6 +99,7 @@ class UsmarcSubfieldDmQuery extends Query {
    ****************************************************************************
    */
   function fetchRows() {
+    $assoc = [];
     while ($result = $this->_conn->fetchRow()) {
       $dm = new UsmarcSubfieldDm();
       $dm->setTag($result["tag"]);

@@ -51,6 +51,7 @@ if (!isset($_REQUEST['posted'])) {
 }
 
 function bibidToPostVars($bibid) {
+  $postVars = null;
   require_once("../classes/BiblioQuery.php");
   
   $biblioQ = new BiblioQuery();

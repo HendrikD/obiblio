@@ -60,6 +60,7 @@ class UsmarcBlockDmQuery extends Query {
    ****************************************************************************
    */
   function fetchRows() {
+    $assoc = [];
     while ($result = $this->_conn->fetchRow()) {
       $dm = new UsmarcBlockDm();
       $dm->setBlockNmbr($result["block_nmbr"]);

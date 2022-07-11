@@ -38,6 +38,7 @@ class DmQuery extends Query {
   }
 
   function getWithStats($table) {
+    $sql = null;
     $this->_tableNm = $table;
     if ($table == "collection_dm") {
       $sql = "select collection_dm.*, count(biblio.bibid) row_count ";

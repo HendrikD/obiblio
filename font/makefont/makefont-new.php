@@ -200,7 +200,8 @@ function ReadAFM($file,&$map)
 
 function MakeFontDescriptor($fm,$symbolic)
 {
-	//Ascent
+	$des = null;
+ //Ascent
 	$asc=(isset($fm['Ascender']) ? $fm['Ascender'] : 1000);
 	$fd="array('Ascent'=>".$asc;
 	//Descent
@@ -363,7 +364,9 @@ function CheckTTF($file)
 *******************************************************************************/
 function MakeFont($fontfile,$afmfile,$enc='cp1252',$patch=[],$type='TrueType')
 {
-	//Generate a font definition file
+	$size1 = null;
+ $size2 = null;
+ //Generate a font definition file
 	ini_set('magic_quotes_runtime', 0);
 	ini_set('auto_detect_line_endings','1');
 	if($enc)
