@@ -383,7 +383,7 @@ class BiblioCopyQuery extends Query {
                         OBIB_STATUS_IN, OBIB_STATUS_SHELVING_CART);
     if (!$massCheckin) {
       $prefix = "and (";
-      for ($i = 0; $i < count($bibids); $i++) {
+      for ($i = 0; $i < (is_countable($bibids) ? count($bibids) : 0); $i++) {
         $sql .= $prefix;
 	$sql .= $this->mkSQL("(bibid=%N and copyid=%N)",
                              $bibids[$i], $copyids[$i]);
@@ -401,7 +401,7 @@ class BiblioCopyQuery extends Query {
                         . "and biblio.material_cd=checkout_privs.material_cd ",
                         $bibid, $classification);
     $rows = $this->exec($sql);
-    if (count($rows) != 1) {
+    if ((is_countable($rows) ? count($rows) : 0) != 1) {
       return ['checkout_limit'=>0, 'renewal_limit'=>0];
     }
     return $rows[0];

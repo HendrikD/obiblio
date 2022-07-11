@@ -29,7 +29,7 @@ class CircQuery extends Query {
 		return $ret;
 	}
 	function _checkout_e($mbcode, $bcode, $due, $date, $force) {
-		list($date, $err) = (new Date())->read_e('today');
+		[$date, $err] = (new Date())->read_e('today');
 		if ($err)
 			(new Fatal())->internalError("Unexpected date error: ".$err);
 		$earliest = $latest = time();
@@ -70,7 +70,7 @@ class CircQuery extends Query {
 					$copy->setRenewalCount($copy->getRenewalCount() + 1);
 					}
 			} else if ($force) {
-				list($dummy, $err) = $this->shelving_cart_e($bcode, $date, $force);
+				[$dummy, $err] = $this->shelving_cart_e($bcode, $date, $force);
 				if ($err)
 					return $err;
 				$copy = $copyQ->maybeGetByBarcode($bcode);

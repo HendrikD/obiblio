@@ -93,7 +93,7 @@ class Params {
     echo '<table class="'.$prefix.'params">';
     foreach ($defs as $def) {
       $def = array_pad($def, 4, NULL);		# Sigh.
-      list($type, $name, $options, $list) = $def;
+      [$type, $name, $options, $list] = $def;
       $l = array_merge($namel, [$name]);
       if (isset($options['repeatable']) && $options['repeatable']) {
         for ($i=0; $i<4; $i++) {
@@ -127,7 +127,7 @@ class Params {
     } elseif (isset($options['title']) && $options['title']) {
       $title = $options['title'];
     } else {
-      $title = $namel[count($namel)-1];
+      $title = $namel[(is_countable($namel) ? count($namel) : 0)-1];
     }
     $name = $prefix . array_shift($namel);
     foreach ($namel as $n) {
@@ -150,7 +150,7 @@ class Params {
     case 'select':
       $l = [];
       foreach ($list as $v) {
-        list($n, $o) = $v;
+        [$n, $o] = $v;
         if (isset($o['title']) && $o['title']) {
           $l[$n] = $loc->getText($o['title']);
         } else {
@@ -162,7 +162,7 @@ class Params {
     case 'order_by':
       $l = [];
       foreach ($list as $v) {
-        list($n, $o) = $v;
+        [$n, $o] = $v;
         if (isset($o['title']) and $o['title']) {
           $l[$n] = $loc->getText($o['title']);
         } else {
@@ -184,7 +184,7 @@ class Params {
     $errs = [];
     foreach ($paramdefs as $p) {
       $p = array_pad($p, 4, NULL);		# Sigh.
-      list($type, $name, $options, $list) = $p;
+      [$type, $name, $options, $list] = $p;
       if (is_null($errprefix)) {
         $errnm = $name;
       } else {
@@ -202,7 +202,7 @@ class Params {
           and is_array($params[$name])) {
         $l = [];
         foreach ($params[$name] as $idx => $it) {
-          list($v, $el) = $this->_mkParam_el($it, $type, $options, $list, $errnm.'['.$idx.']');
+          [$v, $el] = $this->_mkParam_el($it, $type, $options, $list, $errnm.'['.$idx.']');
           $errs = array_merge($errs, $el);
           if ($v) {
             $l[] = $v;
@@ -215,7 +215,7 @@ class Params {
           $parameters[$name] = '';
         }
       } else {
-        list($val, $el) = $this->_mkParam_el($params[$name], $type, $options, $list, $errnm);
+        [$val, $el] = $this->_mkParam_el($params[$name], $type, $options, $list, $errnm);
         $errs = array_merge($errs, $el);
         if ($val) {
           $parameters[$name] = $val;
@@ -239,7 +239,7 @@ class Params {
       case 'date':
         $val = trim($val);
         if (!empty($val)) {
-          list($val, $error) = (new Date())->read_e($val);
+          [$val, $error] = (new Date())->read_e($val);
           if ($error) {
             return [NULL, [$errprefix=>$error]];
           }

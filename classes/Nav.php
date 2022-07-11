@@ -55,7 +55,7 @@ class Nav {
       return $menu;
     }
     # Not using foreach because it assigns copies, not references.
-    for ($i=0; $i < count($menu); $i++) {
+    for ($i=0; $i < (is_countable($menu) ? count($menu) : 0); $i++) {
       if ((new Nav())->_pathWithin($path, $menu[$i]['path'])) {
         return (new Nav())->_getParent_real($path, $menu[$i]['children'], $menu[$i]['path']);
       }

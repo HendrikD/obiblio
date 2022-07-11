@@ -17,7 +17,7 @@ class Layout_barcode_33up {
     $lay = new Lay;
       $lay->container('Lines');
         $lay->container('Columns');
-          list(, $skip) = $this->p->getFirst('skip');
+          [, $skip] = $this->p->getFirst('skip');
           for ($i = 0; $i < $skip; $i++) {
             $lay->container('Column', ['height'=>'1in', 'width'=>'2.8333in']);
             $lay->close();

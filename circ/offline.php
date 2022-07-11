@@ -22,7 +22,7 @@
     global $loc;
     $circQ = new CircQuery();
     $errors = [];
-    while(count($lines)) {
+    while(is_countable($lines) ? count($lines) : 0) {
       $command = trim(array_shift($lines));
       if($command == '')
         continue;
@@ -45,7 +45,7 @@
         break;
       case '%CHECKIN%':
         foreach($args as $bcode){
-          list($info, $err) = $circQ->shelving_cart_e($bcode, $date, true);
+          [$info, $err] = $circQ->shelving_cart_e($bcode, $date, true);
           if($err)
             $errors[] = $loc->getText("Couldn't check in %item%: %error%",
                                       ['item'=>$bcode, 'error'=>$err->toStr()]);
@@ -64,7 +64,7 @@
   }
 
   $form = ['title'=>$loc->getText("Upload Offline Circulation"), 'name'=>'offline_circ', 'action'=>'../circ/offline.php', 'enctype'=>'multipart/form-data', 'submit'=>$loc->getText('Upload'), 'fields'=>[['name'=>'date', 'title'=>$loc->getText('Date:'), 'type'=>'date', 'default'=>'today'], ['name'=>'command_file', 'title'=>$loc->getText('Command File:'), 'type'=>'file', 'required'=>1]]];
-  list($values, $errs) = (new Form())->getCgi_el($form['fields']);
+  [$values, $errs] = (new Form())->getCgi_el($form['fields']);
   if(!$values['_posted'] or $errs){
     include_once("../shared/header.php");
     if (isset($_REQUEST['msg'])) {

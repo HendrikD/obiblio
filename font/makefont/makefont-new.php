@@ -32,7 +32,7 @@ while (isset($args[0]) and strlen($args[0]>1) and $args[0]{0} == '-') {
 	}
 }
 
-if (count($args) != 1)
+if ((is_countable($args) ? count($args) : 0) != 1)
 	usage();
 $font = ['name'=>$args[0]];
 

@@ -18,7 +18,7 @@ class Layout_A4_barcode_1x16 {
   function render($rpt) {
     $lay = new Lay('A4');
       $lay->container('Columns', ['margin-top'=>'12.5mm', 'margin-bottom'=>'12.4mm', 'margin-left'=>'32.5mm', 'margin-right'=>'32.5mm']);
-        list(, $skip) = $this->p->getFirst('skip');
+        [, $skip] = $this->p->getFirst('skip');
         for ($i = 0; $i < $skip; $i++) {
           $lay->container('Line', ['height'=>'17mm', 'width'=>'144.8mm']);
           $lay->close();

@@ -35,7 +35,7 @@ class InstallQuery extends Query {
       $pattern = DB_TABLENAME_PREFIX.'%';
     }
     $sql = "show tables like '".$pattern."'";
-    $rows = $this->exec($sql, OBIB_NUM);
+    $rows = $this->exec($sql);
 
     $tablenames = [];
     foreach ($rows as $row) {

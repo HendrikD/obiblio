@@ -145,7 +145,7 @@ class Report {
     if ($newName === NULL) {
       $newName = $this->name;
     }
-    list($rpt, $err) = (new Report())->create_e($this->cache['type'], $newName);
+    [$rpt, $err] = (new Report())->create_e($this->cache['type'], $newName);
     if ($err) {
       (new Fatal())->internalError("Unexpected report creation error: ".$err->toStr());
     }

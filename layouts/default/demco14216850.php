@@ -23,7 +23,7 @@ class Layout_demco14216850 {
       $lay->container('Columns', ['margin-top'=>'12mm', 'margin-bottom'=>'12mm', 'margin-left'=>'9mm', 'margin-right'=>'9mm']);
         $lay->container('Lines');
           $lay->container('Columns');
-            list(, $skip) = $this->p->getFirst('skip');
+            [, $skip] = $this->p->getFirst('skip');
             for ($i = 0; $i < $skip; $i++) {
               $lay->container('Column', ['height'=>'51.0mm', 'width'=>'97.0mm']);
               $lay->close();

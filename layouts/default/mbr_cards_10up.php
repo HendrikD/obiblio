@@ -20,7 +20,7 @@ class Layout_mbr_cards_10up {
       $lay->container('Columns', ['margin-top'=>'0.5in', 'margin-bottom'=>'0.5in', 'margin-left'=>'0.75in', 'margin-right'=>'0.75in']);
         $lay->container('Lines');
           $lay->container('Columns');
-            list(, $skip) = $this->p->getFirst('skip');
+            [, $skip] = $this->p->getFirst('skip');
             for ($i = 0; $i < $skip; $i++) {
               $lay->container('Column', ['height'=>'2in', 'width'=>'3.5in']);
               $lay->close();

@@ -17,7 +17,7 @@ class Layout_labels {
     $lay = new Lay;
       $lay->container('Lines', ['margin-top'=>'0.5in', 'margin-bottom'=>'0.5in', 'margin-left'=>'0.0', 'margin-right'=>'0.0in']);
         $lay->container('Columns');
-          list(, $skip) = $this->p->getFirst('skip');
+          [, $skip] = $this->p->getFirst('skip');
           for ($i = 0; $i < $skip; $i++) {
             $lay->container('Column', ['height'=>'1in', 'width'=>'2.8333in']);
             $lay->close();

@@ -50,7 +50,7 @@ class Date {
       }
     }
     if ($ref !== NULL) {
-      list($ref, $err) = (new Date())->read_e($ref);
+      [$ref, $err] = (new Date())->read_e($ref);
       if ($err) {
         return [NULL, $err];
       }

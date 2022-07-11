@@ -31,7 +31,7 @@ class DmQuery extends Query {
   }
   function get1($table, $code) {
     $rows = $this->_get($table, $code);
-    if (count($rows) != 1) {
+    if ((is_countable($rows) ? count($rows) : 0) != 1) {
      (new Fatal())->internalError("Invalid domain table code");
     }
     return $this->_mkObj($rows[0]);

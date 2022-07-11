@@ -80,7 +80,7 @@ class UpgradeQuery extends InstallQuery {
         break;	# Done
       } elseif (isset($upgrades[$version])) {
         $func = $upgrades[$version];
-        list($n, $error) = $this->$func($toTablePrfx, $tmpPrfx);
+        [$n, $error] = $this->$func($toTablePrfx, $tmpPrfx);
         if ($error) {
           return [NULL, $error];
         }
