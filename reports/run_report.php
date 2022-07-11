@@ -93,14 +93,14 @@
 
   if ($_REQUEST['type'] == 'previous') {
     if (isset($_REQUEST['rpt_order_by'])) {
-      list($rpt, $errs) = $rpt->variant_el(array('order_by'=>$_REQUEST['rpt_order_by']));
+      list($rpt, $errs) = $rpt->variant_el(['order_by'=>$_REQUEST['rpt_order_by']]);
       assert('empty($errs)');
     }
   } else {
     $errs = $rpt->initCgi_el();
     if (!empty($errs)) {
       $_SESSION['postVars'] = mkPostVars();
-      $_SESSION['pageErrors'] = array();
+      $_SESSION['pageErrors'] = [];
       foreach ($errs as $k=>$e) {
         $_SESSION['pageErrors'][$k] = $e->toStr();
       }

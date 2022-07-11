@@ -158,7 +158,7 @@ class MemberQuery extends Query {
     $q->connect();
     $sql = $q->mkSQL('select * from member_fields where mbrid=%N', $mbrid);
     $rows = $q->exec($sql);
-    $fields = array();
+    $fields = [];
     foreach ($rows as $r) {
       $fields[$r['code']] = $r['data'];
     }

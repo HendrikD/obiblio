@@ -19,8 +19,8 @@
   require_once("../classes/Localize.php");
   $loc = new Localize(OBIB_LOCALE,$tab);
 
-  $postVars = array();
-  $pageErrors = array();
+  $postVars = [];
+  $pageErrors = [];
   if (isset($_GET["xref_id"])) {
     $xref_id =$_GET["xref_id"];
     $postVars["xref_id"] = $xref_id;

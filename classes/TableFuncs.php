@@ -99,7 +99,7 @@ class TableFuncs {
     assert('$col["select_key"] != NULL');
     assert('$col["select_value"] != NULL ');
     $name = $col['select_name'].'['.$row[$col['select_index']].']';
-    $data = array();
+    $data = [];
     foreach ($row[$col['name']] as $r) {
       $data[$r[$col['select_key']]] = $r[$col['select_value']];
     }

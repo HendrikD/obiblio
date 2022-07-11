@@ -12,8 +12,8 @@ class FieldError extends ObibError {
     $this->field = $field;
   }
   function listExtract($errors) {
-    $msgs = array();
-    $l = array();
+    $msgs = [];
+    $l = [];
     foreach ($errors as $e) {
       if (isset($e->field)) {
         $l[$e->field][] = $e->toStr();
@@ -25,7 +25,7 @@ class FieldError extends ObibError {
     foreach ($l as $k=>$v) {
       $l[$k] = implode(' ', $v);
     }
-    return array($msg, $l);
+    return [$msg, $l];
   }
   function backToForm($url, $errors) {
     list($msg, $fielderrs) = FieldError::listExtract($errors);

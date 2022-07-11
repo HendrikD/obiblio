@@ -34,7 +34,7 @@ class Member {
   public $_workPhone = "";
   public $_membershipEnd = "";
   public $_membershipEndError = "";
-  public $_custom = array();
+  public $_custom = [];
   public $_loc;
 
   function Member () {

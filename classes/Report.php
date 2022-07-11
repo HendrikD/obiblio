@@ -28,10 +28,7 @@ class Report {
   public $cache;
   public $pointer = 0;
   function link($name, $msg='', $tab='') {
-    $urls = array(
-      'Report'=>'../reports/run_report.php?type=previous&msg=',
-      'BiblioSearch'=>'../shared/biblio_search.php?searchType=previous&msg=',
-    );
+    $urls = ['Report'=>'../reports/run_report.php?type=previous&msg=', 'BiblioSearch'=>'../shared/biblio_search.php?searchType=previous&msg='];
     if (isset($urls[$name])) {
       $url = $urls[$name];
     } else {
@@ -44,10 +41,10 @@ class Report {
     return $url;
   }
   function create_e($type, $name=NULL) {
-    $cache = array('type'=>$type);
+    $cache = ['type'=>$type];
     $rpt = new Report;
     $err = $rpt->_load_e($name, $cache);
-    return array($rpt, $err);
+    return [$rpt, $err];
   }
   function load($name) {
     if (!isset($_SESSION['rpt_'.$name])) {
@@ -140,7 +137,7 @@ class Report {
     $this->params = $params;
     $this->cache['params'] = $params->dict;
     $this->_save();
-    return array();
+    return [];
   }
   function variant_el($newParams, $newName=NULL) {
     assert('is_array($this->cache["params"])');
@@ -155,13 +152,13 @@ class Report {
     $params->loadDict($this->cache['params']);
     $errs = $params->load_el($rpt->rpt->paramDefs(), $newParams);
     if (!empty($errs)) {
-      return array(NULL, $errs);
+      return [NULL, $errs];
     }
     $errs = $rpt->_init_el($params);
     if (!empty($errs)) {
-      return array(NULL, $errs);
+      return [NULL, $errs];
     }
-    return array($rpt, array());
+    return [$rpt, []];
   }
   function curPage() {
     if (isset($this->cache['page']) and $this->cache['page']) {
@@ -212,7 +209,7 @@ class Report {
     $this->iter = NULL;
     $this->_getIter();
     $this->iter = new SliceIter($skip, $len, $this->iter);
-    $this->cache['rows'] = array();
+    $this->cache['rows'] = [];
     while (($row = $this->iter->next()) !== NULL) {
       $this->cache['rows'][$row['.seqno']] = $row;
     }
@@ -235,8 +232,7 @@ class Report {
       $table->columns($this->columns());
     }
     if ($this->name) {
-      $table->parameters(array('rpt'=>$this->name,
-                               'rpt_colnames'=>$this->columnNames()));
+      $table->parameters(['rpt'=>$this->name, 'rpt_colnames'=>$this->columnNames()]);
     }
     $table->start();
     while (($row = $this->each()) !== NULL) {
@@ -258,8 +254,7 @@ class Report {
       $table->columns($this->columns());
     }
     if ($this->name) {
-      $table->parameters(array('rpt'=>$this->name,
-                               'rpt_colnames'=>$this->columnNames()));
+      $table->parameters(['rpt'=>$this->name, 'rpt_colnames'=>$this->columnNames()]);
     }
     $table->start();
     foreach ($this->cache['rows'] as $row) {

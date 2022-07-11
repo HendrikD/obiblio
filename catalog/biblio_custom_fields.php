@@ -49,7 +49,7 @@
   $matQ->connect();
   $rows = $matQ->get($materialCd);
   $matQ->close();
-  $descrs = array();
+  $descrs = [];
   foreach ($rows as $row) {
     $mytag = $row["tag"];
     $mysubfieldcd = $row["subfieldCd"];

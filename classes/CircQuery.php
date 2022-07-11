@@ -50,20 +50,20 @@ class CircQuery extends Query {
 			list($date, $err) = Date::read_e($date);
 			if ($err)
 			$earliest = strtotime($date." 00:00:00");
-				return new ObibError($this->_loc->getText("Can't understand date: %err%", array('err'=>$err->toStr())));
+				return new ObibError($this->_loc->getText("Can't understand date: %err%", ['err'=>$err->toStr()]));
 			$latest = strtotime($date." 23:59:59");
 		}
 		if($due !== NULL) {
 			list($due, $err) = Date::read_e($due);
 			if ($err)
-				return new ObibError($this->_loc->getText("Can't understand date: %err%", array('err'=>$err->toStr())));
+				return new ObibError($this->_loc->getText("Can't understand date: %err%", ['err'=>$err->toStr()]));
 		}
 		if($earliest > time())
 			return new ObibError($this->_loc->getText("Won't do checkouts for future dates."));
 		$mbrQ = new MemberQuery();
 		$mbr = $mbrQ->maybeGetByBarcode($mbcode);
 		if (!$mbr)
-			return new ObibError($this->_loc->getText("Bad member barcode: %bcode%", array('bcode'=>$mbcode)));
+			return new ObibError($this->_loc->getText("Bad member barcode: %bcode%", ['bcode'=>$mbcode]));
 		$mbrid = $mbr->getMbrid();
 		if (!$force && OBIB_BLOCK_CHECKOUTS_WHEN_FINES_DUE) {
 			$acctQ = new MemberAccountQuery();
@@ -79,21 +79,21 @@ class CircQuery extends Query {
                 $copyQ = new BiblioCopyQuery();
                 $copy = $copyQ->maybeGetByBarcode($bcode);
 		if (!$copy)
-			return new ObibError($this->_loc->getText("Bad copy barcode: %bcode%", array('bcode'=>$bcode)));
+			return new ObibError($this->_loc->getText("Bad copy barcode: %bcode%", ['bcode'=>$bcode]));
 		$fee2 = $copyQ->getDailyLateFee($copy);
 		if ($copy->getStatusCd() == OBIB_STATUS_OUT) {
 			if ($copy->getMbrid() == $mbrid) {
 				# Renewal
 				$reachedLimit = $copyQ->hasReachedRenewalLimit($mbrid, $mbr->getClassification(), $copy);
 				if(!$force && $reachedLimit)
-					return new ObibError($this->_loc->getText("Item %bcode% has reached its renewal limit.", array('bcode'=>$bcode)));
+					return new ObibError($this->_loc->getText("Item %bcode% has reached its renewal limit.", ['bcode'=>$bcode]));
 				else if (!$force && ($copy->getDaysLate() > 0) && ($fee2>0))
-					return new ObibError($this->_loc->getText("Item %bcode% is late and cannot be renewed.", array('bcode'=>$bcode)));
+					return new ObibError($this->_loc->getText("Item %bcode% is late and cannot be renewed.", ['bcode'=>$bcode]));
 				else
 					{
                                         $holdQ = new BiblioHoldQuery();
                                         $hold = $holdQ->maybeGetFirstHold($copy->getBibid(), $copy->getCopyid());
-                                        if ($hold) return new ObibError($this->_loc->getText("Item %bcode% is on hold.", array('bcode'=>$bcode)));
+                                        if ($hold) return new ObibError($this->_loc->getText("Item %bcode% is on hold.", ['bcode'=>$bcode]));
                                         $copy->setRenewalCount($copy->getRenewalCount() + 1);
                                         }
 			} else if ($force) {
@@ -105,7 +105,7 @@ class CircQuery extends Query {
 					Fatal::internalError("Copy disappeared mysteriously.");
 			} else
 				return new ObibError($this->_loc->getText("Item %bcode% is already checked out to another member.",
-					array('bcode'=>$bcode)));
+					['bcode'=>$bcode]));
 		} else {
 			$copy->setRenewalCount(0);
 			$reachedLimit = $copyQ->hasReachedCheckoutLimit($mbrid,$mbr->getClassification(),$copy->getBibid());
@@ -137,9 +137,9 @@ class CircQuery extends Query {
 		}
 		$oldtime = strtotime($copy->getStatusBeginDt());
 		if ($oldtime > $latest)
-			return new ObibError($this->_loc->getText("Can't change status to an earlier date on item %bcode%.", array('bcode'=>$bcode)));
+			return new ObibError($this->_loc->getText("Can't change status to an earlier date on item %bcode%.", ['bcode'=>$bcode]));
 		else if ($oldtime == $latest)
-			return new ObibError($this->_loc->getText("Can't change status more than once per second on item %bcode%." , array('bcode'=>$bcode)));
+			return new ObibError($this->_loc->getText("Can't change status more than once per second on item %bcode%." , ['bcode'=>$bcode]));
 		else if ($oldtime < $earliest)
 			$time = date('Y-m-d H:i:s', $earliest);
 		else
@@ -182,11 +182,7 @@ class CircQuery extends Query {
 		return $ret;
 	}
 	function _shelving_cart_e($bcode, $date, $force) {
-		$info = array(
-			'mbrid'=>NULL,
-			'bibid'=>NULL,
-			'hold'=>NULL,
-		);
+		$info = ['mbrid'=>NULL, 'bibid'=>NULL, 'hold'=>NULL];
 		if ($date === NULL) {
 			list($date, $err) = Date::read_e('today');
 			if ($err)
@@ -195,17 +191,17 @@ class CircQuery extends Query {
 		} else {
 			list($date, $err) = Date::read_e($date);
 			if ($err)
-				return array($info, new ObibError($this->_loc->getText("Can't understand date: %err%",
-					array('err'=>$err->toStr()))));
+				return [$info, new ObibError($this->_loc->getText("Can't understand date: %err%",
+					['err'=>$err->toStr()]))];
 			$earliest = strtotime($date." 00:00:00");
 			$latest = strtotime($date." 23:59:59");
 		}
 		if($earliest > time())
-			return array($info, new ObibError($this->_loc->getText("Won't do checkins for future dates.")));
+			return [$info, new ObibError($this->_loc->getText("Won't do checkins for future dates."))];
 		$copyQ = new BiblioCopyQuery();
 		$copy = $copyQ->maybeGetByBarcode($bcode);
 		if (!$copy)
-			return array($info, new ObibError($this->_loc->getText("Bad copy barcode: %bcode%", array('bcode'=>$bcode))));
+			return [$info, new ObibError($this->_loc->getText("Bad copy barcode: %bcode%", ['bcode'=>$bcode]))];
 		$info['bibid'] = $copy->getBibid();
 		$fee = $copyQ->getDailyLateFee($copy);
 		$mbrid = $info['mbrid'] = $copy->getMbrid();
@@ -222,9 +218,9 @@ class CircQuery extends Query {
 			$copy->setStatusCd(OBIB_STATUS_SHELVING_CART);
 		$oldtime = strtotime($copy->getStatusBeginDt());
 		if ($oldtime > $latest)
-			return array($info, new ObibError($this->_loc->getText("Can't change status to an earlier date on item %bcode%.", array('bcode'=>$bcode))));
+			return [$info, new ObibError($this->_loc->getText("Can't change status to an earlier date on item %bcode%.", ['bcode'=>$bcode]))];
 		else if ($oldtime == $latest)
-			return array($info, new ObibError($this->_loc->getText("Can't change status more than once per second on item %bcode%." , array('bcode'=>$bcode))));
+			return [$info, new ObibError($this->_loc->getText("Can't change status more than once per second on item %bcode%." , ['bcode'=>$bcode]))];
 		else if ($oldtime < $earliest)
 			$time = date('Y-m-d H:i:s', $earliest);
 		else
@@ -240,7 +236,7 @@ class CircQuery extends Query {
 			$trans->setCreateUserid($_SESSION['userid']);
 			$trans->setTransactionTypeCd("+c");
 			$trans->setAmount($fee*$late);
-			$trans->setDescription($this->_loc->getText("Late fee (barcode=%barcode%)", array('barcode'=>$bcode)));
+			$trans->setDescription($this->_loc->getText("Late fee (barcode=%barcode%)", ['barcode'=>$bcode]));
 			$transQ = new MemberAccountQuery();
 			if (!$transQ->insert($trans))
 				Fatal::internalError("Impossible transQ insert error.");
@@ -255,6 +251,6 @@ class CircQuery extends Query {
 		$histQ = new BiblioStatusHistQuery();
 		if (!$histQ->insert($hist))
 			Fatal::internalError("Impossible histQ insert error.");
-		return array($info, NULL);
+		return [$info, NULL];
 	}
 }

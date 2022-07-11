@@ -31,9 +31,9 @@ class Query {
   function _connect_e() {
     $link = QueryAny::db();
     if ($link->error_is()) {
-      return array(NULL, $link->error_get());
+      return [NULL, $link->error_get()];
     }
-    return array($link, NULL);
+    return [$link, NULL];
   }
   
   function act($sql) {
@@ -191,7 +191,7 @@ class Query {
           }
           break;
         case 'C':
-          $a = array();
+          $a = [];
           foreach (explode('.', $arg) as $ident) {
             array_push($a, '`'.$this->_ident($ident).'`');
           }
@@ -259,7 +259,7 @@ class Query {
     if (is_bool($r)) {
       return $r;
     } else {
-      $rows = array();
+      $rows = [];
       while($row = $this->_link->fetch_assoc($r)) {
         $rows[] = $row;
       }

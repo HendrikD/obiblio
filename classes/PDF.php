@@ -62,12 +62,12 @@ class PDF {
     $this->page=0;
     $this->n=2;
     $this->buffer='';
-    $this->pages=array();
+    $this->pages=[];
     $this->state=0;
-    $this->fonts=array();
-    $this->FontFiles=array();
-    $this->diffs=array();
-    $this->images=array();
+    $this->fonts=[];
+    $this->FontFiles=[];
+    $this->diffs=[];
+    $this->images=[];
     $this->DrawColor='0 G';
     $this->FillColor='0 g';
     $this->TextColor='0 g';
@@ -76,15 +76,15 @@ class PDF {
     if(is_string($format)) {
       $format=strtolower($format);
       if($format=='a3') {
-        $format=array(841.89,1190.55);
+        $format=[841.89, 1190.55];
       } elseif($format=='a4') {
-        $format=array(595.28,841.89);
+        $format=[595.28, 841.89];
       } elseif($format=='a5') {
-        $format=array(420.94,595.28);
+        $format=[420.94, 595.28];
       } elseif($format=='letter') {
-        $format=array(612,792);
+        $format=[612, 792];
       } elseif($format=='legal') {
-        $format=array(612,1008);
+        $format=[612, 1008];
       } else {
         $this->Error('Unknown page format: '.$format);
       }
@@ -109,7 +109,7 @@ class PDF {
   }
 
   function dimensions() {
-    return array('x'=>$this->w, 'y'=>$this->h);
+    return ['x'=>$this->w, 'y'=>$this->h];
   }
 
   function newPage() {
@@ -155,7 +155,7 @@ class PDF {
     }
     # array(x-min, y-min, x-max, y-max) -- LOWER-LEFT ORIGIN
     $bbox = $this->currentFont['bbox'];
-    $dim = array();
+    $dim = [];
     $dim['x'] = $w*$this->fontSize/1000.0;
     $dim['y'] = ($bbox[3]-$bbox[1])*$this->fontSize/1000.0;
     $dim['x-base'] = (-1*$bbox[0])*$this->fontSize/1000.0;
@@ -356,9 +356,9 @@ class PDF {
     }
     if (isset($PDF_font['file'])) {
       if ($PDF_font['type']=='TrueType') {
-        $this->FontFiles[$PDF_font['file']]=array('length1'=>$PDF_font['originalsize']);
+        $this->FontFiles[$PDF_font['file']]=['length1'=>$PDF_font['originalsize']];
       } else {
-        $this->FontFiles[$PDF_font['file']]=array('length1'=>$PDF_font['size1'],'length2'=>$PDF_font['size2']);
+        $this->FontFiles[$PDF_font['file']]=['length1'=>$PDF_font['size1'], 'length2'=>$PDF_font['size2']];
       }
     }
     $this->fonts[$name] = $PDF_font;
@@ -870,7 +870,7 @@ class PDF {
     while(!feof($f))
       $data.=fread($f,4096);
     fclose($f);
-    return array('w'=>$a[0],'h'=>$a[1],'cs'=>$colspace,'bpc'=>$bpc,'f'=>'DCTDecode','data'=>$data);
+    return ['w'=>$a[0], 'h'=>$a[1], 'cs'=>$colspace, 'bpc'=>$bpc, 'f'=>'DCTDecode', 'data'=>$data];
   }
 
   function _parsepng($file)
@@ -927,14 +927,14 @@ class PDF {
         //Read transparency info
         $t=fread($f,$n);
         if($ct==0)
-          $trns=array(ord(substr($t,1,1)));
+          $trns=[ord(substr($t,1,1))];
         elseif($ct==2)
-          $trns=array(ord(substr($t,1,1)),ord(substr($t,3,1)),ord(substr($t,5,1)));
+          $trns=[ord(substr($t,1,1)), ord(substr($t,3,1)), ord(substr($t,5,1))];
         else
         {
           $pos=strpos($t,chr(0));
           if($pos!==false)
-            $trns=array($pos);
+            $trns=[$pos];
         }
         fread($f,4);
       }
@@ -953,7 +953,7 @@ class PDF {
     if($colspace=='Indexed' && empty($pal))
       $this->Error('Missing palette in '.$file);
     fclose($f);
-    return array('w'=>$w,'h'=>$h,'cs'=>$colspace,'bpc'=>$bpc,'f'=>'FlateDecode','parms'=>$parms,'pal'=>$pal,'trns'=>$trns,'data'=>$data);
+    return ['w'=>$w, 'h'=>$h, 'cs'=>$colspace, 'bpc'=>$bpc, 'f'=>'FlateDecode', 'parms'=>$parms, 'pal'=>$pal, 'trns'=>$trns, 'data'=>$data];
   }
 
   function _freadint($f)

@@ -74,7 +74,7 @@
   $balMsg = "";
   if ($balance > 0 && $balance >= $mbrMaxFines[$mbr->getClassification()]) {
     $balText = moneyFormat($balance,2);
-    $balMsg = "<font class=\"error\">".$loc->getText("mbrViewBalMsg",array("bal"=>$balText))."</font><br><br>";
+    $balMsg = "<font class=\"error\">".$loc->getText("mbrViewBalMsg",["bal"=>$balText])."</font><br><br>";
   }
 
   #**************************************************************************
