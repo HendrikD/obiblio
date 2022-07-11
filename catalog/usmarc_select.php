@@ -42,7 +42,7 @@
   } else {
     $retPage = "";
   }
-  if (strpos($retPage, '?') === false) {
+  if (!str_contains($retPage, '?')) {
     $sepchar = '?';
   } else {
     $sepchar = '&';
