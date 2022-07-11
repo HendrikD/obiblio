@@ -45,15 +45,15 @@
     $mbr = $mbrQ->get($mbrid);
     $mbrQ->close();
   
-  if (($mbr->getMembershipEnd()!="0000-00-00") and (strtotime($mbr->getMembershipEnd())>strtotime("now"))) {
-    $year = substr($mbr->getMembershipEnd(), 0, 4);
-    $month = (int)substr($mbr->getMembershipEnd(), 5, 2);
-    $day = (int)substr($mbr->getMembershipEnd(), 8, 2);
+  if (($mbr->getMembershipEnd()!="0000-00-00") and (strtotime((string) $mbr->getMembershipEnd())>strtotime("now"))) {
+    $year = substr((string) $mbr->getMembershipEnd(), 0, 4);
+    $month = (int)substr((string) $mbr->getMembershipEnd(), 5, 2);
+    $day = (int)substr((string) $mbr->getMembershipEnd(), 8, 2);
     $month = $month + $length;
     $newdate = date("Y-m-d",mktime(0,0,0,$month,$day,$year));
     $mbr->setMembershipEnd($newdate);
   } else {
-    $temp=$neu = strtotime("+$length month");
+    $temp=$neu = strtotime((string) "+$length month");
     $newdate = date("Y-m-d",$temp);
     $mbr->setMembershipEnd($newdate);
   }
@@ -68,7 +68,7 @@
   unset($_SESSION["pageErrors"]);
 
   $msg = $loc->getText("mbrRenewSuccess",["length"=>$length]);
-  $msg = urlencode($msg);
+  $msg = urlencode((string) $msg);
   header("Location: ../circ/mbr_view.php?mbrid=".$mbr->getMbrid()."&reset=Y&msg=".$msg);
   exit();
 }

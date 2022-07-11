@@ -85,15 +85,15 @@ class BiblioSearchQuery extends Query {
       } elseif ($type == OBIB_SEARCH_AUTHOR) {
         $drop=1;
         for ($i = 0; $i < count($words); $i++) {
-          if (strlen($words[$i]) <= $drop) continue;
+          if (strlen((string) $words[$i]) <= $drop) continue;
           $joins = $joins + 1;
           $join .= "left join biblio_field as bf".$i." on bf".$i.".bibid=biblio.bibid ";
           $join .= "and bf".$i.".tag in ('110', '700', '710') ";
           $join .= "and bf".$i.".field_data ";
           $join .= $this->mkSQL("like %Q ", "%".$words[$i]."%");
           # word boundaries for short words: prevent excessive wildcard matching in WHERE
-          if (strlen($words[$i]) < $drop + 3) {
-            $wordsQ = preg_quote($words[$i]);
+          if (strlen((string) $words[$i]) < $drop + 3) {
+            $wordsQ = preg_quote((string) $words[$i]);
             $join .= "and bf".$i.".field_data ";
 	    $join .= $this->mkSQL("rlike %Q ", "[[:<:]]".$wordsQ);
           }
@@ -103,8 +103,8 @@ class BiblioSearchQuery extends Query {
       } elseif ($type == OBIB_SEARCH_SUBJECT) {
         $drop=1;
         for ($i = 0; $i < count($words); $i++) {
-          if (strlen($words[$i]) <= $drop) continue;
-          if (strlen($words[$i]) <= $drop + 1) $short = $short + 1;
+          if (strlen((string) $words[$i]) <= $drop) continue;
+          if (strlen((string) $words[$i]) <= $drop + 1) $short = $short + 1;
           $joins = $joins + 1;
           $join .= "left join biblio_field as bf".$i." on bf".$i.".bibid=biblio.bibid ";
           # Tags equal to Locum connector class for III - http://thesocialopac.net/
@@ -116,8 +116,8 @@ class BiblioSearchQuery extends Query {
           ) ";
           $join .= "and bf".$i.".field_data ";
           $join .= $this->mkSQL("like %Q ", "%".$words[$i]."%");
-          if (strlen($words[$i]) < $drop + 3) {
-	    $wordsQ = preg_quote($words[$i]);
+          if (strlen((string) $words[$i]) < $drop + 3) {
+	    $wordsQ = preg_quote((string) $words[$i]);
             $join .= "and bf".$i.".field_data ";
 	    $join .= $this->mkSQL("rlike %Q ", "[[:<:]]".$wordsQ);
           }
@@ -129,12 +129,12 @@ class BiblioSearchQuery extends Query {
       } elseif ($type == OBIB_SEARCH_KEYWORD) {
         $drop=1;
         for ($i = 0; $i < count($words); $i++) {
-          if (strlen($words[$i]) <= $drop) continue;
-          if (strlen($words[$i]) <= $drop + 1) $short = $short + 1;
+          if (strlen((string) $words[$i]) <= $drop) continue;
+          if (strlen((string) $words[$i]) <= $drop + 1) $short = $short + 1;
           $joins = $joins + 1;
           $join .= "left join biblio_field as bf".$i." on bf".$i.".bibid=biblio.bibid ";
           $join .= "and bf".$i.".tag in (";
-          if (strlen($words[$i]) > 8) $join.= " '010', '020', '022', '024',";
+          if (strlen((string) $words[$i]) > 8) $join.= " '010', '020', '022', '024',";
           $join .= "
             '110', '130', '245', '250', '260',
             '300', '336', '337', '338', '340',
@@ -151,8 +151,8 @@ class BiblioSearchQuery extends Query {
           ) ";
           $join .= "and bf".$i.".field_data ";
           $join .= $this->mkSQL("like %Q ", "%".$words[$i]."%");
-          if (strlen($words[$i]) < $drop + 3) {
-	    $wordsQ = preg_quote($words[$i]);
+          if (strlen((string) $words[$i]) < $drop + 3) {
+	    $wordsQ = preg_quote((string) $words[$i]);
             $join .= "and bf".$i.".field_data ";
 	    $join .= $this->mkSQL("rlike %Q ", "[[:<:]]".$wordsQ);
           }
@@ -224,10 +224,10 @@ class BiblioSearchQuery extends Query {
     $criteria = "";
     for ($i = 0; $i < (is_countable($words) ? count($words) : 0); $i++) {
       # Drop very short words when querying biblio_field
-      if ($bField and strlen($words[$i]) > $drop) array_push($cols, "bf".$i.".field_data");
+      if ($bField and strlen((string) $words[$i]) > $drop) array_push($cols, "bf".$i.".field_data");
       $criteria .= $prefix.$this->_getLike($type,$cols,$words[$i]);
       $prefix = " and ";
-      if ($bField and strlen($words[$i]) > $drop) array_pop($cols);
+      if ($bField and strlen((string) $words[$i]) > $drop) array_pop($cols);
     }
     return $criteria;
   }

@@ -105,43 +105,43 @@ class BiblioHold {
    ****************************************************************************
    */
   function setBibid($value) {
-    $this->_bibid = trim($value);
+    $this->_bibid = trim((string) $value);
   }
   function setCopyid($value) {
-    $this->_copyid = trim($value);
+    $this->_copyid = trim((string) $value);
   }
   function setHoldid($value) {
-    $this->_holdid = trim($value);
+    $this->_holdid = trim((string) $value);
   }
   function setHoldBeginDt($value) {
-    $this->_holdBeginDt = trim($value);
+    $this->_holdBeginDt = trim((string) $value);
   }
   function setStatusCd($value) {
-    $this->_statusCd = trim($value);
+    $this->_statusCd = trim((string) $value);
   }
   function setDueBackDt($value) {
-    $this->_dueBackDt = trim($value);
+    $this->_dueBackDt = trim((string) $value);
   }
   function setMbrid($value) {
-    $this->_mbrid = trim($value);
+    $this->_mbrid = trim((string) $value);
   }
   function setBarcodeNmbr($value) {
-    $this->_barcodeNmbr = trim($value);
+    $this->_barcodeNmbr = trim((string) $value);
   }
   function setTitle($value) {
-    $this->_title = trim($value);
+    $this->_title = trim((string) $value);
   }
   function setAuthor($value) {
-    $this->_author = trim($value);
+    $this->_author = trim((string) $value);
   }
   function setMaterialCd($value) {
-    $this->_materialCd = trim($value);
+    $this->_materialCd = trim((string) $value);
   }
   function setLastName($value) {
-    $this->_lastName = trim($value);
+    $this->_lastName = trim((string) $value);
   }
   function setFirstName($value) {
-    $this->_firstName = trim($value);
+    $this->_firstName = trim((string) $value);
   }
 }
 

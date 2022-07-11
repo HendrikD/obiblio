@@ -38,11 +38,11 @@ class Nav {
     echo '</ul>';
   }
   function _pathWithin($sub, $path) {
-    return ($sub == $path) or ($path.'/' == substr($sub, 0, strlen($path)+1));
+    return ($sub == $path) or ($path.'/' == substr((string) $sub, 0, strlen((string) $path)+1));
   }
   function &_getParent($path) {
     global $_Nav_menu;
-    if (preg_match('|^(.*)/([^/]*)?$|', $path, $m)) {
+    if (preg_match('|^(.*)/([^/]*)?$|', (string) $path, $m)) {
       $path = $m[1];
     } else {
       $path = "";

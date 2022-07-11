@@ -30,7 +30,7 @@ $fieldterminator="\36";
 $delimiter="\37";
 
 $usmarc_str = fileGetContents($_FILES["usmarc_data"]["tmp_name"]);
-$records = explode($recordterminator,$usmarc_str);
+$records = explode($recordterminator,(string) $usmarc_str);
 // We separated with a terminator, so the last element will always be empty.
 array_pop($records);
 

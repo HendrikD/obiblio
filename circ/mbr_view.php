@@ -81,8 +81,8 @@
   #****************************************************************************
   $dueMsg = "";
   $pgErrors = $_SESSION['pageErrors'];
-  if (str_starts_with($pgErrors[\BARCODENMBR], '!!!')) {
-	  $dueMsg = "<font class=\"error\">".substr($pgErrors[\BARCODENMBR], 3)."</font><br><br>";
+  if (str_starts_with((string) $pgErrors[\BARCODENMBR], '!!!')) {
+	  $dueMsg = "<font class=\"error\">".substr((string) $pgErrors[\BARCODENMBR], 3)."</font><br><br>";
 	  unset($postVars);
   	  unset($pageErrors);
   } 
@@ -92,7 +92,7 @@
   #****************************************************************************
   $overMsg = "";
   if ($mbr->getMembershipEnd()!="0000-00-00") {
-    if (strtotime($mbr->getMembershipEnd())<=strtotime("now")) {
+    if (strtotime((string) $mbr->getMembershipEnd())<=strtotime("now")) {
     $overMsg = "<font class=\"error\">".$loc->getText("checkoutEndErr")."</font><br><br>";
   }}
   #**************************************************************************
@@ -129,7 +129,7 @@
     </td>
     <td valign="top" class="primary">
       <?php
-        echo str_replace("\n", "<br />", H($mbr->getAddress()));
+        echo str_replace("\n", "<br />", (string) H($mbr->getAddress()));
       ?>
     </td>
   </tr>
@@ -347,7 +347,7 @@ function hideDueDate() {
 
 <h1><?php echo $loc->getText("mbrViewHead4"); ?>
   <font class="primary">
-  <a href="javascript:popSecondary('../circ/mbr_print_checkouts.php?mbrid=<?php echo H(addslashes(U($mbrid)));?>')">[<?php echo $loc->getText("mbrPrintCheckouts"); ?>]</a>
+  <a href="javascript:popSecondary('../circ/mbr_print_checkouts.php?mbrid=<?php echo H(addslashes((string) U($mbrid)));?>')">[<?php echo $loc->getText("mbrPrintCheckouts"); ?>]</a>
   <a href="../circ/mbr_renew_all.php?mbrid=<?php echo HURL($mbrid); ?>">[<?php echo $loc->getText("Renew All"); ?>]</a>
   </font>
 </h1>

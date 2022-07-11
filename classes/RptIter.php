@@ -51,7 +51,7 @@ class RptIter extends Iter {
       # I don't like having to differentiate selects here.  It might be
       # better for the Rpt syntax to indicate whether a query is expected
       # to return rows or not.
-      if (strncasecmp(trim($sql), 'select', strlen('select')) != 0) {
+      if (strncasecmp(trim((string) $sql), 'select', strlen('select')) != 0) {
         $this->q->act($sql);
       } else {
         $this->iter = $this->q->select($sql);

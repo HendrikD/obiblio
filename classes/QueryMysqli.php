@@ -79,7 +79,7 @@ class QueryMysqli extends QueryBase
   /* Make strings safe for MySQL. */
   function real_escape_string($string)
     {
-    return mysqli_real_escape_string($this->connection(), $string);
+    return mysqli_real_escape_string($this->connection(), (string) $string);
 
     }
   }

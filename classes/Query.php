@@ -159,14 +159,14 @@ class Query {
     $i = 1;
     $SQL = "";
     $fmt = func_get_arg(0);
-    while (strlen($fmt)) {
-      $p = strpos($fmt, "%");
+    while (strlen((string) $fmt)) {
+      $p = strpos((string) $fmt, "%");
       if ($p === false) {
         $SQL .= $fmt;
         break;
       }
-      $SQL .= substr($fmt, 0, $p);
-      if (strlen($fmt) < $p+2) {
+      $SQL .= substr((string) $fmt, 0, $p);
+      if (strlen((string) $fmt) < $p+2) {
         (new Fatal())->internalError('Bad mkSQL() format string.');
       }
       if ($fmt[$p+1] == '%') {
@@ -190,7 +190,7 @@ class Query {
           break;
         case 'C':
           $a = [];
-          foreach (explode('.', $arg) as $ident) {
+          foreach (explode('.', (string) $arg) as $ident) {
             array_push($a, '`'.$this->_ident($ident).'`');
           }
           $SQL .= implode('.', $a);
@@ -214,7 +214,7 @@ class Query {
           (new Fatal())->internalError('Bad mkSQL() format string.');
         }
       }
-      $fmt = substr($fmt, $p+2);
+      $fmt = substr((string) $fmt, $p+2);
     }
     if ($i != $n) {
       (new Fatal())->internalError('Too many arguments to mkSQL().');
@@ -226,10 +226,10 @@ class Query {
     # Because the MySQL manual is unclear on how to include a ` in a `-quoted
     # identifer, we just drop them.  The manual does not say whether backslash
     # escapes are interpreted in quoted identifiers, so I assume they are not.
-    return str_replace('`', '', $i);
+    return str_replace('`', '', (string) $i);
   }
   function _numstr($n) {
-    if (preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", $n, $subs)) {
+    if (preg_match("/^([+-]?[0-9]+(\.[0-9]*)?([Ee][0-9]+)?)/", (string) $n, $subs)) {
       return $subs[1];
     } else {
       return "0";

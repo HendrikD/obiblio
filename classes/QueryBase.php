@@ -112,7 +112,7 @@ class QueryBase
   /* Make strings safe. */
   function string_safe($string)
     {
-    return htmlentities($string);
+    return htmlentities((string) $string);
     }
   /* Return the database interface type. */
   function type() { return $this->type; }

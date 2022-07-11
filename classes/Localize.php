@@ -42,9 +42,9 @@ class Localize {
       foreach($vars as $varKey => $value) {
         $search = "%".$varKey."%";
         if ($transFunc) {
-          $transFunc = str_replace($search,addslashes(H($value)),$transFunc);
+          $transFunc = str_replace($search,addslashes((string) H($value)),(string) $transFunc);
         } else {
-          $text = str_replace($search,$value,$text);
+          $text = str_replace($search,$value,(string) $text);
         }
       }
     }

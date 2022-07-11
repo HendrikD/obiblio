@@ -50,10 +50,10 @@ class Staff {
       $valid = false;
       $this->_lastNameError = $this->_loc->getText("staffLastNameReqErr");
     }
-    if (strlen($this->_username) < 4) {
+    if (strlen((string) $this->_username) < 4) {
       $valid = false;
       $this->_usernameError = $this->_loc->getText("staffUserNameLenErr");
-    } elseif (substr_count($this->_username, " ") > 0) {
+    } elseif (substr_count((string) $this->_username, " ") > 0) {
       $valid = false;
       $this->_usernameError = $this->_loc->getText("staffUserNameCharErr");
     }
@@ -67,10 +67,10 @@ class Staff {
    */
   function validatePwd() {
     $valid = true;
-    if (strlen($this->_pwd) < 4) {
+    if (strlen((string) $this->_pwd) < 4) {
       $valid = false;
       $this->_pwdError = $this->_loc->getText("staffPwdLenErr");
-    } elseif (substr_count($this->_pwd, " ") > 0) {
+    } elseif (substr_count((string) $this->_pwd, " ") > 0) {
       $valid = false;
       $this->_pwdError = $this->_loc->getText("staffPwdCharErr");
     } elseif ($this->_pwd != $this->_pwd2) {
@@ -95,7 +95,7 @@ class Staff {
    ****************************************************************************
    */
   function setUserid($userid) {
-    $this->_userid = trim($userid);
+    $this->_userid = trim((string) $userid);
   }
 
   /****************************************************************************
@@ -105,7 +105,7 @@ class Staff {
    ****************************************************************************
    */
   function setPwd($pwd) {
-    $this->_pwd = strtolower(trim($pwd));
+    $this->_pwd = strtolower(trim((string) $pwd));
   }
   function getPwd() {
     return $this->_pwd;
@@ -114,7 +114,7 @@ class Staff {
     return $this->_pwdError;
   }
   function setPwd2($pwd) {
-    $this->_pwd2 = strtolower(trim($pwd));
+    $this->_pwd2 = strtolower(trim((string) $pwd));
   }
   function getPwd2() {
     return $this->_pwd2;
@@ -143,7 +143,7 @@ class Staff {
    ****************************************************************************
    */
   function setLastName($lastName) {
-    $this->_lastName = trim($lastName);
+    $this->_lastName = trim((string) $lastName);
   }
   /****************************************************************************
    * @return string first name of staff member
@@ -160,7 +160,7 @@ class Staff {
    ****************************************************************************
    */
   function setFirstName($firstName) {
-    $this->_firstName = trim($firstName);
+    $this->_firstName = trim((string) $firstName);
   }
   /****************************************************************************
    * @return string Staff username
@@ -185,7 +185,7 @@ class Staff {
    ****************************************************************************
    */
   function setUsername($username) {
-    $this->_username = strtolower(trim($username));
+    $this->_username = strtolower(trim((string) $username));
   }
   /****************************************************************************
    * @return boolean true if staff member has circulation authorization
@@ -324,13 +324,13 @@ class Staff {
     return $this->_lastChangeUsername;
   }
   function setCreateDt($value) {
-    $this->_createDt = trim($value);
+    $this->_createDt = trim((string) $value);
   }
   function setLastChangeDt($value) {
-    $this->_lastChangeDt = trim($value);
+    $this->_lastChangeDt = trim((string) $value);
   }
   function setLastChangeUserid($value) {
-    $this->_lastChangeUserid = trim($value);
+    $this->_lastChangeUserid = trim((string) $value);
   }
 
 

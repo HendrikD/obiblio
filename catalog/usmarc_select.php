@@ -36,13 +36,13 @@
   if (isset($_GET["retpage"])) {
     $retPage = $_GET["retpage"];
     # Sanity check
-    if (substr($retPage, 0, 3) != '../') {
+    if (substr((string) $retPage, 0, 3) != '../') {
       (new Fatal())->internalError('unexpected retPage value');
     }
   } else {
     $retPage = "";
   }
-  if (!str_contains($retPage, '?')) {
+  if (!str_contains((string) $retPage, '?')) {
     $sepchar = '?';
   } else {
     $sepchar = '&';
@@ -123,7 +123,7 @@ function backToMain(URL) {
       #***************************************
       #*  check for a selected block
       #***************************************
-      if (strcmp($selectedBlock,$blockKey) == 0) {
+      if (strcmp((string) $selectedBlock,(string) $blockKey) == 0) {
         ?>
         <tr><td class="noborder" nowrap>
         <a href="../catalog/usmarc_select.php?retpage=<?php echo HURL($retPage); ?>" class="nav">
@@ -153,7 +153,7 @@ function backToMain(URL) {
             #***************************************
             #*  check for a selected tag
             #***************************************
-            if (strcmp($selectedTag,$tagKey) == 0) {
+            if (strcmp((string) $selectedTag,(string) $tagKey) == 0) {
               ?>
               <tr><td class="noborder"></td>
               <td class="noborder" nowrap>

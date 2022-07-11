@@ -27,7 +27,7 @@
       if (is_array($element))
         return array_map("magicSlashes", $element);
       else
-        return stripslashes($element);
+        return stripslashes((string) $element);
     }
 
     // Remove slashes from all incoming GET/POST/COOKIE data.
@@ -56,18 +56,18 @@
     }
     $phpver = explode('.', PHP_VERSION);
     if ($phpver[0]==4 || ($phpver[0]==5 && $phpver[1]<3)) {
-      return htmlspecialchars($s, ENT_QUOTES);
+      return htmlspecialchars((string) $s, ENT_QUOTES);
     } elseif ($phpver[0]==5 && $phpver[1]==3) {
-      return htmlspecialchars($s, ENT_QUOTES | ENT_IGNORE);
+      return htmlspecialchars((string) $s, ENT_QUOTES | ENT_IGNORE);
     } else {
-      return htmlspecialchars($s, ENT_QUOTES | ENT_SUBSTITUTE, $charset);
+      return htmlspecialchars((string) $s, ENT_QUOTES | ENT_SUBSTITUTE, $charset);
     }
   }
   function HURL($s) {
-    return H(urlencode($s));
+    return H(urlencode((string) $s));
   }
   function U($s) {
-    return urlencode($s);
+    return urlencode((string) $s);
   }
   function _mkPostVars($arr, $prefix) {
     $pv = [];

@@ -24,8 +24,8 @@
     header("Location: ../circ/index.php");
     exit();
   }
-  $barcode = trim($_POST["holdBarcodeNmbr"]);
-  $mbrid = trim($_POST["mbrid"]);
+  $barcode = trim((string) $_POST["holdBarcodeNmbr"]);
+  $mbrid = trim((string) $_POST["mbrid"]);
 
   // Check to see if this member already has the item checked out.
   $copyQ = new BiblioCopyQuery();

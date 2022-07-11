@@ -35,26 +35,26 @@ class Layout_A4_barcode_1x16 {
             $lay->container('Column', ['width'=>'64mm', 'y-spacing'=>'-0.3mm', 'y-align'=>'center']);
               $lay->container('TextLine', ['x-align'=>'center', 'height'=>'8.5mm']);
                 $lay->pushFont('Code39JK', 36);
-                  $lay->text('*'.strtoupper($row['barcode_nmbr']).'*');
+                  $lay->text('*'.strtoupper((string) $row['barcode_nmbr']).'*');
                 $lay->popFont();
               $lay->close();
               $lay->container('TextLine', ['x-align'=>'center']);
                 $lay->pushFont('Courier', 10);
-                  $lay->text(strtoupper($row['barcode_nmbr']));
+                  $lay->text(strtoupper((string) $row['barcode_nmbr']));
                 $lay->popFont();
               $lay->close();
             $lay->close();
             $lay->container('Column', ['width'=>'48mm', 'y-align'=>'center']);
               $lay->pushFont('Helvetica', 9);
               $lay->container('TextLine');
-                if (strlen($row['author']) > 30) {
-                  $row['author'] = substr($row['author'], 0, 30)."...";
+                if (strlen((string) $row['author']) > 30) {
+                  $row['author'] = substr((string) $row['author'], 0, 30)."...";
                 }
                 $lay->text($row['author']);
               $lay->close();
               $lay->container('TextLine');
-                if (strlen($row['title']) > 30) {
-                  $row['title'] = substr($row['title'], 0, 30)."...";
+                if (strlen((string) $row['title']) > 30) {
+                  $row['title'] = substr((string) $row['title'], 0, 30)."...";
                 }
                 $lay->text($row['title']);
               $lay->close();

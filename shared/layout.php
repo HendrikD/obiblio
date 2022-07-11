@@ -25,7 +25,7 @@
   $layout_whitelist = array_merge($layout_whitelist, $layout_default_whitelist);
   
   $re = '/^[-_A-Za-z0-9]+$/'; # To avoid quoting distopia.
-  assert(preg_match($re, $_REQUEST["name"]));
+  assert(preg_match($re, (string) $_REQUEST["name"]));
   $filename = '../layouts/'.$_REQUEST["name"].'.php';
   if (!is_readable($filename)) {
     $filename = '../layouts/default/'.$_REQUEST["name"].'.php';

@@ -31,7 +31,7 @@
   #****************************************************************************
   $error_found = false;
   $pwd = $_POST["pwd"];
-  if (str_replace(' ','',$pwd) == "") {
+  if (str_replace(' ','',(string) $pwd) == "") {
     $error_found = true;
     $pageErrors["pwd"] = "Secret Word is required.";
   } else {

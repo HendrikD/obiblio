@@ -45,7 +45,7 @@ class BiblioCopy {
     if ($this->_barcodeNmbr == "") {
       $valid = false;
       $this->_barcodeNmbrError = $this->_loc->getText("biblioCopyError1");
-    } else if (!preg_match(OBIB_BARCODE_RE, $this->_barcodeNmbr) && $validBarco == "CHECKED") {
+    } else if (!preg_match(OBIB_BARCODE_RE, (string) $this->_barcodeNmbr) && $validBarco == "CHECKED") {
       $valid = false;
       $this->_barcodeNmbrError = $this->_loc->getText("biblioCopyError2");
     }
@@ -113,37 +113,37 @@ class BiblioCopy {
    ****************************************************************************
    */
   function setBibid($value) {
-    $this->_bibid = trim($value);
+    $this->_bibid = trim((string) $value);
   }
   function setCopyid($value) {
-    $this->_copyid = trim($value);
+    $this->_copyid = trim((string) $value);
   }
   function setCreateDt($value) {
-    $this->_createDt = trim($value);
+    $this->_createDt = trim((string) $value);
   }
   function setCopyDesc($value) {
-    $this->_copyDesc = trim($value);
+    $this->_copyDesc = trim((string) $value);
   }
   function setBarcodeNmbr($value) {
-    $this->_barcodeNmbr = trim($value);
+    $this->_barcodeNmbr = trim((string) $value);
   }
   function setStatusCd($value) {
-    $this->_statusCd = trim($value);
+    $this->_statusCd = trim((string) $value);
   }
   function setStatusBeginDt($value) {
-    $this->_statusBeginDt = trim($value);
+    $this->_statusBeginDt = trim((string) $value);
   }
   function setDueBackDt($value) {
-    $this->_dueBackDt = trim($value);
+    $this->_dueBackDt = trim((string) $value);
   }
   function setDaysLate($value) {
-    $this->_daysLate = trim($value);
+    $this->_daysLate = trim((string) $value);
   }
   function setMbrid($value) {
-    $this->_mbrid = trim($value);
+    $this->_mbrid = trim((string) $value);
   }
   function setRenewalCount($value) {
-    $this->_renewalCount = trim($value);
+    $this->_renewalCount = trim((string) $value);
   }
 }
 

@@ -56,7 +56,7 @@ if (!$core) {
 }
 write_dict($dict, $font.'.php');
 
-function usage() {
+function usage(): never {
 	global $progname;
 	die("Usage: php -f $progname [-c] FontName\n");
 }
@@ -81,7 +81,7 @@ function write_dict($dict, $fname) {
 function ReadMap($enc)
 {
 	//Read a map file
-	$file=__DIR__.'/'.strtolower($enc).'.map';
+	$file=__DIR__.'/'.strtolower((string) $enc).'.map';
 	$a=file($file);
 	if(empty($a))
 		die('<B>Error:</B> encoding not found: '.$enc);
@@ -238,7 +238,7 @@ function MakeFontDescriptor($fm,$symbolic)
 	//StemV
 	if(isset($fm['StdVW']))
 		$stemv=$fm['StdVW'];
-	elseif(isset($fm['Weight']) and preg_match('/(bold|black)/i',$fm['Weight']))
+	elseif(isset($fm['Weight']) and preg_match('/(bold|black)/i',(string) $fm['Weight']))
 		$stemv=120;
 	else
 		$stemv=70;
@@ -299,7 +299,7 @@ function SaveToFile($file,$s,$mode='t')
 	$f=fopen($file,'w'.$mode);
 	if(!$f)
 		die('Can\'t write to file '.$file);
-	fwrite($f,$s,strlen($s));
+	fwrite($f,(string) $s,strlen((string) $s));
 	fclose($f);
 }
 
@@ -388,7 +388,7 @@ function MakeFont($fontfile,$afmfile,$enc='cp1252',$patch=[],$type='TrueType')
 	//Find font type
 	if($fontfile)
 	{
-		$ext=strtolower(substr($fontfile,-3));
+		$ext=strtolower(substr((string) $fontfile,-3));
 		if($ext=='ttf')
 			$type='TrueType';
 		elseif($ext=='pfb')
@@ -416,7 +416,7 @@ function MakeFont($fontfile,$afmfile,$enc='cp1252',$patch=[],$type='TrueType')
 	$s.='$cw='.$w.";\n";
 	$s.='$enc=\''.$enc."';\n";
 	$s.='$diff=\''.$diff."';\n";
-	$basename=substr(basename($afmfile),0,-4);
+	$basename=substr(basename((string) $afmfile),0,-4);
 	if($fontfile)
 	{
 		//Embedded font
@@ -462,7 +462,7 @@ function MakeFont($fontfile,$afmfile,$enc='cp1252',$patch=[],$type='TrueType')
 		}
 		else
 		{
-			$s.='$file=\''.basename($fontfile)."';\n";
+			$s.='$file=\''.basename((string) $fontfile)."';\n";
 			echo '<B>Notice:</B> font file could not be compressed (zlib extension not available)<BR>';
 		}
 		if($type=='Type1')

@@ -62,13 +62,13 @@ function checkin(massCheckinFlg)
       $memberQ = new MemberQuery;
       $mbr = $memberQ->get($_GET['mbrid']);
       echo '<p>';
-      echo $loc->getText("Checked in %barcode% for ", ['barcode'=>htmlspecialchars($_GET['barcode'])]);
+      echo $loc->getText("Checked in %barcode% for ", ['barcode'=>htmlspecialchars((string) $_GET['barcode'])]);
       echo '<a href="../circ/mbr_view.php?mbrid='.HURL($mbr->getMbrid()).'&amp;reset=Y">';
       echo $loc->getText("%fname% %lname%", ['fname'=>$mbr->getFirstName(), 'lname'=>$mbr->getLastName()]);
       echo '</a>.';
       echo '</p>';
       if (isset($_GET['late']) and $_GET['late']) {
-	  echo '<p><font class="error">'.$loc->getText("mbrViewOutHdr7").': '.htmlspecialchars($_GET['late']).'</font></p>';
+	  echo '<p><font class="error">'.$loc->getText("mbrViewOutHdr7").': '.htmlspecialchars((string) $_GET['late']).'</font></p>';
       }
       $acctQ = new MemberAccountQuery();
       $balance = $acctQ->getBalance($mbr->getMbrid());
@@ -80,8 +80,8 @@ function checkin(massCheckinFlg)
       echo $balMsg;
       /* Neu: Prüfe ob die Nutzungsgebuehr noch aktuell oder abgelaufen ist */
       if ($mbr->getMembershipEnd()!="0000-00-00") {
-	      if (strtotime($mbr->getMembershipEnd())<strtotime("now")) {
-		      $pDate1=strtotime($mbr->getMembershipEnd());
+	      if (strtotime((string) $mbr->getMembershipEnd())<strtotime("now")) {
+		      $pDate1=strtotime((string) $mbr->getMembershipEnd());
 		      $pDate2=strtotime("now");
 		      $lDay1 = date('d', $pDate1);
     		      $lMonth1 = date('m', $pDate1);
@@ -119,7 +119,7 @@ function checkin(massCheckinFlg)
       }
       echo $overMsg;
     } else {
-      echo '<p>'.$loc->getText("Checked in %barcode%.", ['barcode'=>htmlspecialchars($_GET['barcode'])]).'</p>';
+      echo '<p>'.$loc->getText("Checked in %barcode%.", ['barcode'=>htmlspecialchars((string) $_GET['barcode'])]).'</p>';
     }
   }
 ?>

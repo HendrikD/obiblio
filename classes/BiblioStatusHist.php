@@ -82,43 +82,43 @@ class BiblioStatusHist {
    ****************************************************************************
    */
   function setBibid($value) {
-    $this->_bibid = trim($value);
+    $this->_bibid = trim((string) $value);
   }
   function setCopyid($value) {
-    $this->_copyid = trim($value);
+    $this->_copyid = trim((string) $value);
   }
   function setBiblioBarcodeNmbr($value) {
-    $this->_biblioBarcodeNmbr = trim($value);
+    $this->_biblioBarcodeNmbr = trim((string) $value);
   }
   function setTitle($value) {
-    $this->_title = trim($value);
+    $this->_title = trim((string) $value);
   }
   function setAuthor($value) {
-    $this->_author = trim($value);
+    $this->_author = trim((string) $value);
   }
   function setStatusCd($value) {
-    $this->_statusCd = trim($value);
+    $this->_statusCd = trim((string) $value);
   }
   function setStatusBeginDt($value) {
-    $this->_statusBeginDt = trim($value);
+    $this->_statusBeginDt = trim((string) $value);
   }
   function setMbrid($value) {
-    $this->_mbrid = trim($value);
+    $this->_mbrid = trim((string) $value);
   }
   function setLastName($value) {
-    $this->_lastName = trim($value);
+    $this->_lastName = trim((string) $value);
   }
   function setFirstName($value) {
-    $this->_firstName = trim($value);
+    $this->_firstName = trim((string) $value);
   }
   function setMbrBarcodeNmbr($value) {
-    $this->_mbrBarecodeNmbr = trim($value);
+    $this->_mbrBarecodeNmbr = trim((string) $value);
   }
   function setDueBackDt($value) {
-    $this->_dueBackDt = trim($value);
+    $this->_dueBackDt = trim((string) $value);
   }
   function setRenewalCount($value) {
-    $this->_renewalCount = trim($value);
+    $this->_renewalCount = trim((string) $value);
   }
 }
 

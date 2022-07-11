@@ -7,13 +7,13 @@ class Date {
   // Dates are represented internally as 'YYYY-mm-dd'
   function read_e($datestr, $ref=NULL) {
     $gotit = false;
-    if (preg_match('/^([0-9][0-9][0-9][0-9])-([0-9]+)-([0-9]+)$/', $datestr, $m)) {
+    if (preg_match('/^([0-9][0-9][0-9][0-9])-([0-9]+)-([0-9]+)$/', (string) $datestr, $m)) {
       # Canonical (ISO 8601)
       $year = $m[1];
       $month = $m[2];
       $day = $m[3];
       $gotit = true;
-    } elseif (preg_match('/^([0-9]+)[-\/]([0-9]+)[-\/]([0-9]+)$/', $datestr, $m)) {
+    } elseif (preg_match('/^([0-9]+)[-\/]([0-9]+)[-\/]([0-9]+)$/', (string) $datestr, $m)) {
       # American Style
       $year = $m[3];
       $month = $m[1];
@@ -24,7 +24,7 @@ class Date {
       else {
         return [NULL, new ObibError('Ambiguous, use yyyy-mm-dd OR dd.mm.yyyy')];
       }
-    } elseif (preg_match('/^([0-9]+)\.([0-9]+)\.([0-9]+)$/', $datestr, $m)) {
+    } elseif (preg_match('/^([0-9]+)\.([0-9]+)\.([0-9]+)$/', (string) $datestr, $m)) {
       # European Style
       $year = $m[3];
       $month = $m[2];
@@ -68,15 +68,15 @@ class Date {
     }
   }
   function addDays($date, $days) {
-    $d = getdate(strtotime($date));
+    $d = getdate(strtotime((string) $date));
     return date('Y-m-d', mktime(0, 0, 0, $d['mon'], $d['mday']+$days, $d['year']));
   }
   function addMonths($date, $months) {
-    $d = getdate(strtotime($date));
+    $d = getdate(strtotime((string) $date));
     return date('Y-m-d', mktime(0, 0, 0, $d['mon']+$months, $d['mday'], $d['year']));
   }
   function daysLater($d1, $d2) {
-    $diff = round((strtotime($d1)-strtotime($d2))/86400);
+    $diff = round((strtotime((string) $d1)-strtotime((string) $d2))/86400);
     if ($diff > 0) {
       return $diff;
     } else {
@@ -84,8 +84,8 @@ class Date {
     }
   }
   function getDays($since, $until) {
-    $s = strtotime($since);
-    $u = strtotime($until);
+    $s = strtotime((string) $since);
+    $u = strtotime((string) $until);
     assert($s <= $u);
 
     $since = date('Y-m-d', $s);

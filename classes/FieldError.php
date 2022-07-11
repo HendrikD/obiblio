@@ -28,7 +28,7 @@ class FieldError extends ObibError {
     [$msg, $fielderrs] = FieldError::listExtract($errors);
     $_SESSION["postVars"] = mkPostVars();
     $_SESSION["pageErrors"] = $fielderrs;
-    if(strchr($url, '?')) {
+    if(strchr((string) $url, '?')) {
       header("Location: ".$url."&msg=".U($msg));
     } else {
       header("Location: ".$url."?msg=".U($msg));

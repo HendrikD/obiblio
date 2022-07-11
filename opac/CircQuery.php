@@ -45,7 +45,7 @@ class CircQuery extends Query {
 				return new ObibError($this->_loc->getText("Member owes fines: checkout not allowed"));
 		}
                 if ($mbr->getMembershipEnd()!="0000-00-00") {
-    		 if (strtotime($mbr->getMembershipEnd())<=strtotime("now")) {
+    		 if (strtotime((string) $mbr->getMembershipEnd())<=strtotime("now")) {
 			 return new ObibError($this->_loc->getText("Member must renew membership before checking out."));
     		    }
   		}
@@ -85,7 +85,7 @@ class CircQuery extends Query {
 			return new ObibError($this->_loc->getText("Item %bcode% isn't out and cannot be renewed.", ['bcode'=>$bcode]));
 		}
 		$days = $copyQ->getDaysDueBack($copy);
-		$oldtime = strtotime($copy->getStatusBeginDt());
+		$oldtime = strtotime((string) $copy->getStatusBeginDt());
 		if ($oldtime > $latest)
 			return new ObibError($this->_loc->getText("Can't change status to an earlier date on item %bcode%.", ['bcode'=>$bcode]));
 		else if ($oldtime == $latest)
@@ -120,7 +120,7 @@ class CircQuery extends Query {
 				$back=(new Date())->addDays($date, $days);
 			else
 				$back=$due;
-			if (strtotime($mbr->getMembershipEnd())<strtotime($back)) {
+			if (strtotime((string) $mbr->getMembershipEnd())<strtotime((string) $back)) {
 			 	return new ObibError($this->_loc->getText("!!!Note : due date is after the end of the membership"));
     		    	}
 		}

@@ -36,7 +36,7 @@
 <form name="delbiblioform" method="POST" action="<?php echo H($returnUrl);?>">
 <?php echo $loc->getText("holdDelConfirmMsg"); ?>
 <br><br>
-      <input type="button" onClick="self.location='../shared/hold_del.php?bibid=<?php echo H(addslashes(U($bibid)));?>&amp;copyid=<?php echo H(addslashes(U($copyid)));?>&amp;holdid=<?php echo H(addslashes(U($holdid)));?>&amp;mbrid=<?php echo H(addslashes(U($mbrid)));?>'" value="<?php echo $loc->getText("sharedDelete"); ?>" class="button">
+      <input type="button" onClick="self.location='../shared/hold_del.php?bibid=<?php echo H(addslashes((string) U($bibid)));?>&amp;copyid=<?php echo H(addslashes((string) U($copyid)));?>&amp;holdid=<?php echo H(addslashes((string) U($holdid)));?>&amp;mbrid=<?php echo H(addslashes((string) U($mbrid)));?>'" value="<?php echo $loc->getText("sharedDelete"); ?>" class="button">
       <input type="submit" value="<?php echo $loc->getText("sharedCancel"); ?>" class="button">
 </form>
 </center>

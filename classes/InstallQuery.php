@@ -19,7 +19,7 @@ class InstallQuery extends Query {
   function renameTables($fromTablePrfx, $toTablePrfx = DB_TABLENAME_PREFIX) {
     $fromTableNames = $this->getTableNames($fromTablePrfx.'%');
     foreach($fromTableNames as $fromTableName) {
-      $toTableName = str_replace($fromTablePrfx, $toTablePrfx, $fromTableName);
+      $toTableName = str_replace($fromTablePrfx, $toTablePrfx, (string) $fromTableName);
       $this->renameTable($fromTableName, $toTableName);
     }
   }
@@ -119,7 +119,7 @@ class InstallQuery extends Query {
           //process)
           $sql = str_replace("%prfx%",$tablePrfx,$sqlStmt);
           //replace ENGINE with TYPE for old MySQL versions
-          $MySQLn = explode('.', implode('', explode('-', $this->_link->get_server_info())));
+          $MySQLn = explode('.', implode('', explode('-', (string) $this->_link->get_server_info())));
           if ($MySQLn[0] < '5') {
             $sql = str_replace("ENGINE=","TYPE=",$sql);
             $sql = str_replace("engine=","type=",$sql);

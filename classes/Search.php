@@ -61,7 +61,7 @@ class Search {
     $s = "";
     $q = false;
     $bs = false;
-    for($i=0; $i<strlen($str); $i++) {
+    for($i=0; $i<strlen((string) $str); $i++) {
       if ($q) {
         if ($bs) {
           $s .= $str[$i];

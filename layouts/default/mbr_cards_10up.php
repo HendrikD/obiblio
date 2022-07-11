@@ -47,13 +47,13 @@ class Layout_mbr_cards_10up {
                 $lay->container('Column', ['height'=>'0.5in', 'y-align'=>'top']);
                   $lay->container('TextLine', ['margin-left'=>'0.25in']);
                     $lay->pushFont('Courier', 10);
-                      $lay->text(strtoupper($row['barcode_nmbr']));
+                      $lay->text(strtoupper((string) $row['barcode_nmbr']));
                     $lay->popFont();
                   $lay->close();
                   // Do not decrease left margin for barcode, scanner needs quiet zone
                   $lay->container('TextLine', ['height'=>'0.33in', 'margin-left'=>'0.25in']);
                     $lay->pushFont('Code39JK', 36);
-                      $lay->text('*'.strtoupper($row['barcode_nmbr']).'*');
+                      $lay->text('*'.strtoupper((string) $row['barcode_nmbr']).'*');
                     $lay->popFont();
                   $lay->close();
                 $lay->close();

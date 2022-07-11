@@ -62,7 +62,7 @@ class Report {
     $err = null;
     $this->name = $name;
     $re = '/^[-_A-Za-z0-9]+$/'; # To avoid quoting distopia.
-    assert(preg_match($re, $cache["type"]));
+    assert(preg_match($re, (string) $cache["type"]));
     $fname = '../reports/defs/'.$cache['type'];
     if (is_readable($fname.'.php')) {
       $err = $this->_load_php_e($cache['type'], $fname.'.php');

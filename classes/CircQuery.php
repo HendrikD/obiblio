@@ -72,7 +72,7 @@ class CircQuery extends Query {
 				return new ObibError($this->_loc->getText("Member owes fines: checkout not allowed"));
 		}
                 if ($mbr->getMembershipEnd()!="0000-00-00") {
-    		 if (strtotime($mbr->getMembershipEnd())<=strtotime("now")) {
+    		 if (strtotime((string) $mbr->getMembershipEnd())<=strtotime("now")) {
 			 return new ObibError($this->_loc->getText("Member must renew membership before checking out."));
     		    }
   		}
@@ -135,7 +135,7 @@ class CircQuery extends Query {
 					return new ObibError($this->_loc->getText("Item is on hold for another member."));
 			}
 		}
-		$oldtime = strtotime($copy->getStatusBeginDt());
+		$oldtime = strtotime((string) $copy->getStatusBeginDt());
 		if ($oldtime > $latest)
 			return new ObibError($this->_loc->getText("Can't change status to an earlier date on item %bcode%.", ['bcode'=>$bcode]));
 		else if ($oldtime == $latest)
@@ -170,7 +170,7 @@ class CircQuery extends Query {
 				$back=(new Date())->addDays($date, $days);
 			else
 				$back=$due;
-			if (strtotime($mbr->getMembershipEnd())<strtotime($back)) {
+			if (strtotime((string) $mbr->getMembershipEnd())<strtotime((string) $back)) {
 			 	return new ObibError($this->_loc->getText("!!!Note : due date is after the end of the membership"));
     		    	}
 		}
@@ -208,7 +208,7 @@ class CircQuery extends Query {
 		$mbrid = $info['mbrid'] = $copy->getMbrid();
 		if ($copy->getDueBackDt()) {
 			// FIXME: Y2K38. This temporary fix should prevent unjust late fee when Override Due Date was used.
-			if (strtotime($copy->getDueBackDt()) != false && strtotime($copy->getDueBackDt()) != -1)
+			if (strtotime((string) $copy->getDueBackDt()) != false && strtotime((string) $copy->getDueBackDt()) != -1)
 				$late = $info['late'] = (new Date())->daysLater($date, $copy->getDueBackDt());
 		}
 		$holdQ = new BiblioHoldQuery();
@@ -217,7 +217,7 @@ class CircQuery extends Query {
 			$copy->setStatusCd(OBIB_STATUS_ON_HOLD);
 		else
 			$copy->setStatusCd(OBIB_STATUS_SHELVING_CART);
-		$oldtime = strtotime($copy->getStatusBeginDt());
+		$oldtime = strtotime((string) $copy->getStatusBeginDt());
 		if ($oldtime > $latest)
 			return [$info, new ObibError($this->_loc->getText("Can't change status to an earlier date on item %bcode%.", ['bcode'=>$bcode]))];
 		else if ($oldtime == $latest)

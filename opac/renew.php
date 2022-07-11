@@ -24,8 +24,8 @@
     header("Location: ../opac/index.php");
     exit();
   }
-  $barcode = trim($_POST["barcodeNmbr"]);
-  $mbrid = trim($_POST["mbrid"]);
+  $barcode = trim((string) $_POST["barcodeNmbr"]);
+  $mbrid = trim((string) $_POST["mbrid"]);
   $mbrQ = new MemberQuery;
   $mbr = $mbrQ->get($mbrid);
   

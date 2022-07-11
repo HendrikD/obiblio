@@ -79,7 +79,7 @@
 <form name="delbiblioform" method="POST" action="../circ/mbr_view.php?mbrid=<?php echo HURL($mbrid);?>&amp;reset=Y">
 <?php echo $loc->getText("mbrDelConfirmMsg",["name"=>$mbrName]); ?>
 <br><br>
-      <input type="button" onClick="self.location='../circ/mbr_del.php?mbrid=<?php echo H(addslashes(U($mbrid)));?>&amp;name=<?php echo H(addslashes(U($mbrName)));?>'" value="<?php echo $loc->getText("circDelete"); ?>" class="button">
+      <input type="button" onClick="self.location='../circ/mbr_del.php?mbrid=<?php echo H(addslashes((string) U($mbrid)));?>&amp;name=<?php echo H(addslashes((string) U($mbrName)));?>'" value="<?php echo $loc->getText("circDelete"); ?>" class="button">
       <input type="submit" value="<?php echo $loc->getText("circCancel"); ?>" class="button">
 </form>
 </center>

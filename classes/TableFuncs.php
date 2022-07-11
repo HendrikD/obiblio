@@ -86,7 +86,7 @@ class TableFuncs {
     if (isset($col['checkbox_checked']) and $col['checkbox_checked'] === true) {
       $s .= 'checked="checked" ';
     } elseif (is_string($col['checkbox_checked'])) {
-      if (strtolower($row[$col['checkbox_checked']]) == 'y') {
+      if (strtolower((string) $row[$col['checkbox_checked']]) == 'y') {
         $s .= 'checked="checked" ';
       }
     }

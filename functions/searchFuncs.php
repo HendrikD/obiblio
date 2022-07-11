@@ -19,7 +19,7 @@ function explodeQuoted($str) {
 
   $inQuotes=false; 
 
-  $words=explode(" ", $str); 
+  $words=explode(" ", (string) $str); 
   foreach($words as $word) { 
     if($inQuotes==true) { 
       // add word to the last element 

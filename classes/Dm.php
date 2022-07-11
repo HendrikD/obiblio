@@ -134,10 +134,10 @@ class Dm {
    ****************************************************************************
    */
   function _setNumeric(&$valueToSet, &$destinationField) {
-    if (trim($valueToSet) == "") {
+    if (trim((string) $valueToSet) == "") {
       $destinationField = "0";
     } else {
-      $destinationField = trim($valueToSet);
+      $destinationField = trim((string) $valueToSet);
     }
   }
 
@@ -149,31 +149,31 @@ class Dm {
    ****************************************************************************
    */
   function setCode($value) {
-    $this->_code = trim($value);
+    $this->_code = trim((string) $value);
   }
   function setDescription($value) {
-    $this->_description = trim($value);
+    $this->_description = trim((string) $value);
   }
   function setDescriptionError($value) {
-    $this->_descriptionError = trim($value);
+    $this->_descriptionError = trim((string) $value);
   }
   function setDefaultFlg($value) {
-    $this->_defaultFlg = trim($value);
+    $this->_defaultFlg = trim((string) $value);
   }
   function setDaysDueBack($value) {
     $this->_setNumeric($value, $this->_daysDueBack);
   }
   function setDaysDueBackError($value) {
-    $this->_daysDueBackError = trim($value);
+    $this->_daysDueBackError = trim((string) $value);
   }
   function setDailyLateFee($value) {
     $this->_setNumeric($value, $this->_dailyLateFee);
   }
   function setDailyLateFeeError($value) {
-    $this->_dailyLateFeeError = trim($value);
+    $this->_dailyLateFeeError = trim((string) $value);
   }
   function setImageFile($value) {
-    $temp = trim($value);
+    $temp = trim((string) $value);
     $fileloc = "../images/$temp";
     if (($temp == "") or (!file_exists($fileloc))) {
       $this->_imageFile = "shim.gif";
@@ -182,13 +182,13 @@ class Dm {
     }
   }
   function setCheckoutLimit($value) {
-    $this->_checkoutLimit = trim($value);
+    $this->_checkoutLimit = trim((string) $value);
   }
   function setRenewalLimit($value) {
-    $this->_renewalLimit = trim($value);
+    $this->_renewalLimit = trim((string) $value);
   }
   function setMaxFines($value) {
-    $this->_maxFines = trim($value);
+    $this->_maxFines = trim((string) $value);
   }
   function setCount($value) {
     $this->_setNumeric($value, $this->_count);

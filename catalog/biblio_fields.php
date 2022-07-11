@@ -170,7 +170,7 @@
   <tr>
     <td align="center" colspan="2" class="primary">
       <input type="submit" value="<?php echo $loc->getText("catalogSubmit"); ?>" class="button">
-      <input type="button" onClick="self.location='<?php echo H(addslashes($cancelLocation));?>'" value="<?php echo $loc->getText("catalogCancel"); ?>" class="button">
+      <input type="button" onClick="self.location='<?php echo H(addslashes((string) $cancelLocation));?>'" value="<?php echo $loc->getText("catalogCancel"); ?>" class="button">
     </td>
   </tr>
 

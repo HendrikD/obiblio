@@ -147,14 +147,14 @@ class RptParser {
     $list = [];
     while (!empty($str)) {
       if ($str[0] == ' ' or $str[0] == "\t") {
-        $str = substr($str, 1);
+        $str = substr((string) $str, 1);
         continue;
       }
       if (ctype_alnum($str[0])) {
         $w = '';
         while (!empty($str) and (ctype_alnum($str[0]) or $str[0] == '_')) {
           $w .= $str[0];
-          $str = substr($str, 1);
+          $str = substr((string) $str, 1);
         }
         array_push($list, ['WORD', $w]);
       } else if ($str[0] == '"' or $str[0] == '\'') {
@@ -162,7 +162,7 @@ class RptParser {
         array_push($list, ['WORD', $w]);
       } else {
         array_push($list, [$str[0]]);
-        $str = substr($str, 1);
+        $str = substr((string) $str, 1);
       }
     }
     if ($list[0][0] == 'WORD' and in_array($list[0][1], $cmds)) {
@@ -176,32 +176,32 @@ class RptParser {
     }
     $q = $str[0];
     $w = '';
-    for ($n=1; $n < strlen($str); $n++) {
+    for ($n=1; $n < strlen((string) $str); $n++) {
       if ($str[$n] == $q) {
         break;
       }
       if ($str[$n] == '\\') {
         $n++;
-        if ($n >= strlen($str)) {
+        if ($n >= strlen((string) $str)) {
           break;
         }
       }
       $w .= $str[$n];
     }
-    return [$w, substr($str, $n+1)];
+    return [$w, substr((string) $str, $n+1)];
   }
   function getSqlTokens($str) {
     static $conversions = ['!' => '%!', '#' => '%N', '"' => '%q', '.' => '%I', '`' => '%i'];
     $list = [];
     $sql = '';
     while (!empty($str)) {
-      $p = strpos($str, "%");
+      $p = strpos((string) $str, "%");
       if ($p === false) {
         $sql .= $str;
         break;
       }
-      $sql .= substr($str, 0, $p);
-      $str = substr($str, $p+1);		// Skip '%'
+      $sql .= substr((string) $str, 0, $p);
+      $str = substr((string) $str, $p+1);		// Skip '%'
       $p = strpos($str, "%");
       if ($p === false) {
         # FIXME - there should be a way to error

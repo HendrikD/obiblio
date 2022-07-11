@@ -133,7 +133,7 @@
 
 <h1><?php echo $loc->getText("mbrViewHead4"); ?>
   <font class="primary">
-  <a href="javascript:popSecondary('../opac/mbr_print_checkouts.php?mbrid=<?php echo H(addslashes(U($mbrid)));?>')">[<?php echo $loc->getText("mbrPrintCheckouts"); ?>]</a>
+  <a href="javascript:popSecondary('../opac/mbr_print_checkouts.php?mbrid=<?php echo H(addslashes((string) U($mbrid)));?>')">[<?php echo $loc->getText("mbrPrintCheckouts"); ?>]</a>
   </font>
 </h1>
 <table class="primary">

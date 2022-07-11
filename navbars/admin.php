@@ -78,5 +78,5 @@
 < ?php } ?>
 -->
 
-<a href="javascript:popSecondary('../shared/help.php<?php if (isset($helpPage)) echo "?page=".H(addslashes(U($helpPage))); ?>')"><?php echo $navLoc->getText("help");?></a>
+<a href="javascript:popSecondary('../shared/help.php<?php if (isset($helpPage)) echo "?page=".H(addslashes((string) U($helpPage))); ?>')"><?php echo $navLoc->getText("help");?></a>
 

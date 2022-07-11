@@ -23,14 +23,14 @@
     $circQ = new CircQuery();
     $errors = [];
     while(is_countable($lines) ? count($lines) : 0) {
-      $command = trim(array_shift($lines));
+      $command = trim((string) array_shift($lines));
       if($command == '')
         continue;
       if($command[0] != '%')
         return [$loc->getText("Bad upload file: Expected a command code, but didn't get one")];
       $args = [];
       while (isset($lines[0]) and $lines[0][0] != '%')
-        $args[] = trim(array_shift($lines));
+        $args[] = trim((string) array_shift($lines));
       switch($command){
       case '%CHECKOUT%':
         if(!isset($args[0]))

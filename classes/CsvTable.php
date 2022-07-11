@@ -8,8 +8,8 @@ require_once("../functions/inputFuncs.php");
 class CsvTable {
   public $_cols = [];
   function escape($str) {
-    if (strcspn($str, ";\"\r\n") != strlen($str)) {
-      $str = '"'.str_replace('"', '""', $str).'"';
+    if (strcspn((string) $str, ";\"\r\n") != strlen((string) $str)) {
+      $str = '"'.str_replace('"', '""', (string) $str).'"';
     }
     return $str;
   }
