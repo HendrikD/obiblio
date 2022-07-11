@@ -114,28 +114,28 @@ class BiblioField {
    ****************************************************************************
    */
   function setBibid($value) {
-    $this->_bibid = trim($value);
+    $this->_bibid = trim((string) $value);
   }
   function setFieldid($value) {
-    $this->_fieldid = trim($value);
+    $this->_fieldid = trim((string) $value);
   }
   function setTag($value) {
-    $this->_tag = trim($value);
+    $this->_tag = trim((string) $value);
   }
   function setInd1Cd($value) {
-    $this->_ind1Cd = substr(trim($value),0,1);
+    $this->_ind1Cd = substr(trim((string) $value),0,1);
   }
   function setInd2Cd($value) {
-    $this->_ind2Cd = substr(trim($value),0,1);
+    $this->_ind2Cd = substr(trim((string) $value),0,1);
   }
   function setSubfieldCd($value) {
-    $this->_subfieldCd = substr(trim($value),0,1);
+    $this->_subfieldCd = substr(trim((string) $value),0,1);
   }
   function setFieldData($value) {
-    $this->_fieldData = trim($value);
+    $this->_fieldData = trim((string) $value);
   }
   function setFieldDataError($value) {
-    $this->_fieldDataError = trim($value);
+    $this->_fieldDataError = trim((string) $value);
   }
   function setIsRequired($value) {
     if ($value) {

@@ -62,7 +62,7 @@
   #**************************************************************************
   require_once("../shared/header.php");
 ?>
-<?php echo $loc->getText("Copy field, %desc%, has been added.", ['desc'=>htmlspecialchars($dm->getDescription())]);?><br><br>
+<?php echo $loc->getText("Copy field, %desc%, has been added.", ['desc'=>htmlspecialchars((string) $dm->getDescription())]);?><br><br>
 <a href="../admin/copy_fields_list.php"><?php echo $loc->getText("return to copy fields list"); ?></a>
 
 <?php require_once("../shared/footer.php"); ?>

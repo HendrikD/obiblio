@@ -51,7 +51,7 @@ class Member {
     if ($this->_barcodeNmbr == "") {
       $valid = false;
       $this->_barcodeNmbrError = $this->_loc->getText("memberBarcodeReqErr");
-    } else if (!preg_match(OBIB_BARCODE_RE, $this->_barcodeNmbr)) {
+    } else if (!preg_match(OBIB_BARCODE_RE, (string) $this->_barcodeNmbr)) {
       $valid = FALSE;
       $this->_barcodeNmbrError = $this->_loc->getText("memberBarcodeCharErr");
     }
@@ -64,9 +64,9 @@ class Member {
       $this->_firstNameError = $this->_loc->getText("memberFirstNameReqErr");
     }
     if ($this->getMembershipEnd()!="0000-00-00") {
-      $year = substr($this->getMembershipEnd(), 0, 4);
-      $month = (int)substr($this->getMembershipEnd(), 5, 2);
-      $day = (int)substr($this->getMembershipEnd(), 8, 2);
+      $year = substr((string) $this->getMembershipEnd(), 0, 4);
+      $month = (int)substr((string) $this->getMembershipEnd(), 5, 2);
+      $day = (int)substr((string) $this->getMembershipEnd(), 8, 2);
       if (!checkdate($month,$day,$year)) {
         $valid = false;
 	$this->_membershipEndError = "The enddate isn't valid.";
@@ -161,49 +161,49 @@ class Member {
    ****************************************************************************
    */
   function setMbrid($value) {
-    $this->_mbrid = trim($value);
+    $this->_mbrid = trim((string) $value);
   }
   function setBarcodeNmbr($value) {
-    $this->_barcodeNmbr = trim($value);
+    $this->_barcodeNmbr = trim((string) $value);
   }
   function setCreateDt($value) {
-    $this->_createDt = trim($value);
+    $this->_createDt = trim((string) $value);
   }
   function setLastChangeDt($value) {
-    $this->_lastChangeDt = trim($value);
+    $this->_lastChangeDt = trim((string) $value);
   }
   function setLastChangeUserid($value) {
-    $this->_lastChangeUserid = trim($value);
+    $this->_lastChangeUserid = trim((string) $value);
   }
   function setLastChangeUsername($value) {
-    $this->_lastChangeUsername = trim($value);
+    $this->_lastChangeUsername = trim((string) $value);
   }
   function setLastName($value) {
-    $this->_lastName = trim($value);
+    $this->_lastName = trim((string) $value);
   }
   function setLastNameError($value) {
-    $this->_lastNameError = trim($value);
+    $this->_lastNameError = trim((string) $value);
   }
   function setFirstName($value) {
-    $this->_firstName = trim($value);
+    $this->_firstName = trim((string) $value);
   }
   function setFirstNameError($value) {
-    $this->_firstNameError = trim($value);
+    $this->_firstNameError = trim((string) $value);
   }
   function setAddress($value) {
-    $this->_address = trim($value);
+    $this->_address = trim((string) $value);
   }
   function setHomePhone($value) {
-    $this->_homePhone = trim($value);
+    $this->_homePhone = trim((string) $value);
   }
   function setWorkPhone($value) {
-    $this->_workPhone = trim($value);
+    $this->_workPhone = trim((string) $value);
   }
   function setEmail($value) {
-    $this->_email = trim($value);
+    $this->_email = trim((string) $value);
   }
   function setMembershipEnd ($value) {
-    $temp = trim($value);
+    $temp = trim((string) $value);
     if ($temp == "") {
       $this->_membershipEnd = "0000-00-00";
     } else {
@@ -211,10 +211,10 @@ class Member {
     }
   }
   function setMembershipEndError($value) {
-    $this->_membershipEndError = trim($value);
+    $this->_membershipEndError = trim((string) $value);
   }
   function setClassification($value) {
-    $this->_classification = trim($value);
+    $this->_classification = trim((string) $value);
   }
 }
 

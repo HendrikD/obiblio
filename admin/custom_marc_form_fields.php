@@ -59,6 +59,6 @@ echo H($material_type);
 <tr>
 <td align="center" colspan="2" class="primary">
 <input type="submit" value="<?php echo $loc->getText("adminSubmit"); ?>" class="button">
-<input type="button" onClick="self.location='<?php echo H(addslashes($cancelLocation));?>'" value="  <?php echo $loc->getText("adminCancel"); ?>  " class="button">
+<input type="button" onClick="self.location='<?php echo H(addslashes((string) $cancelLocation));?>'" value="  <?php echo $loc->getText("adminCancel"); ?>  " class="button">
 </td></tr>
 </table>

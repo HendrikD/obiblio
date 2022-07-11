@@ -10,7 +10,7 @@
  * @access public
  *********************************************************************************
  */
-function displayErrorPage($query){
+function displayErrorPage($query): never{
   echo "\n<!-- db_errno = ".H($query->getDbErrno())."-->\n";
   echo "<!-- db_error = ".H($query->getDbError())."-->\n";
   echo "<!-- SQL = ".H($query->getSQL())."-->\n";

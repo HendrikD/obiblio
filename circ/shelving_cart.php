@@ -20,10 +20,10 @@
   }
 
   if ( $_GET[\BARCODENMBR] ) {
-         $barcode = trim($_GET[\BARCODENMBR]);
+         $barcode = trim((string) $_GET[\BARCODENMBR]);
   }
     else {
-         $barcode = trim($_POST["barcodeNmbr"]);
+         $barcode = trim((string) $_POST["barcodeNmbr"]);
   }
 
   $circQ = new CircQuery();

@@ -28,7 +28,7 @@ class Layout_mbr_labels {
                 $lay->container('TextLine');
                   $lay->text($row['name']);
                 $lay->close();
-                foreach (explode("\n", $row['address']) as $l) {
+                foreach (explode("\n", (string) $row['address']) as $l) {
                   $lay->container('TextLine');
                     $lay->text($l);
                   $lay->close();

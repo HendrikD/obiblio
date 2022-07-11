@@ -6,14 +6,14 @@
 /* error is the only required method */
 class FatalHandler {
   /* FIXME - Internationalize this stuff */
-  function internalError($msg) {
+  function internalError($msg): never {
     echo "<h1>Internal Error - You've Probably Found a Bug</h1>\n";
     echo "<p>Please give all the information on this page to your support personnel.</p>\n";
     echo "<p>".H($msg)."</p>\n";
     $this->printBackTrace();
     exit(1);
   }
-  function dbError($sql, $msg, $dberror) {
+  function dbError($sql, $msg, $dberror): never {
     echo "<h1>Database Query Error - You've Probably Found a Bug</h1>\n";
     echo "<h2>".H($msg)."</h2>\n";
     echo "<p>Please give all the information on this page to your support personnel.</p>\n";
@@ -22,7 +22,7 @@ class FatalHandler {
     $this->printBackTrace();
     exit(1);
   }
-  function error($msg) {
+  function error($msg): never {
     echo "<h1>Fatal Error</h1>\n";
     echo "<h2>".H($msg)."</h2>\n";
     $this->printBackTrace();

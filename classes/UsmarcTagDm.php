@@ -52,30 +52,30 @@ class UsmarcTagDm {
    ****************************************************************************
    */
   function setBlockNmbr($value) {
-    if (trim($value) == "") {
+    if (trim((string) $value) == "") {
       $this->_blockNmbr = "0";
     } else {
-      $this->_blockNmbr = trim($value);
+      $this->_blockNmbr = trim((string) $value);
     }
   }
   function setTag($value) {
-    if (trim($value) == "") {
+    if (trim((string) $value) == "") {
       $this->_tag = "0";
     } else {
-      $this->_tag = trim($value);
+      $this->_tag = trim((string) $value);
     }
   }
   function setDescription($value) {
-    $this->_description = trim($value);
+    $this->_description = trim((string) $value);
   }
   function setInd1Description($value) {
-    $this->_ind1Description = trim($value);
+    $this->_ind1Description = trim((string) $value);
   }
   function setInd2Description($value) {
-    $this->_ind2Description = trim($value);
+    $this->_ind2Description = trim((string) $value);
   }
   function setRepeatableFlg($value) {
-    $this->_repeatableFlg = trim($value);
+    $this->_repeatableFlg = trim((string) $value);
   }
 
 }

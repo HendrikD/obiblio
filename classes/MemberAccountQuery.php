@@ -100,7 +100,7 @@ class MemberAccountQuery extends Query {
    */
   function insert($trans) {
     // change trans type payment and credit amount to negative
-    $transTypeSign = substr($trans->getTransactionTypeCd(),0,1);
+    $transTypeSign = substr((string) $trans->getTransactionTypeCd(),0,1);
     if ($transTypeSign == "-") {
       $amt = $trans->getAmount() * -1;
     } else {

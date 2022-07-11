@@ -18,7 +18,7 @@
   require_once("../classes/Localize.php");
   $loc = new Localize(OBIB_LOCALE,$tab);
 
-  $mbrid = @trim($_GET["mbrid"]);
+  $mbrid = @trim((string) $_GET["mbrid"]);
   $mbrQ = new MemberQuery;
   $mbr = $mbrQ->get($mbrid);
   $circQ = new CircQuery;

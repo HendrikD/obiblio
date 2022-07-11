@@ -30,7 +30,7 @@
   if (!isset($_POST['code']) or !$_POST['code']) {
     $pageErrors['code'] = 'This is a required field.';
   }
-  if (isset($_POST['code']) && preg_match('/[^A-Za-z0-9_]/', $_POST['code'])) {
+  if (isset($_POST['code']) && preg_match('/[^A-Za-z0-9_]/', (string) $_POST['code'])) {
     $pageErrors['code'] = 'Code must contain only alphanumerics and underscores.';
   }
   if (!isset($_POST['description']) or !$_POST['description']) {

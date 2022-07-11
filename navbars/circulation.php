@@ -78,4 +78,4 @@
  <a href="../circ/offline.php" class="alt1"><?php echo $navloc->getText("Offline Circulation"); ?></a><br>
 <?php } ?>
 
-<a href="javascript:popSecondary('../shared/help.php<?php if (isset($helpPage)) echo "?page=".H(addslashes(U($helpPage))); ?>')"><?php echo $navloc->getText("help"); ?></a>
+<a href="javascript:popSecondary('../shared/help.php<?php if (isset($helpPage)) echo "?page=".H(addslashes((string) U($helpPage))); ?>')"><?php echo $navloc->getText("help"); ?></a>

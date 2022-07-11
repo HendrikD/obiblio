@@ -13,7 +13,7 @@ class Params {
   }
   function loadCgi_el($paramdefs, $prefix='rpt_') {
     $params = [];
-    $preflen = strlen($prefix);
+    $preflen = strlen((string) $prefix);
     foreach ($_REQUEST as $k => $v) {
       if (substr($k, 0, $preflen) == $prefix) {
         $params[substr($k, $preflen)] = $v;
@@ -178,7 +178,7 @@ class Params {
     echo '</td></tr>';
   }
   function _splitName($name) {
-    return explode('.', $name);
+    return explode('.', (string) $name);
   }
   function _load_el(&$parameters, $paramdefs, $params, $errprefix=NULL) {
     $errs = [];
@@ -231,13 +231,13 @@ class Params {
     $noerrors = [];
     switch ($type) {
       case 'string':
-        $val = trim($val);
+        $val = trim((string) $val);
         if (strlen($val) != 0) {
           return [['string', $val], $noerrors];
         }
         break;
       case 'date':
-        $val = trim($val);
+        $val = trim((string) $val);
         if (!empty($val)) {
           [$val, $error] = (new Date())->read_e($val);
           if ($error) {
@@ -269,9 +269,9 @@ class Params {
       case 'order_by':
         $rawval = $val;
         $desc = ' ';
-        if (preg_match('/!r$/', $val)) {
+        if (preg_match('/!r$/', (string) $val)) {
           $desc = ' desc ';
-          $val = substr($val, 0, -2);
+          $val = substr((string) $val, 0, -2);
         }
         $expr = $this->getOrderExpr($val, $list, $desc);
         return [['order_by', $expr, $rawval], $noerrors];
@@ -308,7 +308,7 @@ class Params {
                 . "$expr), $expr)".$desc;
         break;
       case 'multi':
-        $sorts = explode(',', $expr);
+        $sorts = explode(',', (string) $expr);
         $expr = '';
         foreach ($sorts as $s) {
           $expr .= ', '.$this->getOrderExpr(trim($s), $list, $desc);

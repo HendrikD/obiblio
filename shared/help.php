@@ -10,7 +10,7 @@
   } else {
     $page = "contents";
   }
-  if (preg_match('/^[a-zA-Z0-9_]+$/', $page)) {
+  if (preg_match('/^[a-zA-Z0-9_]+$/', (string) $page)) {
     include("../locale/".OBIB_LOCALE."/help/".$page.".php");
   }
   include("../shared/help_footer.php");

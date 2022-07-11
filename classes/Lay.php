@@ -650,14 +650,14 @@ class Lay {
   }
   function text($text) {
     # http://www.fpdf.org/en/FAQ.php#q7
-    if (strtoupper(OBIB_CHARSET) == 'UTF-8') {
+    if (strtoupper((string) OBIB_CHARSET) == 'UTF-8') {
       if (extension_loaded('iconv')) {
-        $text = iconv('UTF-8', 'windows-1252', $text);
+        $text = iconv('UTF-8', 'windows-1252', (string) $text);
       } else {
-        $text = utf8_decode($text);
+        $text = utf8_decode((string) $text);
       }
     }
-    foreach (preg_split('/\s+/', $text) as $word) {
+    foreach (preg_split('/\s+/', (string) $text) as $word) {
       if ($word == '') {
         continue;
       }

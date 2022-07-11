@@ -44,7 +44,7 @@ class Layout_overdue {
               $lay->container('TextLine');
                 $lay->text($mbr->getFirstName().' '.$mbr->getLastName());
               $lay->close();
-              foreach (explode("\n", $mbr->getAddress()) as $l) {
+              foreach (explode("\n", (string) $mbr->getAddress()) as $l) {
                 $lay->container('TextLine');
                   $lay->text($l);
                 $lay->close();
@@ -95,7 +95,7 @@ class Layout_overdue {
                 $lay->text($row['author']);
               $lay->close();
               $lay->container('TextLine', ['width'=>'1in']);
-                $lay->text(date('m/d/y', strtotime($row['due_back_dt'])));
+                $lay->text(date('m/d/y', strtotime((string) $row['due_back_dt'])));
               $lay->close();
               $lay->container('TextLine', ['width'=>'0.75in']);
                 $lay->text($row['days_late']);

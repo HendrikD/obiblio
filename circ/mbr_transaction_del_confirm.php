@@ -33,7 +33,7 @@
 <form name="delbiblioform" method="POST" action="../circ/mbr_account.php?mbrid=<?php echo HURL($mbrid);?>">
 <?php echo $loc->getText("mbrTransDelConfirmMsg"); ?>
 <br><br>
-      <input type="button" onClick="self.location='../circ/mbr_transaction_del.php?mbrid=<?php echo H(addslashes(U($mbrid)));?>&amp;transid=<?php echo H(addslashes(U($transid)));?>'" value="<?php echo $loc->getText("circDelete"); ?>" class="button">
+      <input type="button" onClick="self.location='../circ/mbr_transaction_del.php?mbrid=<?php echo H(addslashes((string) U($mbrid)));?>&amp;transid=<?php echo H(addslashes((string) U($transid)));?>'" value="<?php echo $loc->getText("circDelete"); ?>" class="button">
       <input type="submit" value="<?php echo $loc->getText("circCancel"); ?>" class="button">
 </form>
 </center>

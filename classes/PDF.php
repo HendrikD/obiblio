@@ -90,7 +90,7 @@ class PDF {
       }
     }
     //Page orientation
-    $orientation=strtolower($orientation);
+    $orientation=strtolower((string) $orientation);
     if($orientation=='p' || $orientation=='portrait') {
       $this->w=$format[0];
       $this->h=$format[1];
@@ -269,7 +269,7 @@ class PDF {
     $this->creator=$creator;
   }
 
-  function Error($msg)
+  function Error($msg): never
   {
     //Fatal error
     die('<B>FPDF error: </B>'.$msg);
@@ -330,7 +330,7 @@ class PDF {
   function _loadFont($name) {
     global $PDF_font;
     $re = '/^[-_A-Za-z0-9]+$/'; # To avoid quoting distopia.
-    assert(preg_match($re, $name));
+    assert(preg_match($re, (string) $name));
     $fname = $this->_getfontpath().$name.'.php';
     $PDF_font = false;
     @include_once($fname);
@@ -372,12 +372,12 @@ class PDF {
       //First use of image, get info
       if($type=='')
       {
-        $pos=strrpos($file,'.');
+        $pos=strrpos((string) $file,'.');
         if(!$pos)
           $this->Error('Image file has no extension and no type was specified: '.$file);
-        $type=substr($file,$pos+1);
+        $type=substr((string) $file,$pos+1);
       }
-      $type=strtolower($type);
+      $type=strtolower((string) $type);
       $mqr=ini_get('magic_quotes_runtime');
       ini_set('magic_quotes_runtime', 0);
       if($type=='jpg' || $type=='jpeg')
@@ -423,7 +423,7 @@ class PDF {
     //Normalize parameters
     if(is_bool($dest))
       $dest=$dest ? 'D' : 'F';
-    $dest=strtoupper($dest);
+    $dest=strtoupper((string) $dest);
     if($dest=='')
     {
       if($name=='')
@@ -446,7 +446,7 @@ class PDF {
           header('Content-Type: application/pdf');
           if(headers_sent())
             $this->Error('Some data has already been output to browser, can\'t send PDF file');
-          header('Content-Length: '.strlen($this->buffer));
+          header('Content-Length: '.strlen((string) $this->buffer));
           header('Content-disposition: inline; filename="'.$name.'"');
         }
         echo $this->buffer;
@@ -455,13 +455,13 @@ class PDF {
         //Download file
         if(ob_get_contents())
           $this->Error('Some data has already been output, can\'t send PDF file');
-        if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'],'MSIE'))
+        if(isset($_SERVER['HTTP_USER_AGENT']) && strpos((string) $_SERVER['HTTP_USER_AGENT'],'MSIE'))
           header('Content-Type: application/force-download');
         else
           header('Content-Type: application/octet-stream');
         if(headers_sent())
           $this->Error('Some data has already been output to browser, can\'t send PDF file');
-        header('Content-Length: '.strlen($this->buffer));
+        header('Content-Length: '.strlen((string) $this->buffer));
         header('Content-disposition: attachment; filename="'.$name.'"');
         echo $this->buffer;
         break;
@@ -470,7 +470,7 @@ class PDF {
         $f=fopen($name,'wb');
         if(!$f)
           $this->Error('Unable to create output file: '.$name);
-        fwrite($f,$this->buffer,strlen($this->buffer));
+        fwrite($f,(string) $this->buffer,strlen((string) $this->buffer));
         fclose($f);
         break;
       case 'S':
@@ -498,8 +498,8 @@ class PDF {
     # Work-around for some versions of IE that need the web page's
     # 'file name' to end with '.pdf'.
     if (isset($_SERVER['HTTP_USER_AGENT'])
-        && strpos($_SERVER['HTTP_USER_AGENT'],'MSIE')) {
-      $a = explode('?', $_SERVER['REQUEST_URI']);
+        && strpos((string) $_SERVER['HTTP_USER_AGENT'],'MSIE')) {
+      $a = explode('?', (string) $_SERVER['REQUEST_URI']);
       if (count($a) > 2) {
         return; # invalide URI, don't even try
       }
@@ -536,14 +536,14 @@ class PDF {
       $this->_out('/Contents '.($this->n+1).' 0 R>>');
       $this->_out('endobj');
       //Page content
-      $p=($this->compress) ? gzcompress($this->pages[$n]) : $this->pages[$n];
+      $p=($this->compress) ? gzcompress((string) $this->pages[$n]) : $this->pages[$n];
       $this->_newobj();
-      $this->_out('<<'.$filter.'/Length '.strlen($p).'>>');
+      $this->_out('<<'.$filter.'/Length '.strlen((string) $p).'>>');
       $this->_putstream($p);
       $this->_out('endobj');
     }
     //Pages root
-    $this->offsets[1]=strlen($this->buffer);
+    $this->offsets[1]=strlen((string) $this->buffer);
     $this->_out('1 0 obj');
     $this->_out('<</Type /Pages');
     $kids='/Kids [';
@@ -578,7 +578,7 @@ class PDF {
       while(!feof($f))
         $font.=fread($f,8192);
       fclose($f);
-      $compressed=(substr($file,-2)=='.z');
+      $compressed=(substr((string) $file,-2)=='.z');
       if(!$compressed && isset($info['length2']))
       {
         $header=(ord($font[0])==128);
@@ -679,7 +679,7 @@ class PDF {
       $this->_out('/Width '.$info['w']);
       $this->_out('/Height '.$info['h']);
       if($info['cs']=='Indexed')
-        $this->_out('/ColorSpace [/Indexed /DeviceRGB '.(strlen($info['pal'])/3-1).' '.($this->n+1).' 0 R]');
+        $this->_out('/ColorSpace [/Indexed /DeviceRGB '.(strlen((string) $info['pal'])/3-1).' '.($this->n+1).' 0 R]');
       else
       {
         $this->_out('/ColorSpace /'.$info['cs']);
@@ -698,7 +698,7 @@ class PDF {
           $trns.=$info['trns'][$i].' '.$info['trns'][$i].' ';
         $this->_out('/Mask ['.$trns.']');
       }
-      $this->_out('/Length '.strlen($info['data']).'>>');
+      $this->_out('/Length '.strlen((string) $info['data']).'>>');
       $this->_putstream($info['data']);
       unset($this->images[$file]['data']);
       $this->_out('endobj');
@@ -706,8 +706,8 @@ class PDF {
       if($info['cs']=='Indexed')
       {
         $this->_newobj();
-        $pal=($this->compress) ? gzcompress($info['pal']) : $info['pal'];
-        $this->_out('<<'.$filter.'/Length '.strlen($pal).'>>');
+        $pal=($this->compress) ? gzcompress((string) $info['pal']) : $info['pal'];
+        $this->_out('<<'.$filter.'/Length '.strlen((string) $pal).'>>');
         $this->_putstream($pal);
         $this->_out('endobj');
       }
@@ -737,7 +737,7 @@ class PDF {
     $this->_putfonts();
     $this->_putimages();
     //Resource dictionary
-    $this->offsets[2]=strlen($this->buffer);
+    $this->offsets[2]=strlen((string) $this->buffer);
     $this->_out('2 0 obj');
     $this->_out('<<');
     $this->_putresourcedict();
@@ -811,7 +811,7 @@ class PDF {
     $this->_out('>>');
     $this->_out('endobj');
     //Cross-ref
-    $o=strlen($this->buffer);
+    $o=strlen((string) $this->buffer);
     $this->_out('xref');
     $this->_out('0 '.($this->n+1));
     $this->_out('0000000000 65535 f ');
@@ -845,7 +845,7 @@ class PDF {
   {
     //Begin a new object
     $this->n++;
-    $this->offsets[$this->n]=strlen($this->buffer);
+    $this->offsets[$this->n]=strlen((string) $this->buffer);
     $this->_out($this->n.' 0 obj');
   }
 
@@ -973,7 +973,7 @@ class PDF {
   function _escape($s)
   {
     //Add \ before \, ( and )
-    return str_replace(')','\\)',str_replace('(','\\(',str_replace('\\','\\\\',$s)));
+    return str_replace(')','\\)',str_replace('(','\\(',str_replace('\\','\\\\',(string) $s)));
   }
 
   function _putstream($s)

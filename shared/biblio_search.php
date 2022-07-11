@@ -48,10 +48,10 @@
     }
     echo $loc->getText("biblioSearchResultPages").": ";
     if ($currPage > 6) {
-      echo "<a href=\"javascript:changePage(".H(addslashes(1)).",'".H(addslashes($sort))."')\">&laquo;".$loc->getText("First")."</a> ";
+      echo "<a href=\"javascript:changePage(".H(addslashes(1)).",'".H(addslashes((string) $sort))."')\">&laquo;".$loc->getText("First")."</a> ";
     }
     if ($currPage > 1) {
-      echo "<a href=\"javascript:changePage(".H(addslashes($currPage-1)).",'".H(addslashes($sort))."')\">&laquo;".$loc->getText("biblioSearchPrev")."</a> ";
+      echo "<a href=\"javascript:changePage(".H(addslashes($currPage-1)).",'".H(addslashes((string) $sort))."')\">&laquo;".$loc->getText("biblioSearchPrev")."</a> ";
     }
     $start = $currPage - 5;
     $end = $currPage + 5;
@@ -61,14 +61,14 @@
         if ($i == $currPage) {
           echo "<b>".H($i)."</b> ";
         } else {
-          echo "<a href=\"javascript:changePage(".H(addslashes($i)).",'".H(addslashes($sort))."')\">".H($i)."</a> ";
+          echo "<a href=\"javascript:changePage(".H(addslashes($i)).",'".H(addslashes((string) $sort))."')\">".H($i)."</a> ";
         }
     }
     if ($currPage < $pageCount) {
       echo "<a href=\"javascript:changePage(".($currPage+1).",'".$sort."')\">".$loc->getText("biblioSearchNext")."&raquo;</a> ";
     }
     if ($currPage < $pageCount-5) {
-      echo "<a href=\"javascript:changePage(".H(addslashes($pageCount)).",'".H(addslashes($sort))."')\">".$loc->getText("Last")."&raquo;</a> ";
+      echo "<a href=\"javascript:changePage(".H(addslashes((string) $pageCount)).",'".H(addslashes((string) $sort))."')\">".$loc->getText("Last")."&raquo;</a> ";
     }
   }
 
@@ -100,7 +100,7 @@
       $sortBy = "title";
     }
   }
-  $searchText = trim($_POST["searchText"]);
+  $searchText = trim((string) $_POST["searchText"]);
   # remove redundant whitespace
   $searchText = preg_replace('/\s+/', " ", $searchText);
   if ($searchType == "barcodeNmbr") {
@@ -238,7 +238,7 @@ function changePage(page,sort)
             </font></td>
             <td class="primary" ><font class="small"><b><?php echo $loc->getText("biblioSearchCopyBCode"); ?></b>: <?php echo H($biblio->getBarcodeNmbr());?>
               <?php if ($lookup == 'Y') { ?>
-                <a href="javascript:returnLookup('barcodesearch','barcodeNmbr','<?php echo H(addslashes($biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="javascript:returnLookup('holdForm','holdBarcodeNmbr','<?php echo H(addslashes($biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchHold"); ?></a>
+                <a href="javascript:returnLookup('barcodesearch','barcodeNmbr','<?php echo H(addslashes((string) $biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="javascript:returnLookup('holdForm','holdBarcodeNmbr','<?php echo H(addslashes((string) $biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchHold"); ?></a>
               <?php } ?>
             </font></td>
             <td class="primary" ><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: <?php echo H($biblioStatusDm[$biblio->getStatusCd()]);?></font></td>
@@ -291,7 +291,7 @@ function changePage(page,sort)
       <tr>
         <td class="primary" ><font class="small"><b><?php echo $loc->getText("biblioSearchCopyBCode"); ?></b>: <?php echo H($biblio->getBarcodeNmbr());?>
           <?php if ($lookup == 'Y') { ?>
-            <a href="javascript:returnLookup('barcodesearch','barcodeNmbr','<?php echo H(addslashes($biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="javascript:returnLookup('holdForm','holdBarcodeNmbr','<?php echo H(addslashes($biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchHold"); ?></a>
+            <a href="javascript:returnLookup('barcodesearch','barcodeNmbr','<?php echo H(addslashes((string) $biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchOutIn"); ?></a> | <a href="javascript:returnLookup('holdForm','holdBarcodeNmbr','<?php echo H(addslashes((string) $biblio->getBarcodeNmbr()));?>')"><?php echo $loc->getText("biblioSearchHold"); ?></a>
           <?php } ?>
         </font></td>
         <td class="primary" ><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: <?php echo H($biblioStatusDm[$biblio->getStatusCd()]);?></font></td>

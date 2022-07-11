@@ -36,14 +36,14 @@ class UsmarcBlockDm {
    ****************************************************************************
    */
   function setBlockNmbr($value) {
-    if (trim($value) == "") {
+    if (trim((string) $value) == "") {
       $this->_blockNmbr = "0";
     } else {
-      $this->_blockNmbr = trim($value);
+      $this->_blockNmbr = trim((string) $value);
     }
   }
   function setDescription($value) {
-    $this->_description = trim($value);
+    $this->_description = trim((string) $value);
   }
 
 }

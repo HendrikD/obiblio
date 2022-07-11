@@ -26,20 +26,20 @@ class Layout_barcode_33up {
             $lay->container('Column', ['height'=>'1in', 'width'=>'2.8333in', 'y-align'=>'center']);
               $lay->container('TextLine', ['x-align'=>'center']);
                 $lay->pushFont('Times-Roman', 10);
-                  if (strlen($row['title']) > 30) {
-                    $row['title'] = substr($row['title'], 0, 30)."...";
+                  if (strlen((string) $row['title']) > 30) {
+                    $row['title'] = substr((string) $row['title'], 0, 30)."...";
                   }
                   $lay->text($row['title']);
                 $lay->popFont();
               $lay->close();
               $lay->container('TextLine', ['x-align'=>'center']);
                 $lay->pushFont('Code39JK', 24);
-                  $lay->text('*'.strtoupper($row['barcode_nmbr']).'*');
+                  $lay->text('*'.strtoupper((string) $row['barcode_nmbr']).'*');
                 $lay->popFont();
               $lay->close();
               $lay->container('TextLine', ['x-align'=>'center']);
                 $lay->pushFont('Courier', 10);
-                  $lay->text(strtoupper($row['barcode_nmbr']));
+                  $lay->text(strtoupper((string) $row['barcode_nmbr']));
                 $lay->popFont();
               $lay->close();
             $lay->close();

@@ -42,14 +42,14 @@ class Layout_demco14216850 {
 		  $lay->container('Column', ['width'=>'70.5mm', 'height'=>'25.4mm', 'margin-top'=>'2.5mm', 'margin-bottom'=>'2.5mm', 'margin-left'=>'6.5mm', 'margin-right'=>'2.5mm', 'y-align'=>'center']);
 		    $lay->pushFont('Helvetica', 9);
 		      $lay->container('TextLine');
-			if (strlen($row['author']) > 45) {
-			  $row['title'] = substr($row['author'], 0, 40)."...";
+			if (strlen((string) $row['author']) > 45) {
+			  $row['title'] = substr((string) $row['author'], 0, 40)."...";
 			}
 			$lay->text($row['author']);
 		      $lay->close();
 		      $lay->container('TextLine');
-			if (strlen($row['title']) > 45) {
-			  $row['title'] = substr($row['title'], 0, 40)."...";
+			if (strlen((string) $row['title']) > 45) {
+			  $row['title'] = substr((string) $row['title'], 0, 40)."...";
 			}
 			$lay->text($row['title']);
 		      $lay->close();
@@ -73,12 +73,12 @@ class Layout_demco14216850 {
 		    $lay->popFont();
 		    $lay->container('TextLine', ['x-align'=>'center', 'height'=>'8.5mm']);
 		    $lay->pushFont('Code39JK', 36);
-		      $lay->text('*'.strtoupper($row['barcode_nmbr']).'*');
+		      $lay->text('*'.strtoupper((string) $row['barcode_nmbr']).'*');
 		    $lay->popFont();
 		    $lay->close();
 		    $lay->container('TextLine', ['x-align'=>'center']);
 		      $lay->pushFont('Courier', 10);
-		        $lay->text(strtoupper($row['barcode_nmbr']));
+		        $lay->text(strtoupper((string) $row['barcode_nmbr']));
 		      $lay->popFont();
 		    $lay->close();
 		  $lay->close();

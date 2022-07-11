@@ -20,7 +20,7 @@ class DmQuery extends Query {
     return $this->exec($sql);
   }
   function get($table) {
-    return array_map([$this, '_mkObj'], $this->_get($table));
+    return array_map($this->_mkObj(...), $this->_get($table));
   }
   function getAssoc($table, $column="description") {
     $assoc = [];
@@ -56,12 +56,12 @@ class DmQuery extends Query {
       (new Fatal())->internalError("Cannot retrieve stats for that dm table");
     }
     $sql .= "order by description ";
-    return array_map([$this, '_mkObj'], $this->exec($sql));
+    return array_map($this->_mkObj(...), $this->exec($sql));
   }
 
   function getCheckoutStats($mbrid) {
     $link = (new QueryAny())->db();
-    $MySQLn = explode('.', implode('', explode('-', $link->get_server_info())));
+    $MySQLn = explode('.', implode('', explode('-', (string) $link->get_server_info())));
     if ($MySQLn[0] < '5') {
         $cmd = 'type=heap';
     } else {
@@ -84,7 +84,7 @@ class DmQuery extends Query {
                         . "where member.mbrid=%N "
                         . "group by mat.code, mat.description, mat.default_flg, "
                         . "privs.checkout_limit, privs.renewal_limit ", $mbrid);
-    return array_map([$this, '_mkObj'], $this->exec($sql));
+    return array_map($this->_mkObj(...), $this->exec($sql));
   }
 
   function _mkObj($array) {
