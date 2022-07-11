@@ -129,7 +129,7 @@
 
 <br>
 
-<?php echo "<font class=\"error\">".$loc->getText($pageErrors[barcodeNmbr])."</font><br><br>"; ?>
+<?php echo "<font class=\"error\">".$loc->getText($pageErrors[\BARCODENMBR])."</font><br><br>"; ?>
 
 <h1><?php echo $loc->getText("mbrViewHead4"); ?>
   <font class="primary">
