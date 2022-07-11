@@ -2,7 +2,7 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
- 
+
   require_once("../shared/common.php");
 
   require_once("../classes/Report.php");
@@ -25,7 +25,7 @@
   } else {
     $format = 'paged';
   }
-  
+
   function echolink($page, $text, $newSort=NULL) {
     global $tab, $nav, $format;
     echo '<a href="../reports/run_report.php?type=previous';
@@ -127,7 +127,7 @@
     '../shared/layout.php?rpt=Report&name=list');
   Nav::node('reportcriteria', $loc->getText("Report Criteria"),
     '../reports/report_criteria.php?type='.U($rpt->type()));
-  
+
   if ($format == 'csv') {
     include_once('../classes/CsvTable.php');
     $table = new CsvTable;
@@ -136,7 +136,7 @@
     $rpt->table($table);
     exit;
   }
-  
+
   include('../shared/header.php');
 
   if (isset($_REQUEST["msg"]) && !empty($_REQUEST["msg"])) {

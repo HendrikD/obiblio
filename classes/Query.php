@@ -9,7 +9,7 @@ require_once("../classes/DbIter.php");
 require_once("../classes/DbOld.php");
 
 class Query {
-  var $_link;
+  public $_link;
 
   /* This constructor will never do more than call connect_e() and throw a
    * fatal error if it fails.  If you want to catch the error, subclass Query and

@@ -16,7 +16,7 @@ require_once("../classes/Localize.php");
  ******************************************************************************
  */
 class UsmarcSubfieldDmQuery extends Query {
-  var $_loc;
+  public $_loc;
 
   function UsmarcSubfieldDmQuery() {
     $this->Query();

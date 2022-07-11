@@ -10,7 +10,7 @@
 require_once('../classes/Lay.php');
 
 class Layout_demco14216850 {
-  var $p;
+  public $p;
   function paramDefs() {
     return array(
       array('string', 'skip', array('title'=>'Skip Labels', 'default'=>'0')),

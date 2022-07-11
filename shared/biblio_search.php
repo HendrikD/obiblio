@@ -243,7 +243,7 @@ function changePage(page,sort)
             </font></td>
             <td class="primary" ><font class="small"><b><?php echo $loc->getText("biblioSearchCopyStatus"); ?></b>: <?php echo H($biblioStatusDm[$biblio->getStatusCd()]);?></font></td>
           </tr>
-          <?php 
+<?php 
         }
       } else {
         $priorBibid = $biblio->getBibid();

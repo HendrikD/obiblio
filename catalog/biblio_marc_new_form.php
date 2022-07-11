@@ -2,7 +2,7 @@
 /* This file is part of a copyrighted work; it is distributed with NO WARRANTY.
  * See the file COPYRIGHT.html for more details.
  */
- 
+
   require_once("../shared/common.php");
   session_cache_limiter(null);
 
@@ -49,7 +49,7 @@
     $selectedSubfld = $_GET["subfld"];
     $postVars["subfieldCd"] = $selectedSubfld;
   }
-    
+
   require_once("../shared/header.php");
 
   #****************************************************************************
@@ -72,12 +72,12 @@
   #*  Start of body
   #****************************************************************************
   ?>
-  
+
 <form name="newmarcform" method="POST" action="../catalog/biblio_marc_new.php">
 <?php include("../catalog/biblio_marc_fields.php"); ?>
 <input type="hidden" name="bibid" value="<?php echo H($bibid);?>">
 </form>
-  
+
 
 
 <?php include("../shared/footer.php"); ?>

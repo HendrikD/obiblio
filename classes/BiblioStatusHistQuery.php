@@ -17,8 +17,8 @@ require_once("../classes/SettingsQuery.php");
  ******************************************************************************
  */
 class BiblioStatusHistQuery extends Query {
-  var $_rowCount = 0;
-  var $_loc;
+  public $_rowCount = 0;
+  public $_loc;
 
   function BiblioStatusHistQuery() {
     $this->Query();

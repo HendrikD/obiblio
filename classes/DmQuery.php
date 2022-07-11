@@ -8,7 +8,7 @@ require_once("../classes/Dm.php");
 require_once("../classes/Query.php");
 
 class DmQuery extends Query {
-  var $_tableNm = "";
+  public $_tableNm = "";
 
   function _get($table, $code = "") {
     $this->_tableNm = $table;

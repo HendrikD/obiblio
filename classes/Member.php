@@ -16,26 +16,26 @@
  ******************************************************************************
  */
 class Member {
-  var $_mbrid = 0;
-  var $_barcodeNmbr = 0;
-  var $_barcodeNmbrError = "";
-  var $_createDt = "";
-  var $_lastChangeDt = "";
-  var $_lastChangeUserid = "";
-  var $_lastChangeUsername = "";
-  var $_classification = "";
-  var $_lastName = "";
-  var $_lastNameError = "";
-  var $_firstName = "";
-  var $_firstNameError = "";
-  var $_email = "";
-  var $_address = "";
-  var $_homePhone = "";
-  var $_workPhone = "";
-  var $_membershipEnd = "";
-  var $_membershipEndError = "";
-  var $_custom = array();
-  var $_loc;
+  public $_mbrid = 0;
+  public $_barcodeNmbr = 0;
+  public $_barcodeNmbrError = "";
+  public $_createDt = "";
+  public $_lastChangeDt = "";
+  public $_lastChangeUserid = "";
+  public $_lastChangeUsername = "";
+  public $_classification = "";
+  public $_lastName = "";
+  public $_lastNameError = "";
+  public $_firstName = "";
+  public $_firstNameError = "";
+  public $_email = "";
+  public $_address = "";
+  public $_homePhone = "";
+  public $_workPhone = "";
+  public $_membershipEnd = "";
+  public $_membershipEndError = "";
+  public $_custom = array();
+  public $_loc;
 
   function Member () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");

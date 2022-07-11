@@ -16,8 +16,8 @@ require_once("../classes/MemberAccountTransaction.php");
  ******************************************************************************
  */
 class MemberAccountQuery extends Query {
-  var $_rowCount = 0;
-  var $_loc;
+  public $_rowCount = 0;
+  public $_loc;
 
   function MemberAccountQuery() {
     $this->Query();

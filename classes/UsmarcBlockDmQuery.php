@@ -16,7 +16,7 @@ require_once("../classes/Localize.php");
  ******************************************************************************
  */
 class UsmarcBlockDmQuery extends Query {
-  var $_loc;
+  public $_loc;
 
   function UsmarcBlockDmQuery() {
     $this->Query();

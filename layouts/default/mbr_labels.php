@@ -6,7 +6,7 @@
 require_once('../classes/Lay.php');
 
 class Layout_mbr_labels {
-  var $p;
+  public $p;
   function paramDefs() {
     return array(
       array('string', 'skip', array('title'=>'Skip Labels', 'default'=>'0')),

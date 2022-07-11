@@ -5,9 +5,9 @@
  
 class RptIter extends Iter {
   # These are private.
-  var $params;
-  var $iter;
-  var $subselects;
+  public $params;
+  public $iter;
+  public $subselects;
   # $sqls is a list of tuples of array($code, $subselects).
   # $code contains the code elements which construct a single
   # SQL query.  $subselects is a list of lists of code elements.  Each

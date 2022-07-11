@@ -21,12 +21,12 @@ require_once("../classes/Params.php");
  *   count(), curPage(), row(), each(), table(), and pageTable()
  */
 class Report {
-  var $name;
-  var $rpt;
-  var $params;
-  var $iter;
-  var $cache;
-  var $pointer = 0;
+  public $name;
+  public $rpt;
+  public $params;
+  public $iter;
+  public $cache;
+  public $pointer = 0;
   function link($name, $msg='', $tab='') {
     $urls = array(
       'Report'=>'../reports/run_report.php?type=previous&msg=',

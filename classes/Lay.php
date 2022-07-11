@@ -7,9 +7,9 @@ require_once("../classes/PDF.php");
 
 /*** Elements ***/
 class Lay_Spacer {
-  var $dimensions;
-  var $display;
-  var $p;
+  public $dimensions;
+  public $display;
+  public $p;
   function paramTypes() {
     return array(
       array('width', 'x-length', 0),
@@ -27,9 +27,9 @@ class Lay_Spacer {
 }
 
 class Lay_Word {
-  var $dimensions;
-  var $display;
-  var $p;
+  public $dimensions;
+  public $display;
+  public $p;
   function paramTypes() {
     return array(
       array('font-name', 'font-name', 'Times'),
@@ -56,10 +56,10 @@ class Lay_Word {
  * up and to the right of a lower-left corner origin.
  */
 class Lay_Compound_Element {
-  var $dimensions;
-  var $display;
-  var $p;
-  var $elems = array();
+  public $dimensions;
+  public $display;
+  public $p;
+  public $elems = array();
   function paramTypes() {
     return array(array('border', 'int', 0));
   }
@@ -95,11 +95,11 @@ class Lay_Compound_Element {
 }
 
 class Lay_Transformed_Element {
-  var $dimensions;
-  var $display;
-  var $element = NULL;
-  var $a, $b, $c, $d;
-  var $shift = array('x'=>0, 'y'=>0);
+  public $dimensions;
+  public $display;
+  public $element = NULL;
+  public $a, $b, $c, $d;
+  public $shift = array('x'=>0, 'y'=>0);
   function paramTypes() {
     return array();
   }
@@ -153,11 +153,11 @@ class Lay_Transformed_Element {
 
 /*** Containers ***/
 class Lay_Container {
-  var $display;
-  var $parent;
-  var $p;
-  var $max_dim;			# may change only after a call to child() or makeFit()
-  var $child_max_dim;		# may change only after a call to child() or makeFit()
+  public $display;
+  public $parent;
+  public $p;
+  public $max_dim;			# may change only after a call to child() or makeFit()
+  public $child_max_dim;		# may change only after a call to child() or makeFit()
   function paramTypes() {
     return array();
   }
@@ -234,10 +234,10 @@ class Lay_Transformer extends Lay_Container {
 }
 
 class Lay_Lines extends Lay_Container {
-  var $children = array();
-  var $dirs = array('x', 'y');
-  var $first = true;
-  var $children_dim;
+  public $children = array();
+  public $dirs = array('x', 'y');
+  public $first = true;
+  public $children_dim;
   function init(&$parent, $params) {
     parent::init($parent, $params);
     $this->children_dim = array('x'=>0, 'y'=>0, 'x-base'=>0, 'y-base'=>0);
@@ -504,7 +504,7 @@ class Lay_Lines extends Lay_Container {
 }
 
 class Lay_Columns extends Lay_Lines {
-  var $dirs = array('y', 'x');
+  public $dirs = array('y', 'x');
 }
 
 class Lay_Line extends Lay_Lines {
@@ -525,7 +525,7 @@ class Lay_Line extends Lay_Lines {
 }
 
 class Lay_Column extends Lay_Line {
-  var $dirs = array('y', 'x');
+  public $dirs = array('y', 'x');
 }
 
 /* Adds widow/orphan protection. */ 
@@ -619,8 +619,8 @@ class Lay_TextLine extends Lay_Line {
 }
 
 class Lay_Top_Container {
-  var $parent = NULL;
-  var $display;
+  public $parent = NULL;
+  public $display;
   function Lay_Top_Container(&$display) {
     $this->display =& $display;
     $this->child_max_dim = $this->display->dimensions();
@@ -638,8 +638,8 @@ class Lay_Top_Container {
 }
 
 class Lay {
-  var $display;
-  var $current;
+  public $display;
+  public $current;
   function Lay($paper='letter', $orientation='portrait') {
     if (is_array($paper)) {
       list($l, $err) = $this->lengthToPoints($paper[0], 'x');
