@@ -44,7 +44,9 @@ class Layout_list {
                 continue;
               }
               $lay->container('TextLine', ['width'=>($unit*$col['width']).'in', 'underline'=>1]);
+              if(isset($col['title'])){
                 $lay->text($col['title']);
+              }
               $lay->close();
             }
           $lay->close();

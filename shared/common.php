@@ -101,6 +101,10 @@
     }
   }
 
+  if(!defined("OBIB_CHARSET")){
+    define("OBIB_CHARSET", "utf-8");
+  }
+
   # code character set in HTTP header if specified
   if (OBIB_CHARSET != "") {
     header('Content-Type: text/html; charset=' . H(OBIB_CHARSET));

@@ -19,6 +19,8 @@
 * You may use, modify and redistribute this software as you wish.              *
 *******************************************************************************/
 
+define("FPDF_VERSION", "1.53");
+
 class PDF {
   //Private properties
   public $page;               //current page number
@@ -48,6 +50,7 @@ class PDF {
   public $keywords;           //keywords
   public $creator;            //creator
   public $PDFVersion;         //PDF version number
+  public $fontName;
 
   /*******************************************************************************
   *                                                                              *
@@ -193,14 +196,18 @@ class PDF {
   }
   function endClip() {
     $this->_out('Q');
-    $this->_out(sprintf('BT /F%d %.2f Tf ET', $this->currentFont['i'], $this->fontSize));
+    if(isset($this->currentFont)){
+      $this->_out(sprintf('BT /F%d %.2f Tf ET', $this->currentFont['i'], $this->fontSize));
+    }
   }
   function startTransform($a, $b, $c, $d, $x, $y) {
     $this->_out(sprintf('q %f %f %f %f %f %f cm', $a, $b, $c, $d, $x, $y));
   }
   function endTransform() {
     $this->_out('Q');
-    $this->_out(sprintf('BT /F%d %.2f Tf ET', $this->currentFont['i'], $this->fontSize));
+    if(isset($this->currentFont)){
+      $this->_out(sprintf('BT /F%d %.2f Tf ET', $this->currentFont['i'], $this->fontSize));
+    }
   }
 
   function close() {
@@ -670,7 +677,7 @@ class PDF {
   {
     $filter=($this->compress) ? '/Filter /FlateDecode ' : '';
     reset($this->images);
-    while([$file, $info]=each($this->images))
+    foreach($this->images as $file => $info)
     {
       $this->_newobj();
       $this->images[$file]['n']=$this->n;

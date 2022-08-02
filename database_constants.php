@@ -8,9 +8,9 @@
  *********************************************************************************
  */
 define("OBIB_HOST",     "localhost");
-define("OBIB_DATABASE", "openbiblio");
-define("OBIB_USERNAME", "db_user");
-define("OBIB_PWD",      "db_passw");
+define("OBIB_DATABASE", "obiblio");
+define("OBIB_USERNAME", "root");
+define("OBIB_PWD",      "pwd");
 define("MAIN_LOCALE",   "de"); // de oder en
 /*********************************************************************************
  *  /\                                                                      /\

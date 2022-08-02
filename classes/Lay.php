@@ -78,7 +78,7 @@ class Lay_Compound_Element {
       $elem->paint($pos);
     }
     $this->display->endClip();
-    if ($this->p['border']) {
+    if (isset($this->p['border']) && $this->p['border']) {
       $this->display->line($point, ['x'=>$point['x'], 'y'=>$max_clip['y']]);
       $this->display->line($point, ['x'=>$max_clip['x'], 'y'=>$point['y']]);
       $this->display->line($max_clip, ['x'=>$point['x'], 'y'=>$max_clip['y']]);
@@ -279,7 +279,7 @@ class Lay_Lines extends Lay_Container {
   function tooBig($dim) {
     $toobig = [];
     foreach ($dim as $d=>$size) {
-      if ($size > $this->child_max_dim[$d]) {
+      if (isset($this->child_max_dim[$d]) && $size > $this->child_max_dim[$d]) {
         $toobig[$d] = $size;
       }
     }

@@ -9,7 +9,7 @@ class QueryAny
   /* Choose the right class to handle database access.
    * .
    */
-  function db()
+  static function db()
     {
     /* We create only one connection. */
     static $db_code;
