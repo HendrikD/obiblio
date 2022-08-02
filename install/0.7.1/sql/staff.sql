@@ -5,7 +5,7 @@ create table %prfx%staff (
   ,last_change_dt datetime not null
   ,last_change_userid integer not null
   ,username varchar(20) not null
-  ,pwd char(32) not null
+  ,pwd varchar(255) not null
   ,last_name varchar(30) not null
   ,first_name varchar(30) null
   ,suspended_flg char(1) not null
@@ -14,6 +14,8 @@ create table %prfx%staff (
   ,circ_mbr_flg char(1) not null
   ,catalog_flg char(1) not null
   ,reports_flg char(1) not null
+  ,mail varchar(255) not null
+  ,resetuid varchar null
   )
   ENGINE=MyISAM
 ;

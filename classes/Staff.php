@@ -34,6 +34,7 @@ class Staff {
   public $_reportsAuth = FALSE;
   public $_suspended = false;
   public $_loc;
+  public $_mail = "";
 
   function __construct () {
     $this->_loc = new Localize(OBIB_LOCALE,"classes");
@@ -73,7 +74,7 @@ class Staff {
     } elseif (substr_count((string) $this->_pwd, " ") > 0) {
       $valid = false;
       $this->_pwdError = $this->_loc->getText("staffPwdCharErr");
-    } elseif ($this->_pwd != $this->_pwd2) {
+    } elseif(password_verify($this->_pwd, $this->_pwd2)){
       $valid = false;
       $this->_pwdError = $this->_loc->getText("staffPwdMatchErr");
     }
@@ -105,7 +106,7 @@ class Staff {
    ****************************************************************************
    */
   function setPwd($pwd) {
-    $this->_pwd = strtolower(trim((string) $pwd));
+    $this->_pwd = trim((string) $pwd);
   }
   function getPwd() {
     return $this->_pwd;
@@ -114,7 +115,7 @@ class Staff {
     return $this->_pwdError;
   }
   function setPwd2($pwd) {
-    $this->_pwd2 = strtolower(trim((string) $pwd));
+    $this->_pwd2 = trim((string) $pwd);
   }
   function getPwd2() {
     return $this->_pwd2;
@@ -312,6 +313,14 @@ class Staff {
     } else {
       $this->_suspended = false;
     }
+  }
+
+  function getMail(){
+    return $this->_mail;
+  }
+
+  function setMail($value){
+    $this->_mail = trim((string) $value);
   }
 
   function getLastChangeDt() {

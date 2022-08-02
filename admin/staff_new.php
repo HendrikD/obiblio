@@ -33,6 +33,8 @@
   $_POST["last_name"] = $staff->getLastName();
   $staff->setFirstName($_POST["first_name"]);
   $_POST["first_name"] = $staff->getFirstName();
+  $staff->setMail($_POST["mail"]);
+  $_POST["mail"] = $staff->getMail();
   $staff->setUsername($_POST["username"]);
   $_POST["username"] = $staff->getUsername();
   $staff->setPwd($_POST["pwd"]);

@@ -13,6 +13,11 @@
   require_once("../classes/SettingsQuery.php");
   require_once("../functions/errorFuncs.php");
 
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
+
   #****************************************************************************
   #*  Checking for post vars.  Go back to form if none found.
   #****************************************************************************

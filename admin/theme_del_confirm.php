@@ -9,6 +9,11 @@
   require_once("../shared/logincheck.php");
   require_once("../classes/Localize.php");
   $loc = new Localize(OBIB_LOCALE,$tab);
+
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
   
   #****************************************************************************
   #*  Checking for query string.  Go back to theme list if none found.

@@ -57,15 +57,19 @@
       <?php if (isset($pageErrors["pwd"])) echo H($pageErrors["pwd"]); ?></font>
     </td>
   </tr>
-
+  <tr>
+    <td></td><td><a href="resetform.php"><font class="alt1"><?=$loc->getText("loginFormPasswordReset")?></font></a></td>
+  </tr>
   <tr>
     <td colspan="2" align="center" class="noborder">
       <input type="submit" value="<?php echo $loc->getText("loginFormLogin"); ?>" class="button">
     </td>
+
   </tr>
 </table>
     </td>
   </tr>
+
 </table>
 
 </form>

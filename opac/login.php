@@ -58,13 +58,11 @@
     	} else {
     		$mbrLgQ = new MemberLoginQuery();
     		$mbrLgQ->connect();
-    		$mbrLgQ->verifySignon($mbr->getMbrid(), $pwd);
+    		$verified = $mbrLgQ->verifySignon($mbr->getMbrid(), $pwd);
     		if ($mbrLgQ->errorOccurred()) {
        			displayErrorPage($mbrLgQ);
     		}
-    		$row = $mbrLgQ->fetchRow();
-    		$mbrLgQ->close();
-    		if ($row == false) {
+    		if ($verified == false) {
      			$error_found = true;
      			$pageErrors["common"] = "Invalid Logon. Maybe you don't have a Secret Word? Please ask the Staff!";
     		} else {

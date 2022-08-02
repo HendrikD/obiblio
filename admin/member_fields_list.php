@@ -23,6 +23,11 @@
   $dms = $dmQ->get("member_fields_dm");
   $dmQ->close();
 
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
+
 ?>
 <a href="../admin/member_fields_new_form.php?reset=Y"><?php echo $loc->getText("Add new custom field"); ?></a><br>
 <h1> <?php echo $loc->getText("Custom Member Fields"); ?></h1>

@@ -14,7 +14,7 @@
   #****************************************************************************
   #*  Checking for post vars.  Go back to form if none found.
   #****************************************************************************
-  $pageErrors = "";
+  $pageErrors = array();
   if (count($_POST) == 0) {
     header("Location: ../shared/loginform.php");
     exit();
@@ -34,6 +34,7 @@
   #****************************************************************************
   $error_found = false;
   $pwd = $_POST["pwd"];
+
   if ($pwd == "") {
     $error_found = true;
     $pageErrors["pwd"] = $loc->getText("loginPwdReqErr");
@@ -45,12 +46,12 @@
     if ($staffQ->errorOccurred()) {
       displayErrorPage($staffQ);
     }
-    $staffQ->verifySignon($username, $pwd);
+    $verified = $staffQ->verifySignon($username, $pwd);
     if ($staffQ->errorOccurred()) {
       displayErrorPage($staffQ);
     }
     $staff = $staffQ->fetchStaff();
-    if ($staff == false) {
+    if ($verified == false) {
       # invalid password.  Add one to login attempts.
       $error_found = true;
       $pageErrors["pwd"] = $loc->getText("loginPwdInvErr");

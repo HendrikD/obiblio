@@ -14,6 +14,12 @@
   require_once("../functions/errorFuncs.php");
   require_once("../classes/Localize.php");
   $loc = new Localize(OBIB_LOCALE,$tab);
+
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
+  
   #****************************************************************************
   #*  Checking for post vars.  Go back to form if none found.
   #****************************************************************************

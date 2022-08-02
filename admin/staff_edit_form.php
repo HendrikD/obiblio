@@ -18,6 +18,11 @@
 
   require_once("../shared/header.php");
 
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
+
   #****************************************************************************
   #*  Checking for query string flag to read data from database.
   #****************************************************************************
@@ -44,6 +49,8 @@
     $postVars["last_name"] = $staff->getLastName();
     $postVars["first_name"] = $staff->getFirstName();
     $postVars["username"] = $staff->getUsername();
+    $postVars["mail"] = $staff->getMail();
+
     if ($staff->hasCircAuth()) {
       $postVars["circ_flg"] = "CHECKED";
     } else {
@@ -103,6 +110,14 @@
     </td>
     <td valign="top" class="primary">
       <?php printInputText("first_name",30,30,$postVars,$pageErrors); ?>
+    </td>
+  </tr>
+  <tr>
+    <td nowrap="true" class="primary">
+      <?php echo $loc->getText("adminStaff_edit_formMail"); ?>
+    </td>
+    <td valign="top" class="primary">
+      <?php printInputText("mail",30,30,$postVars,$pageErrors); ?>
     </td>
   </tr>
   <tr>

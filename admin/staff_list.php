@@ -74,16 +74,30 @@
   <?php
     $row_class = "primary";
     while ($staff = $staffQ->fetchStaff()) {
+
+      // If i'am not an admin i should only see myself
+      if(!$_SESSION["hasAdminAuth"] && $staff->getUserid() != $_SESSION["userid"]){
+        continue;
+      }
+
   ?>
   <tr>
+
+
     <td valign="top" class="<?php echo H($row_class);?>">
-      <a href="../admin/staff_edit_form.php?UID=<?php echo HURL($staff->getUserid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Edit"); ?></a>
+      <?php if($_SESSION["hasAdminAuth"]): ?>
+        <a href="../admin/staff_edit_form.php?UID=<?php echo HURL($staff->getUserid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Edit"); ?></a>
+      <?php endif; ?>
     </td>
+
     <td valign="top" class="<?php echo H($row_class);?>">
-      <a href="../admin/staff_pwd_reset_form.php?UID=<?php echo HURL($staff->getUserid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Pwd"); ?></a>
+        <a href="../admin/staff_pwd_reset_form.php?UID=<?php echo HURL($staff->getUserid());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Pwd"); ?></a>
     </td>
+
     <td valign="top" class="<?php echo H($row_class);?>">
-      <a href="../admin/staff_del_confirm.php?UID=<?php echo HURL($staff->getUserid());?>&amp;LAST=<?php echo HURL($staff->getLastName());?>&amp;FIRST=<?php echo HURL($staff->getFirstName());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Del"); ?></a>
+      <?php if($_SESSION["hasAdminAuth"]): ?>
+        <a href="../admin/staff_del_confirm.php?UID=<?php echo HURL($staff->getUserid());?>&amp;LAST=<?php echo HURL($staff->getLastName());?>&amp;FIRST=<?php echo HURL($staff->getFirstName());?>" class="<?php echo H($row_class);?>"><?php echo $loc->getText("adminStaff_list_Del"); ?></a>
+      <?php endif; ?>
     </td>
     <td valign="top" class="<?php echo H($row_class);?>">
       <?php echo H($staff->getLastName());?>

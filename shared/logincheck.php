@@ -70,10 +70,10 @@
       exit();
     }
   } elseif ($tab == "admin") {
-    if (!$_SESSION["hasAdminAuth"]) {
-      header("Location: ../admin/noauth.php");
-      exit();
-    }
+    //if (!$_SESSION["hasAdminAuth"]) {
+    //  header("Location: ../admin/noauth.php");
+    //  exit();
+    //}
   } elseif ($tab == "reports") {
     if (!$_SESSION["hasReportsAuth"]) {
       header("Location: ../reports/noauth.php");

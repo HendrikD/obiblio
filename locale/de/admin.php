@@ -238,6 +238,7 @@ $trans["adminStaff_edit_formCatalog"]                 = "\$text = 'Katalog.';";
 $trans["adminStaff_edit_formAdmin"]                 = "\$text = 'Admin';";
 $trans["adminStaff_edit_formReports"]                 = "\$text = 'Berichte';";
 $trans["adminStaff_edit_formSuspended"]                 = "\$text = 'Deakt.:';";
+$trans["adminStaff_edit_formMail"]                 = "\$text = 'Mail:';";
 
 #****************************************************************************
 #*  Translation text for page staff_list.php

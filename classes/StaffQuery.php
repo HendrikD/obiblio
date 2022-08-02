@@ -39,10 +39,15 @@ class StaffQuery extends Query {
    ****************************************************************************
    */
   function verifySignon($username, $pwd) {
-    $sql = $this->mkSQL("select * from staff "
-                        . "where username = lower(%Q) "
-                        . " and pwd = md5(lower(%Q)) ",
-                        $username, $pwd);
+
+    $sql = $this->mkSQL("select pwd from staff where username = lower(%Q)", $username);
+    $rows = $this->exec($sql, "Error verifying username and password.");
+    $valid = count($rows) == 1 && password_verify($pwd, $rows[0]['pwd']);
+
+    if(!$valid){
+      return false;
+    }
+    $sql = $this->mkSQL("select * from staff where username = lower(%Q)", $username);
     return $this->_query($sql, "Error verifying username and password.");
   }
 
@@ -71,11 +76,14 @@ class StaffQuery extends Query {
     if ($array == false) {
       return false;
     }
+
     $staff = new Staff();
     $staff->setUserid($array["userid"]);
     $staff->setLastName($array["last_name"]);
     $staff->setFirstName($array["first_name"]);
     $staff->setUsername($array["username"]);
+    $staff->setMail($array["mail"]);
+    
     if ($array["circ_flg"] == "Y") {
       $staff->setCircAuth(true);
     } else {
@@ -145,21 +153,29 @@ class StaffQuery extends Query {
       $this->_error = "Username is already in use.";
       return false;
     }
-    $sql = $this->mkSQL("insert into staff values (null, sysdate(), sysdate(), "
-                        . "%N, %Q, md5(lower(%Q)), %Q, ",
-                        $staff->getLastChangeUserid(), $staff->getUsername(),
-                        $staff->getPwd(), $staff->getLastName());
+
+
+    $firstName;
     if ($staff->getFirstName() == "") {
-      $sql .= "null, ";
+      $firstName = null;
     } else {
-      $sql .= $this->mkSQL("%Q, ", $staff->getFirstName());
+      $firstName = $staff->getFirstName();
     }
-    $sql .= $this->mkSQL("'N', %Q, %Q, %Q, %Q, %Q) ",
-                         $staff->hasAdminAuth() ? "Y" : "N",
-                         $staff->hasCircAuth() ? "Y" : "N",
-                         $staff->hasCircMbrAuth() ? "Y" : "N",
-                         $staff->hasCatalogAuth() ? "Y" : "N",
-                         $staff->hasReportsAuth() ? "Y" : "N");
+
+
+    $sql = $this->mkSQL("insert into staff values (null, sysdate(), sysdate(), %N, %Q, %Q, %Q, %Q, 'N', %Q, %Q, %Q, %Q, %Q, %Q)",
+    $staff->getLastChangeUserid(), 
+    $staff->getUsername(),
+    password_hash($staff->getPwd(), PASSWORD_DEFAULT), 
+    $staff->getLastName(),
+    $firstName,
+    $staff->hasAdminAuth() ? "Y" : "N",
+    $staff->hasCircAuth() ? "Y" : "N",
+    $staff->hasCircMbrAuth() ? "Y" : "N",
+    $staff->hasCatalogAuth() ? "Y" : "N",
+    $staff->hasReportsAuth() ? "Y" : "N",
+    $staff->getMail());
+
     return $this->_query($sql, "Error inserting new staff member information.");
   }
 
@@ -183,9 +199,9 @@ class StaffQuery extends Query {
     }
 
     $sql = $this->mkSQL("update staff set last_change_dt = sysdate(), "
-                        . "last_change_userid=%N, username=%Q, last_name=%Q, ",
+                        . "last_change_userid=%N, username=%Q, last_name=%Q, mail=%Q, ",
                         $staff->getLastChangeUserid(), $staff->getUsername(),
-                        $staff->getLastName());
+                        $staff->getLastName(), $staff->getMail());
     if ($staff->getFirstName() == "") {
       $sql .= "first_name=null, ";
     } else {
@@ -212,9 +228,9 @@ class StaffQuery extends Query {
    ****************************************************************************
    */
   function resetPwd($staff) {
-    $sql = $this->mkSQL("update staff set pwd=md5(lower(%Q)) "
+    $sql = $this->mkSQL("update staff set pwd=%Q "
                         . "where userid=%N ",
-                        $staff->getPwd(), $staff->getUserid());
+                        password_hash($staff->getPwd(), PASSWORD_DEFAULT), $staff->getUserid());
     return $this->_query($sql, "Error resetting password.");
   }
 

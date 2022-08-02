@@ -19,6 +19,11 @@
   
   require_once("../shared/header.php");
 
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
+
 ?>
 
 <form name="newclassificationform" method="POST" action="../admin/mbr_classify_new.php">

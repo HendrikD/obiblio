@@ -19,6 +19,10 @@
     header("Location: ../admin/staff_list.php");
     exit();
   }
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
   $uid = $_GET["UID"];
   $last_name = $_GET["LAST"];
   $first_name = $_GET["FIRST"];

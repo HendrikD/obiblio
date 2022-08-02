@@ -18,6 +18,11 @@
   $loc = new Localize(OBIB_LOCALE,$tab);
   require_once("../shared/header.php");
 
+  if (!$_SESSION["hasAdminAuth"]) {
+    header("Location: ../admin/noauth.php");
+    exit();
+  }
+
 ?>
 
 <form name="newfieldform" method="POST" action="../admin/member_fields_new.php">
