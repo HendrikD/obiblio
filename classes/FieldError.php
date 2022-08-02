@@ -8,7 +8,7 @@ class FieldError extends ObibError {
   function __construct(public $field, $msg) {
     parent::__construct($msg);
   }
-  function listExtract($errors) {
+  static function listExtract($errors) {
     $msgs = [];
     $l = [];
     foreach ($errors as $e) {

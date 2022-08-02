@@ -39,7 +39,7 @@ class Layout_mbr_cards_3up {
                         $lay->text($row['name']);
                       $lay->close();
                       $lay->container('TextLines');
-                        $lay->text($row['classification']." ".$row['school_grade']);
+                        $lay->text(($row['classification']??"")." ".($row['school_grade']??""));
                       $lay->close();
                     $lay->popFont();
                   $lay->close();
